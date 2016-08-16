@@ -7,7 +7,7 @@ const SideBar = props => {
       <div id='sidebar-wrapper'>
         <ul className='sidebar'>
           <li className='sidebar-main'>
-            <Link to={'/'}> Dashboard
+            <Link to={'/'}>
             <span className='menu-icon fa fa-tachometer'></span>
             </Link>
           </li>
