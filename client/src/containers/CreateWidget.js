@@ -12,9 +12,6 @@ class CreateWidget extends Component {
       <div className='row'>
         <div className='col-lg-12'>
           <div className='widget'>
-            <div className='widget-header'>
-              Create/Edit Template
-            </div>
             <div className='widget-body'>
               <form className='form-horizontal'>
                 <legend>

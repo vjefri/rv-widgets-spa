@@ -10,6 +10,8 @@ import App from './containers';
 import Dashboard from './containers/Dashboard';
 import UsersLong from './containers/UsersLong';
 import WidgetsLong from './containers/WidgetsLong';
+import CreateWidget from './containers/CreateWidget';
+import EditWidget from './containers/EditWidget';
 
 const store = storeConfig();
 
@@ -20,6 +22,8 @@ render(
         <IndexRoute component={Dashboard} />
         <Route path='/users' component={UsersLong} />
         <Route path='/widgets' component={WidgetsLong} />
+        <Route path='/createWidget' component={CreateWidget} />
+        <Route path='/editWidget' component={EditWidget} />
       </Route>
     </Router>
   </Provider>,

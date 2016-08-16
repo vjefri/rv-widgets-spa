@@ -1,10 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { browserHistory } from 'react-router';
 
 class WidgetsLong extends Component {
   constructor (props) {
     super(props);
+    this.handleCreate = this.handleCreate.bind(this);
+  }
+
+  handleCreate (e) {
+    e.preventDefault();
+    browserHistory.push('/createWidget');
   }
 
   render () {
@@ -15,7 +22,7 @@ class WidgetsLong extends Component {
             <div className='widget-header'>
               Widgets
               <div className='pull-right'>
-                <button className='btn btn-sm btn-info'>
+                <button className='btn btn-sm btn-info' onClick={this.handleCreate}>
                   + Create
                 </button>
               </div>

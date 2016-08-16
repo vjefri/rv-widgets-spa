@@ -19,12 +19,13 @@ class Dashboard extends Component {
   }
 
   render () {
+    const { users, widgets, usersLength, widgetsLength } = this.props;
     return (
       <div>
-        <DashboardBoxes usersLength={this.props.usersLength} widgetsLength={this.props.widgetsLength} />
+        <DashboardBoxes usersLength={usersLength} widgetsLength={widgetsLength} />
         <div className='row'>
-          <Users users={this.props.users} />
-          <Widgets widgets={this.props.widgets} />
+          {users ? <Users users={users} /> : console.log('loading...')}
+          {widgets ? <Widgets widgets={widgets.slice(0, 10)} /> : console.log('loading...')}
         </div>
       </div>
     );
@@ -32,6 +33,8 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
+  users: PropTypes.arrayOf(React.PropTypes.object),
+  widgets: PropTypes.arrayOf(React.PropTypes.object)
 };
 
 function mapStateToProps (state) {
