@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-class UsersPage extends Component {
+class WidgetsLong extends Component {
   constructor (props) {
     super(props);
   }
@@ -13,7 +13,12 @@ class UsersPage extends Component {
         <div className='col-lg-12'>
           <div className='widget'>
             <div className='widget-header'>
-              Users
+              Widgets
+              <div className='pull-right'>
+                <button className='btn btn-sm btn-info'>
+                  + Create
+                </button>
+              </div>
             </div>
             <div className='table-responsive'>
               <table className='table'>
@@ -26,7 +31,16 @@ class UsersPage extends Component {
                       Name
                     </th>
                     <th>
-                      Avatar
+                      Color
+                    </th>
+                    <th>
+                      Price
+                    </th>
+                    <th>
+                      Melts?
+                    </th>
+                    <th>
+                      Inventory
                     </th>
                   </tr>
                 </thead>
@@ -36,10 +50,19 @@ class UsersPage extends Component {
                       1
                     </td>
                     <td>
-                      JBoss McHuston
+                      Foo
                     </td>
                     <td>
-                      <img src='https://s.gravatar.com/avatar/e11550b1bf793d43639292b196374262?s=48' />
+                      red
+                    </td>
+                    <td>
+                      $4.99
+                    </td>
+                    <td>
+                      yes
+                    </td>
+                    <td>
+                      27
                     </td>
                   </tr>
                 </tbody>
@@ -52,7 +75,7 @@ class UsersPage extends Component {
   }
 }
 
-UsersPage.contextTypes = {
+WidgetsLong.contextTypes = {
   router: PropTypes.object
 };
 
@@ -65,7 +88,7 @@ function mapDispatchToProps (dispatch) {
   return bindActionCreators({}, dispatch);
 }
 
-UsersPage.propTypes = {
+WidgetsLong.propTypes = {
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersPage);
+export default connect(mapStateToProps, mapDispatchToProps)(WidgetsLong);

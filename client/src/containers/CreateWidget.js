@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-class WidgetsPage extends Component {
+class CreateWidget extends Component {
   constructor (props) {
     super(props);
   }
@@ -93,7 +93,7 @@ class WidgetsPage extends Component {
   }
 }
 
-WidgetsPage.contextTypes = {
+CreateWidget.contextTypes = {
   router: PropTypes.object
 };
 
@@ -106,7 +106,7 @@ function mapDispatchToProps (dispatch) {
   return bindActionCreators({}, dispatch);
 }
 
-WidgetsPage.propTypes = {
+CreateWidget.propTypes = {
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(WidgetsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateWidget);
