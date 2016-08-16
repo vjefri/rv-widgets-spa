@@ -50548,9 +50548,9 @@
 	
 	function addWidget(values) {
 	  _axios2['default'].post(url + '/widgets', values, { header: { 'Content-type': 'application/json' } }).then(function (response) {
-	    console.log(response);
-	  })['catch'](function (error) {
-	    console.log(error);
+	    return dispatch(PostWidgetSuccess(response));
+	  })['catch'](function (err) {
+	    return dispatch(SingleWidgetFailure(err));
 	  });
 	};
 

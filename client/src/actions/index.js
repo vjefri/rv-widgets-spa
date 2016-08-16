@@ -175,11 +175,7 @@ function PostWidgetFailure (err) {
 }
 
 export function addWidget (values) {
-  axios.post(`${url}/widgets`, values, {header: {'Content-type': 'application/json'}})
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  axios.post(`${url}/widgets`, values, { header: { 'Content-type': 'application/json' } })
+    .then(response => dispatch(PostWidgetSuccess(response)))
+    .catch(err => dispatch(SingleWidgetFailure(err)));
 };
