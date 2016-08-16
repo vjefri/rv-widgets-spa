@@ -8,8 +8,6 @@ import Widgets from '../components/Widgets';
 import DashboardBoxes from '../components/DashboardBoxes';
 import { getUsers, getWidgets } from '../actions';
 
-console.log(getWidgets);
-
 class Dashboard extends Component {
   constructor (props) {
     super(props);

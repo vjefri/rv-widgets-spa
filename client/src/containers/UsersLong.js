@@ -21,6 +21,7 @@ class UsersLong extends Component {
                   <tr>
                     <th className='text-center'>
                       ID
+                      {console.log(this.props.users)}
                     </th>
                     <th>
                       Name
@@ -31,17 +32,19 @@ class UsersLong extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td className='text-center'>
-                      1
-                    </td>
-                    <td>
-                      JBoss McHuston
-                    </td>
-                    <td>
-                      <img src='https://s.gravatar.com/avatar/e11550b1bf793d43639292b196374262?s=48' />
-                    </td>
-                  </tr>
+                  {_.map(this.props.users, (user, key) => {
+                     return (<tr key={key}>
+                               <td className='text-center'>
+                                 {user.id}
+                               </td>
+                               <td>
+                                 {user.name}
+                               </td>
+                               <td>
+                                 <img src={user.gravatar} />
+                               </td>
+                             </tr>);
+                   })}
                 </tbody>
               </table>
             </div>
@@ -58,6 +61,7 @@ UsersLong.contextTypes = {
 
 function mapStateToProps (state) {
   return {
+    users: state.main.users
   };
 }
 

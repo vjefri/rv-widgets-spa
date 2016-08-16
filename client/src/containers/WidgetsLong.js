@@ -45,26 +45,28 @@ class WidgetsLong extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td className='text-center'>
-                      1
-                    </td>
-                    <td>
-                      Foo
-                    </td>
-                    <td>
-                      red
-                    </td>
-                    <td>
-                      $4.99
-                    </td>
-                    <td>
-                      yes
-                    </td>
-                    <td>
-                      27
-                    </td>
-                  </tr>
+                  {_.map(this.props.widgets, (widget, key) => {
+                     return (<tr key={key}>
+                               <td>
+                                 {widget.id}
+                               </td>
+                               <td>
+                                 {widget.name}
+                               </td>
+                               <td className='text-center'>
+                                 {widget.color}
+                               </td>
+                               <td>
+                                 {widget.price}
+                               </td>
+                               <td>
+                                 {widget.melts}
+                               </td>
+                               <td>
+                                 {widget.inventory}
+                               </td>
+                             </tr>);
+                   })}
                 </tbody>
               </table>
             </div>
@@ -81,6 +83,7 @@ WidgetsLong.contextTypes = {
 
 function mapStateToProps (state) {
   return {
+    widgets: state.main.widgets
   };
 }
 
