@@ -1,10 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { browserHistory } from 'react-router';
+
+import { getUser } from '../actions';
 
 class UsersLong extends Component {
   constructor (props) {
     super(props);
+    this.handleUserDetails = this.handleUserDetails.bind(this);
+  }
+
+  handleUserDetails (id) {
+    console.log('working');
+    this.props.getUser(id);
+    browserHistory.push('/user');
   }
 
   render () {
@@ -36,7 +46,7 @@ class UsersLong extends Component {
                                <td className='text-center'>
                                  {user.id}
                                </td>
-                               <td>
+                               <td onClick={this.handleUserDetails.bind(null, user.id)}>
                                  {user.name}
                                </td>
                                <td>
@@ -65,7 +75,7 @@ function mapStateToProps (state) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({getUser}, dispatch);
 }
 
 UsersLong.propTypes = {
