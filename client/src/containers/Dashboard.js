@@ -6,10 +6,18 @@ import SideBar from '../components/SideBar';
 import Users from '../components/Users';
 import Widgets from '../components/Widgets';
 import DashboardBoxes from '../components/DashboardBoxes';
+import { getUsers, getWidgets } from '../actions';
+
+console.log(getWidgets);
 
 class Dashboard extends Component {
   constructor (props) {
     super(props);
+  }
+
+  componentWillMount () {
+    this.props.getUsers();
+    this.props.getWidgets();
   }
 
   render () {
@@ -17,28 +25,26 @@ class Dashboard extends Component {
       <div>
         <DashboardBoxes />
         <div className='row'>
-          <Users />
-          <Widgets />
+          <Users users={this.props.users} />
+          <Widgets widgets={this.props.widgets} />
         </div>
       </div>
     );
   }
 }
 
-Dashboard.contextTypes = {
-  router: PropTypes.object
+Dashboard.propTypes = {
 };
 
 function mapStateToProps (state) {
   return {
+    users: state.main.users,
+    widgets: state.main.widgets
   };
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({getUsers, getWidgets}, dispatch);
 }
-
-Dashboard.propTypes = {
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

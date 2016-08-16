@@ -8,8 +8,8 @@ import './styles/main.scss';
 
 import App from './containers';
 import Dashboard from './containers/Dashboard';
-import UsersPage from './containers/UsersPage';
-import WidgetsPage from './containers/WidgetsPage';
+import UsersLong from './containers/UsersLong';
+import WidgetsLong from './containers/WidgetsLong';
 
 const store = storeConfig();
 
@@ -18,8 +18,8 @@ render(
     <Router history={browserHistory}>
       <Route path='/' component={App}>
         <IndexRoute component={Dashboard} />
-        <Route path='/users' component={UsersPage} />
-        <Route path='/widgets' component={WidgetsPage} />
+        <Route path='/users' component={UsersLong} />
+        <Route path='/widgets' component={WidgetsLong} />
       </Route>
     </Router>
   </Provider>,

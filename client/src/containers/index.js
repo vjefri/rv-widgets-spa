@@ -29,8 +29,7 @@ App.PropTypes = {
 };
 
 function mapStateToProps (state) {
-  return {
-  };
+  return {};
 }
 
 function mapDispatchToProps (dispatch) {

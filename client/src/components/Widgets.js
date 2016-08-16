@@ -1,4 +1,5 @@
 import React from 'react';
+import Search from './Search';
 
 const Widgets = props => {
   return (
@@ -6,9 +7,7 @@ const Widgets = props => {
       <div className='widget'>
         <div className='widget-header'>
           Widgets
-          <div className='pull-right'>
-            <input type='text' className='form-control input-sm' />
-          </div>
+          <Search name='Search Widgets' />
         </div>
         <div className='table-responsive'>
           <table className='table'>
@@ -23,22 +22,16 @@ const Widgets = props => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className='text-center'>
-                  1
-                </td>
-                <td>
-                  A
-                </td>
-              </tr>
-              <tr>
-                <td className='text-center'>
-                  2
-                </td>
-                <td>
-                  B
-                </td>
-              </tr>
+              {_.map(props.widgets, (widget, index) => {
+                 return (<tr key={index}>
+                           <td className='text-center'>
+                             {widget.id}
+                           </td>
+                           <td>
+                             {widget.name}
+                           </td>
+                         </tr>);
+               })}
             </tbody>
           </table>
         </div>

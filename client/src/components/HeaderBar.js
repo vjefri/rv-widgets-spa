@@ -5,7 +5,7 @@ const HeaderBar = props => {
     <div className='row header col-xs-12'>
       <div className='user pull-right'>
         <div className='item dropdown'>
-          <a href='#' className='dropdown-toggle'><img src='img/avatar.jpg' alt='' /></a>
+          <a href='#' className='dropdown-toggle'><img src='../styles/img/avatar.jpg' alt='' /></a>
         </div>
       </div>
       <div className='meta'>

@@ -1,4 +1,7 @@
 import React from 'react';
+import _ from 'lodash';
+
+import Search from './Search';
 
 const Users = props => {
   return (
@@ -6,9 +9,7 @@ const Users = props => {
       <div className='widget'>
         <div className='widget-header'>
           Users
-          <div className='pull-right'>
-            <input type='text' className='form-control input-sm' />
-          </div>
+          <Search name='Search Users' />
         </div>
         <div className='table-responsive'>
           <table className='table'>
@@ -23,30 +24,16 @@ const Users = props => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className='text-center'>
-                  1
-                </td>
-                <td>
-                  Joe Bloggs
-                </td>
-              </tr>
-              <tr>
-                <td className='text-center'>
-                  2
-                </td>
-                <td>
-                  Timothy Hernandez
-                </td>
-              </tr>
-              <tr>
-                <td className='text-center'>
-                  3
-                </td>
-                <td>
-                  Joe Bickham
-                </td>
-              </tr>
+              {_.map(props.users, (user, key) => {
+                 return (<tr key={key}>
+                           <td className='text-center'>
+                             {user.id}
+                           </td>
+                           <td>
+                             {user.name}
+                           </td>
+                         </tr>);
+               })}
             </tbody>
           </table>
         </div>
