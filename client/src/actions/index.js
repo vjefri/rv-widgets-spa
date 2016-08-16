@@ -13,9 +13,12 @@ function UserRequest () {
 }
 
 function UserSuccess (users) {
+  const usersLength = users.length;
+
   return {
     type: ACTIONS.GET_USERS_SUCCESS,
     users: users,
+    usersLength: usersLength,
     error: null
   };
 }
@@ -48,9 +51,12 @@ function WidgetRequest () {
 }
 
 function WidgetSuccess (widgets) {
+  const widgetsLength = widgets.length;
+
   return {
     type: ACTIONS.GET_WIDGETS_SUCCESS,
     widgets: widgets,
+    widgetsLength: widgetsLength,
     error: null
   };
 }

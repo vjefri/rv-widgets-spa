@@ -13,6 +13,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         users: action.users,
+        usersLength: action.usersLength,
         isFetching: false,
       };
     case ACTIONS.GET_USERS_FAILURE:
@@ -29,6 +30,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         widgets: action.widgets,
+        widgetsLength: action.widgetsLength,
         isFetching: false,
       };
     case ACTIONS.GET_WIDGETS_FAILURE:

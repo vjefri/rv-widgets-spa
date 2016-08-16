@@ -21,7 +21,7 @@ class Dashboard extends Component {
   render () {
     return (
       <div>
-        <DashboardBoxes />
+        <DashboardBoxes usersLength={this.props.usersLength} widgetsLength={this.props.widgetsLength} />
         <div className='row'>
           <Users users={this.props.users} />
           <Widgets widgets={this.props.widgets} />
@@ -37,7 +37,9 @@ Dashboard.propTypes = {
 function mapStateToProps (state) {
   return {
     users: state.main.users,
-    widgets: state.main.widgets
+    usersLength: state.main.usersLength,
+    widgets: state.main.widgets,
+    widgetsLength: state.main.widgetsLength
   };
 }
 

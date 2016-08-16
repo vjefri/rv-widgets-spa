@@ -10,7 +10,7 @@ const DashboardBoxes = props => {
               <i className='fa fa-users'></i>
             </div>
             <div className='title'>
-              {5}
+              {props.usersLength}
             </div>
             <div className='comment'>
               Users
@@ -25,7 +25,7 @@ const DashboardBoxes = props => {
               <i className='fa fa-users'></i>
             </div>
             <div className='title'>
-              {10}
+              {props.widgetsLength}
             </div>
             <div className='comment'>
               Widgets
