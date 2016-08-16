@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { reduxForm } from 'redux-form';
 
 class CreateWidget extends Component {
   constructor (props) {
@@ -8,6 +7,7 @@ class CreateWidget extends Component {
   }
 
   render () {
+    const {fields: { name, price, color, melts, inventory }, handleSubmit, submitting} = this.props;
     return (
       <div className='row'>
         <div className='col-lg-12'>
@@ -24,7 +24,8 @@ class CreateWidget extends Component {
                     name='widget-name'
                     type='text'
                     placeholder='foo-bar'
-                    className='input-medium' />
+                    className='input-medium'
+                    {...name}/>
                 </div>
                 <div className='controls'>
                   <div className='input-prepend'>
@@ -35,12 +36,17 @@ class CreateWidget extends Component {
                       name='widget-price'
                       className='input-medium'
                       placeholder='0.00'
-                      type='text' />
+                      type='text'
+                      {...price}/>
                   </div>
                 </div>
                 <div className='controls'>
                   Color
-                  <select id='widget-color' name='widget-color' className='input-large'>
+                  <select
+                    id='widget-color'
+                    name='widget-color'
+                    className='input-large'
+                    {...color}>
                     <option>
                       red
                     </option>
@@ -70,7 +76,8 @@ class CreateWidget extends Component {
                     type='checkbox'
                     name='widget-properties'
                     id='widget-properties-0'
-                    value='melts' />
+                    value='melts'
+                    {...melts}/>
                 </div>
                 <div className='controls'>
                   Inventory
@@ -79,8 +86,12 @@ class CreateWidget extends Component {
                     name='widget-count'
                     type='text'
                     placeholder='#?'
-                    className='input-small' />
+                    className='input-small'
+                    {...inventory}/>
                 </div>
+                <button type='submit' onClick={handleSubmit}>
+                  Submit
+                </button>
               </form>
             </div>
           </div>
@@ -90,20 +101,13 @@ class CreateWidget extends Component {
   }
 }
 
-CreateWidget.contextTypes = {
-  router: PropTypes.object
+CreateWidget.PropTypes = {
+  handleSubmit: PropTypes.func,
+  submitting: PropTypes.bool,
+  fields: PropTypes.object
 };
 
-function mapStateToProps (state) {
-  return {
-  };
-}
-
-function mapDispatchToProps (dispatch) {
-  return bindActionCreators({}, dispatch);
-}
-
-CreateWidget.propTypes = {
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateWidget);
+export default reduxForm({
+  form: 'CreateWidget',
+  fields: ['name', 'price', 'color', 'melts', 'inventory']
+})(CreateWidget);

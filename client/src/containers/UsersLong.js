@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 
-import { getUser } from '../actions';
+import { getUser, getUsers } from '../actions';
 
 class UsersLong extends Component {
   constructor (props) {
@@ -11,8 +11,13 @@ class UsersLong extends Component {
     this.handleUserDetails = this.handleUserDetails.bind(this);
   }
 
+  componentDidMount () {
+    if (this.props.users === undefined) {
+      this.props.getUsers();
+    }
+  }
+
   handleUserDetails (id) {
-    console.log('working');
     this.props.getUser(id);
     browserHistory.push('/user');
   }
@@ -75,7 +80,7 @@ function mapStateToProps (state) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators({getUser}, dispatch);
+  return bindActionCreators({getUser, getUsers}, dispatch);
 }
 
 UsersLong.propTypes = {

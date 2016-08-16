@@ -3,10 +3,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 
+import { getWidget, getWidgets } from '../actions';
+
 class WidgetsLong extends Component {
   constructor (props) {
     super(props);
     this.handleCreate = this.handleCreate.bind(this);
+  }
+  componentDidMount () {
+    if (!this.props.widgets) {
+      this.props.getWidgets();
+    }
   }
 
   handleCreate (e) {
@@ -95,7 +102,7 @@ function mapStateToProps (state) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({getWidget, getWidgets}, dispatch);
 }
 
 WidgetsLong.propTypes = {
