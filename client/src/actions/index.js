@@ -4,7 +4,7 @@ import * as ACTIONS from '../constants/';
 
 const url = 'http://spa.tglrw.com:4000';
 
-// Get User Data
+// Get All User Data
 
 function UserRequest () {
   return {
@@ -42,7 +42,42 @@ export function getUsers () {
   };
 };
 
-// Get Widget Data
+// Single User 
+
+function SingleUserRequest () {
+  return {
+    type: ACTIONS.GET_SINGLE_USER_REQUEST
+  };
+}
+
+function SingleUserSuccess (currentUser) {
+  return {
+    type: ACTIONS.GET_SINGLE_USER_SUCCESS,
+    currentUser: currentUser,
+    error: null
+  };
+}
+
+function SingleUserFailure (err) {
+  return {
+    type: ACTIONS.GET_SINGLE_USER_FAILURE,
+    error: err
+  };
+}
+
+export function getUser (id) {
+  return dispatch => {
+    dispatch(SingleUserRequest());
+    return fetch(`${url}/users/${id}`, {method: 'GET'})
+      .then(res => res.json())
+      .then(data => {
+        return dispatch(SingleUserSuccess(data));
+      })
+      .catch(err => dispatch(SingleUserFailure(err)));
+  };
+};
+
+// Get All Widget Data
 
 function WidgetRequest () {
   return {
@@ -77,5 +112,40 @@ export function getWidgets () {
         return dispatch(WidgetSuccess(data));
       })
       .catch(err => dispatch(WidgetFailure(err)));
+  };
+};
+
+// Single Widget 
+
+function SingleWidgetRequest () {
+  return {
+    type: ACTIONS.GET_SINGLE_WIDGET_REQUEST
+  };
+}
+
+function SingleWidgetSuccess (currentWidget) {
+  return {
+    type: ACTIONS.GET_SINGLE_WIDGET_SUCCESS,
+    currentWidget: currentWidget,
+    error: null
+  };
+}
+
+function SingleWidgetFailure (err) {
+  return {
+    type: ACTIONS.GET_SINGLE_WIDGET_FAILURE,
+    error: err
+  };
+}
+
+export function getWidget (id) {
+  return dispatch => {
+    dispatch(SingleWidgetRequest());
+    return fetch(`${url}/widgets/${id}`, {method: 'GET'})
+      .then(res => res.json())
+      .then(data => {
+        return dispatch(SingleWidgetSuccess(data));
+      })
+      .catch(err => dispatch(SingleWidgetFailure(err)));
   };
 };

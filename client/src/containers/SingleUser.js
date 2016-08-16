@@ -2,12 +2,14 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-class UsersLong extends Component {
+class SingleUser extends Component {
   constructor (props) {
     super(props);
   }
 
   render () {
+    const { currentUser } = this.props;
+
     return (
       <div className='row'>
         <div className='col-lg-12'>
@@ -31,19 +33,17 @@ class UsersLong extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {_.map(this.props.users, (user, key) => {
-                     return (<tr key={key}>
-                               <td className='text-center'>
-                                 {user.id}
-                               </td>
-                               <td>
-                                 {user.name}
-                               </td>
-                               <td>
-                                 <img src={user.gravatar} />
-                               </td>
-                             </tr>);
-                   })}
+                  <tr>
+                    <td className='text-center'>
+                      {currentUser ? currentUser.id : console.log('loading...')}
+                    </td>
+                    <td>
+                      {currentUser ? currentUser.name : console.log('loading...')}
+                    </td>
+                    <td>
+                      <img src={currentUser ? currentUser.gravatar : console.log('loading...')} />
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -54,13 +54,13 @@ class UsersLong extends Component {
   }
 }
 
-UsersLong.contextTypes = {
+SingleUser.contextTypes = {
   router: PropTypes.object
 };
 
 function mapStateToProps (state) {
   return {
-    users: state.main.users
+    currentUser: state.main.currentUser
   };
 }
 
@@ -68,7 +68,7 @@ function mapDispatchToProps (dispatch) {
   return bindActionCreators({}, dispatch);
 }
 
-UsersLong.propTypes = {
+SingleUser.propTypes = {
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersLong);
+export default connect(mapStateToProps, mapDispatchToProps)(SingleUser);

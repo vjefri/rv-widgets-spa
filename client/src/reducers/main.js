@@ -24,7 +24,7 @@ export default (state = INITIAL_STATE, action) => {
     case ACTIONS.GET_WIDGETS_REQUEST:
       return {
         ...state,
-        isFetching: false,
+        isFetching: true,
       };
     case ACTIONS.GET_WIDGETS_SUCCESS:
       return {
@@ -34,6 +34,38 @@ export default (state = INITIAL_STATE, action) => {
         isFetching: false,
       };
     case ACTIONS.GET_WIDGETS_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+      };
+    case ACTIONS.GET_SINGLE_USER_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case ACTIONS.GET_SINGLE_USER_SUCCESS:
+      return {
+        ...state,
+        currentUser: action.currentUser,
+        isFetching: false,
+      };
+    case ACTIONS.GET_SINGLE_USER_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+      };
+    case ACTIONS.GET_SINGLE_WIDGET_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case ACTIONS.GET_SINGLE_WIDGET_SUCCESS:
+      return {
+        ...state,
+        currentWidget: action.currentWidget,
+        isFetching: false,
+      };
+    case ACTIONS.GET_SINGLE_WIDGET_FAILURE:
       return {
         ...state,
         isFetching: false,

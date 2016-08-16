@@ -29,7 +29,7 @@ const Users = props => {
                            <td className='text-center'>
                              {user.id}
                            </td>
-                           <td>
+                           <td onClick={props.handleUserDetails.bind(null, user.id)}>
                              {user.name}
                            </td>
                          </tr>);

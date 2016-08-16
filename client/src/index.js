@@ -12,6 +12,8 @@ import UsersLong from './containers/UsersLong';
 import WidgetsLong from './containers/WidgetsLong';
 import CreateWidget from './containers/CreateWidget';
 import EditWidget from './containers/EditWidget';
+import SingleUser from './containers/SingleUser';
+import SingleWidget from './containers/SingleWidget';
 
 const store = storeConfig();
 
@@ -24,6 +26,8 @@ render(
         <Route path='/widgets' component={WidgetsLong} />
         <Route path='/createWidget' component={CreateWidget} />
         <Route path='/editWidget' component={EditWidget} />
+        <Route path='/user' component={SingleUser} />
+        <Route path='/widget' component={SingleWidget} />
       </Route>
     </Router>
   </Provider>,

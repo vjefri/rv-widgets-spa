@@ -28,7 +28,7 @@ const Widgets = props => {
                            <td className='text-center'>
                              {widget.id}
                            </td>
-                           <td>
+                           <td onClick={props.handleWidgetDetails.bind(null, widget.id)}>
                              {widget.name}
                            </td>
                          </tr>);
