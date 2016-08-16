@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import SideBar from '../components/SideBar';
 import Users from '../components/Users';
 import Widgets from '../components/Widgets';
+import DashboardBoxes from '../components/DashboardBoxes';
 
 class Dashboard extends Component {
   constructor (props) {
@@ -13,7 +14,8 @@ class Dashboard extends Component {
 
   render () {
     return (
-      <div id='page-wrapper' className='open'>
+      <div>
+        <DashboardBoxes />
         <div className='row'>
           <Users />
           <Widgets />

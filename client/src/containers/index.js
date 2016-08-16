@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import SideBar from '../components/SideBar';
+import HeaderBar from '../components/HeaderBar';
 
 export class App extends Component {
   constructor (props) {
@@ -10,10 +11,13 @@ export class App extends Component {
 
   render () {
     return (
-      <div className='app'>
+      <div id='page-wrapper' className='open'>
         <SideBar />
-        <div className='container'>
-          {this.props.children}
+        <div id='content-wrapper'>
+          <div className='page-content'>
+            <HeaderBar />
+            {this.props.children}
+          </div>
         </div>
       </div>
     );

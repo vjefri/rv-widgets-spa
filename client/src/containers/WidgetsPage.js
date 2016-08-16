@@ -9,41 +9,41 @@ class WidgetsPage extends Component {
 
   render () {
     return (
-      <div class='row'>
-        <div class='col-lg-12'>
-          <div class='widget'>
-            <div class='widget-header'>
+      <div className='row'>
+        <div className='col-lg-12'>
+          <div className='widget'>
+            <div className='widget-header'>
               Create/Edit Template
             </div>
-            <div class='widget-body'>
-              <form class='form-horizontal'>
+            <div className='widget-body'>
+              <form className='form-horizontal'>
                 <legend>
                   Create Widget
                 </legend>
-                <div class='controls'>
+                <div className='controls'>
                   Name
                   <input
                     id='widget-name'
                     name='widget-name'
                     type='text'
                     placeholder='foo-bar'
-                    class='input-medium' />
+                    className='input-medium' />
                 </div>
-                <div class='controls'>
-                  <div class='input-prepend'>
+                <div className='controls'>
+                  <div className='input-prepend'>
                     Price
-                    <span class='add-on'>$</span>
+                    <span className='add-on'>$</span>
                     <input
                       id='widget-price'
                       name='widget-price'
-                      class='input-medium'
+                      className='input-medium'
                       placeholder='0.00'
                       type='text' />
                   </div>
                 </div>
-                <div class='controls'>
+                <div className='controls'>
                   Color
-                  <select id='widget-color' name='widget-color' class='input-large'>
+                  <select id='widget-color' name='widget-color' className='input-large'>
                     <option>
                       red
                     </option>
@@ -67,7 +67,7 @@ class WidgetsPage extends Component {
                     </option>
                   </select>
                 </div>
-                <div class='controls'>
+                <div className='controls'>
                   Melts
                   <input
                     type='checkbox'
@@ -75,14 +75,14 @@ class WidgetsPage extends Component {
                     id='widget-properties-0'
                     value='melts' />
                 </div>
-                <div class='controls'>
+                <div className='controls'>
                   Inventory
                   <input
                     id='widget-count'
                     name='widget-count'
                     type='text'
                     placeholder='#?'
-                    class='input-small' />
+                    className='input-small' />
                 </div>
               </form>
             </div>
