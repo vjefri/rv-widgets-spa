@@ -1,9 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 
+import { addWidget } from '../actions';
+
 class CreateWidget extends Component {
   constructor (props) {
     super(props);
+  }
+
+  handleSubmit (values) {
+    this.props.addWidget(values);
   }
 
   render () {
@@ -13,7 +19,7 @@ class CreateWidget extends Component {
         <div className='col-lg-12'>
           <div className='widget'>
             <div className='widget-body'>
-              <form className='form-horizontal'>
+              <form className='form-horizontal' onSubmit={handleSubmit(this.handleSubmit)}>
                 <legend>
                   Create Widget
                 </legend>
@@ -89,7 +95,7 @@ class CreateWidget extends Component {
                     className='input-small'
                     {...inventory}/>
                 </div>
-                <button type='submit' onClick={handleSubmit}>
+                <button type='submit'>
                   Submit
                 </button>
               </form>
@@ -104,10 +110,17 @@ class CreateWidget extends Component {
 CreateWidget.PropTypes = {
   handleSubmit: PropTypes.func,
   submitting: PropTypes.bool,
-  fields: PropTypes.object
+  fields: PropTypes.object,
+  addWidget: PropTypes.func
 };
+
+function mapStateToProps (state) {
+  return {
+    data: state.form.CreateWidget
+  };
+}
 
 export default reduxForm({
   form: 'CreateWidget',
   fields: ['name', 'price', 'color', 'melts', 'inventory']
-})(CreateWidget);
+}, mapStateToProps, { addWidget})(CreateWidget);

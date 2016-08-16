@@ -149,3 +149,39 @@ export function getWidget (id) {
       .catch(err => dispatch(SingleWidgetFailure(err)));
   };
 };
+
+// Post Widget
+
+function PostWidgetRequest () {
+  return {
+    type: ACTIONS.POST_WIDGET_REQUEST
+  };
+}
+
+function PostWidgetSuccess (currentWidget) {
+  return {
+    type: ACTIONS.POST_WIDGET_SUCCESS,
+    currentWidget: currentWidget,
+    error: null
+  };
+}
+
+function PostWidgetFailure (err) {
+  return {
+    type: ACTIONS.POST_WIDGET_FAILURE,
+    error: err
+  };
+}
+
+export function addWidget (e, a) {
+  console.log(e, a);
+  return dispatch => {
+    dispatch(PostWidgetRequest());
+    return fetch(`${url}/widgets`, {method: 'POST'})
+      .then(res => res.json())
+      .then(data => {
+        return dispatch(PostWidgetSuccess(data));
+      })
+      .catch(err => dispatch(PostWidgetFailure(err)));
+  };
+};
