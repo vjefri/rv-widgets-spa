@@ -2,19 +2,19 @@ import React from 'react';
 
 const Widgets = props => {
   return (
-    <div class='col-lg-6'>
-      <div class='widget'>
-        <div class='widget-header'>
+    <div className='col-lg-6'>
+      <div className='widget'>
+        <div className='widget-header'>
           Widgets
-          <div class='pull-right'>
-            <input type='text' class='form-control input-sm' />
+          <div className='pull-right'>
+            <input type='text' className='form-control input-sm' />
           </div>
         </div>
-        <div class='table-responsive'>
-          <table class='table'>
+        <div className='table-responsive'>
+          <table className='table'>
             <thead>
               <tr>
-                <th class='text-center'>
+                <th className='text-center'>
                   ID
                 </th>
                 <th>
@@ -24,7 +24,7 @@ const Widgets = props => {
             </thead>
             <tbody>
               <tr>
-                <td class='text-center'>
+                <td className='text-center'>
                   1
                 </td>
                 <td>
@@ -32,7 +32,7 @@ const Widgets = props => {
                 </td>
               </tr>
               <tr>
-                <td class='text-center'>
+                <td className='text-center'>
                   2
                 </td>
                 <td>
