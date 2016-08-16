@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 
 import * as ACTIONS from '../constants/';
 
@@ -33,7 +34,7 @@ function UserFailure (err) {
 export function getUsers () {
   return dispatch => {
     dispatch(UserRequest());
-    return fetch(`${url}/users`, {method: 'GET'})
+    return fetch(`${url}/users`, { method: 'GET' })
       .then(res => res.json())
       .then(data => {
         return dispatch(UserSuccess(data));
@@ -68,7 +69,7 @@ function SingleUserFailure (err) {
 export function getUser (id) {
   return dispatch => {
     dispatch(SingleUserRequest());
-    return fetch(`${url}/users/${id}`, {method: 'GET'})
+    return fetch(`${url}/users/${id}`, { method: 'GET' })
       .then(res => res.json())
       .then(data => {
         return dispatch(SingleUserSuccess(data));
@@ -106,7 +107,7 @@ function WidgetFailure (err) {
 export function getWidgets () {
   return dispatch => {
     dispatch(WidgetRequest());
-    return fetch(`${url}/widgets`, {method: 'GET'})
+    return fetch(`${url}/widgets`, { method: 'GET' })
       .then(res => res.json())
       .then(data => {
         return dispatch(WidgetSuccess(data));
@@ -141,7 +142,7 @@ function SingleWidgetFailure (err) {
 export function getWidget (id) {
   return dispatch => {
     dispatch(SingleWidgetRequest());
-    return fetch(`${url}/widgets/${id}`, {method: 'GET'})
+    return fetch(`${url}/widgets/${id}`, { method: 'GET' })
       .then(res => res.json())
       .then(data => {
         return dispatch(SingleWidgetSuccess(data));
@@ -174,16 +175,11 @@ function PostWidgetFailure (err) {
 }
 
 export function addWidget (values) {
-  return dispatch => {
-    dispatch(PostWidgetRequest());
-    return fetch(`${url}/widgets`, {method: 'POST', body: JSON.stringify(values), mode: 'cors', headers: new Headers({
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    }})
-      .then(res => res.json())
-      .then(data => {
-        return dispatch(PostWidgetSuccess(data));
-      })
-      .catch(err => dispatch(PostWidgetFailure(err)));
-  };
+  axios.post(`${url}/widgets`, values, {header: {'Content-type': 'application/json'}})
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };

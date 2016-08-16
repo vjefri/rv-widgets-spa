@@ -4,7 +4,8 @@ import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import storeConfig from './store';
-import './styles/main.scss';
+// import './styles/main.scss'
+// require.context('./styles', true, /^\.\/.*\.css/)
 
 import App from './containers';
 import Dashboard from './containers/Dashboard';

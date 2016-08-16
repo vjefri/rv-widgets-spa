@@ -9,8 +9,8 @@ if (process.env.NODE_ENV === 'development') {
   const config = require('../webpack.config.dev');
 
   const compiler = webpack(config);
-  app.use(webpackHotMiddleware(compiler));
   app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
+  app.use(webpackHotMiddleware(compiler));
 }
 
 app.use('/api', routes);

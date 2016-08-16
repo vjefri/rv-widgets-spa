@@ -14,6 +14,7 @@ module.exports = {
     path: path.join(__dirname, 'client/dist'),
     filename: 'bundle.js'
   },
+  devtool: '#source-map',
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
@@ -42,7 +43,7 @@ module.exports = {
       loader: ExtractTextPlugin.extract('style', 'css')
     }, {
       test: /\.(css)$/,
-      loader: 'url-loader?limit=1024&name=css/[name].[ext]'
+      loader: 'file?name=[path][name].[ext]&context=./client/src/styles/'
     }]
   }
 };
