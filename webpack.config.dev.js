@@ -1,10 +1,10 @@
-var path = require('path')
-var webpack = require('webpack')
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var path = require('path');
+var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var neat = require('node-neat').includePaths;
-var sassNeatPaths = require("node-neat").includePaths.map(function(sassPath) {
-    return "includePaths[]=" + sassPath;
-}).join("&");
+var sassNeatPaths = require('node-neat').includePaths.map(function (sassPath) {
+  return 'includePaths[]=' + sassPath;
+}).join('&');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -19,7 +19,7 @@ module.exports = {
   externals: {
     'cheerio': 'window',
     'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': true,
+    'react/lib/ReactContext': true
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -30,18 +30,18 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/,
-      loaders: [ 'babel' ],
+      loaders: ['babel'],
       exclude: /node_modules/,
       include: __dirname
-    },
-    {
+    }, {
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract("style", "css!sass?" + sassNeatPaths)
-    },
-    {
+      loader: ExtractTextPlugin.extract('style', 'css!sass?' + sassNeatPaths)
+    }, {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract("style", "css")
-    }
-    ]
+      loader: ExtractTextPlugin.extract('style', 'css')
+    }, {
+      test: /\.(css)$/,
+      loader: 'url-loader?limit=1024&name=css/[name].[ext]'
+    }]
   }
-}
+};

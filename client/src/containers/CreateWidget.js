@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
+import { bindActionCreators } from 'redux';
 
 import { addWidget } from '../actions';
 
@@ -8,8 +9,8 @@ class CreateWidget extends Component {
     super(props);
   }
 
-  handleSubmit (values) {
-    this.props.addWidget(values);
+  handleSubmit (values, dispatch) {
+    dispatch(addWidget(values));
   }
 
   render () {
@@ -119,8 +120,11 @@ function mapStateToProps (state) {
     data: state.form.CreateWidget
   };
 }
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators({addWidget}, dispatch);
+}
 
 export default reduxForm({
   form: 'CreateWidget',
   fields: ['name', 'price', 'color', 'melts', 'inventory']
-}, mapStateToProps, { addWidget})(CreateWidget);
+}, mapStateToProps, mapDispatchToProps)(CreateWidget);

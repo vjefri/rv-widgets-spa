@@ -9,12 +9,12 @@ if (process.env.NODE_ENV === 'development') {
   const config = require('../webpack.config.dev');
 
   const compiler = webpack(config);
-  app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
   app.use(webpackHotMiddleware(compiler));
+  app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
 }
 
 app.use('/api', routes);
-app.get("/*", function(req, res) {
+app.get('/*', function (req, res) {
   res.sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 

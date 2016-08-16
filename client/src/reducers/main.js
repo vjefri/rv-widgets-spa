@@ -70,6 +70,22 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         isFetching: false,
       };
+    case ACTIONS.POST_WIDGET_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case ACTIONS.POST_WIDGET_SUCCESS:
+      return {
+        ...state,
+        data: action.data,
+        isFetching: false,
+      };
+    case ACTIONS.POST_WIDGET_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+      };
     default:
       return state;
   }

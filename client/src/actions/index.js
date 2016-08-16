@@ -158,10 +158,10 @@ function PostWidgetRequest () {
   };
 }
 
-function PostWidgetSuccess (currentWidget) {
+function PostWidgetSuccess (data) {
   return {
     type: ACTIONS.POST_WIDGET_SUCCESS,
-    currentWidget: currentWidget,
+    data: data,
     error: null
   };
 }
@@ -173,11 +173,13 @@ function PostWidgetFailure (err) {
   };
 }
 
-export function addWidget (e, a) {
-  console.log(e, a);
+export function addWidget (values) {
   return dispatch => {
     dispatch(PostWidgetRequest());
-    return fetch(`${url}/widgets`, {method: 'POST'})
+    return fetch(`${url}/widgets`, {method: 'POST', body: JSON.stringify(values), mode: 'cors', headers: new Headers({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    }})
       .then(res => res.json())
       .then(data => {
         return dispatch(PostWidgetSuccess(data));

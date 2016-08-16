@@ -57,6 +57,7 @@
     "redux-thunk": "^2.1.0",
     "sass-loader": "^3.2.1",
     "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.0"
   },
   "devDependencies": {

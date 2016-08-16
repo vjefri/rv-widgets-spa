@@ -1,10 +1,10 @@
-var path = require('path')
-var webpack = require('webpack')
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var path = require('path');
+var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var neat = require('node-neat').includePaths;
-var sassNeatPaths = require("node-neat").includePaths.map(function(sassPath) {
-    return "includePaths[]=" + sassPath;
-}).join("&");
+var sassNeatPaths = require('node-neat').includePaths.map(function (sassPath) {
+  return 'includePaths[]=' + sassPath;
+}).join('&');
 
 module.exports = {
   entry: [
@@ -32,17 +32,17 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/,
-      loaders: [ 'babel' ],
+      loaders: ['babel'],
       exclude: /node_modules/
-    },
-    {
+    }, {
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract("style", "css?minimize!sass?" + sassNeatPaths)
-    },
-    {
+      loader: ExtractTextPlugin.extract('style', 'css?minimize!sass?' + sassNeatPaths)
+    }, {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract("style", "css")
-    }
-    ]
+      loader: ExtractTextPlugin.extract('style', 'css')
+    }, {
+      test: /\.(css)$/,
+      loader: 'url-loader?limit=1024&name=css/[name].[ext]'
+    }]
   }
-}
+};
