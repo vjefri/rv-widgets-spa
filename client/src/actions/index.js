@@ -193,7 +193,7 @@ function EditWidgetFailure (err) {
   };
 }
 
-export function editWidget (id, values) {
+export function editWidget (values, d, id) {
   return dispatch => {
     dispatch(EditWidgetRequest());
     return axios.put(`${url}/widgets/${id}`, values, { header: { 'Content-type': 'application/json' } })

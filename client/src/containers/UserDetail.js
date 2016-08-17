@@ -10,7 +10,7 @@ class UserDetail extends Component {
   }
 
   componentDidMount () {
-    const { userId } = this.props ? this.props.params : this.props.params;
+    const { userId } = this.props ? this.props.params : console.log('loading...');
     this.props.getUser(userId);
   }
 

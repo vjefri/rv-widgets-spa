@@ -3,20 +3,19 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form';
 
-import { getWidget } from '../actions';
+import { editWidget } from '../actions';
 
 class EditWidget extends Component {
   constructor (props) {
     super(props);
   }
 
-  componentDidMount () {
-    const { widgetId } = this.props ? this.props.params : this.props.params;
-    dispatch(this.getWidget(widgetId));
-    console.log(widgetId);
+  handleSubmit (values, dispatch, widgetId) {
+    const { currentWidget } = this.props;
+    if (currentWidget) {
+      dispatch(editWidget(values, dispatch, currentWidget.id));
+    }
   }
-
-  handleSubmit (values, dispatch) {}
 
   render () {
     const { currentWidget } = this.props;
@@ -26,7 +25,7 @@ class EditWidget extends Component {
         <div className='col-lg-12'>
           <div className='widget'>
             <div className='widget-body'>
-              <form className='form-horizontal' onSubmit={handleSubmit(this.handleSubmit)}>
+              <form className='form-horizontal' onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
                 <legend>
                   Edit Widget
                 </legend>
@@ -131,11 +130,7 @@ function mapStateToProps (state) {
   };
 }
 
-function mapDispatchToProps (dispatch) {
-  return bindActionCreators({getWidget}, dispatch);
-}
-
 export default reduxForm({
   form: 'EditWidget',
   fields: ['name', 'price', 'color', 'melts', 'inventory']
-}, mapStateToProps, mapDispatchToProps)(EditWidget);
+}, mapStateToProps)(EditWidget);

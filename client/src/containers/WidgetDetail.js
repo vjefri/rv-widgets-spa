@@ -11,7 +11,7 @@ class WidgetDetail extends Component {
   }
 
   componentDidMount () {
-    const { widgetId } = this.props ? this.props.params : this.props.params;
+    const { widgetId } = this.props ? this.props.params : console.log('loading...');
     this.props.getWidget(widgetId);
   }
 

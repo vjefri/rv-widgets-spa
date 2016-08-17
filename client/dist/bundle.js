@@ -50385,7 +50385,7 @@
 	  };
 	}
 	
-	function editWidget(id, values) {
+	function editWidget(values, d, id) {
 	  return function (dispatch) {
 	    dispatch(EditWidgetRequest());
 	    return _axios2['default'].put(url + '/widgets/' + id, values, { header: { 'Content-type': 'application/json' } }).then(function (response) {
@@ -52008,23 +52008,15 @@
 	  }
 	
 	  _createClass(EditWidget, [{
-	    key: 'componentDidMount',
-	    value: function () {
-	      function componentDidMount() {
-	        var _ref = this.props ? this.props.params : this.props.params;
-	
-	        var widgetId = _ref.widgetId;
-	
-	        dispatch(this.getWidget(widgetId));
-	        console.log(widgetId);
-	      }
-	
-	      return componentDidMount;
-	    }()
-	  }, {
 	    key: 'handleSubmit',
 	    value: function () {
-	      function handleSubmit(values, dispatch) {}
+	      function handleSubmit(values, dispatch, widgetId) {
+	        var currentWidget = this.props.currentWidget;
+	
+	        if (currentWidget) {
+	          dispatch((0, _actions.editWidget)(values, dispatch, currentWidget.id));
+	        }
+	      }
 	
 	      return handleSubmit;
 	    }()
@@ -52057,7 +52049,7 @@
 	                { className: 'widget-body' },
 	                _react2['default'].createElement(
 	                  'form',
-	                  { className: 'form-horizontal', onSubmit: handleSubmit(this.handleSubmit) },
+	                  { className: 'form-horizontal', onSubmit: handleSubmit(this.handleSubmit.bind(this)) },
 	                  _react2['default'].createElement(
 	                    'legend',
 	                    null,
@@ -52203,14 +52195,10 @@
 	  };
 	}
 	
-	function mapDispatchToProps(dispatch) {
-	  return (0, _redux.bindActionCreators)({ getWidget: _actions.getWidget }, dispatch);
-	}
-	
 	exports['default'] = (0, _reduxForm.reduxForm)({
 	  form: 'EditWidget',
 	  fields: ['name', 'price', 'color', 'melts', 'inventory']
-	}, mapStateToProps, mapDispatchToProps)(EditWidget);
+	}, mapStateToProps)(EditWidget);
 
 /***/ },
 /* 356 */
@@ -52255,7 +52243,7 @@
 	    key: 'componentDidMount',
 	    value: function () {
 	      function componentDidMount() {
-	        var _ref = this.props ? this.props.params : this.props.params;
+	        var _ref = this.props ? this.props.params : console.log('loading...');
 	
 	        var userId = _ref.userId;
 	
@@ -52415,7 +52403,7 @@
 	    key: 'componentDidMount',
 	    value: function () {
 	      function componentDidMount() {
-	        var _ref = this.props ? this.props.params : this.props.params;
+	        var _ref = this.props ? this.props.params : console.log('loading...');
 	
 	        var widgetId = _ref.widgetId;
 	
