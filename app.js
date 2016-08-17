@@ -3,6 +3,18 @@ const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const path = require('path');
+const httpProxy = require('http-proxy');
+
+const url = 'http://spa.tglrw.com:4000';
+
+const options = {
+  changeOrigin: true,
+  target: {
+    https: true
+  }
+};
+
+httpProxy.createServer(443, url, options).listen(8001);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
