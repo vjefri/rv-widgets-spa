@@ -1,10 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { browserHistory } from 'react-router';
 
-class SingleWidget extends Component {
+class WidgetDetail extends Component {
   constructor (props) {
     super(props);
+  }
+
+  handleEdit () {
+    browserHistory.push('/editWidget');
   }
 
   render () {
@@ -16,6 +21,11 @@ class SingleWidget extends Component {
           <div className='widget'>
             <div className='widget-header'>
               Users
+              <div className='pull-right'>
+                <button className='btn btn-sm btn-info' onClick={this.handleEdit}>
+                  + Edit
+                </button>
+              </div>
             </div>
             <div className='table-responsive'>
               <table className='table'>
@@ -72,7 +82,7 @@ class SingleWidget extends Component {
   }
 }
 
-SingleWidget.contextTypes = {
+WidgetDetail.contextTypes = {
   router: PropTypes.object
 };
 
@@ -86,7 +96,7 @@ function mapDispatchToProps (dispatch) {
   return bindActionCreators({}, dispatch);
 }
 
-SingleWidget.propTypes = {
+WidgetDetail.propTypes = {
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleWidget);
+export default connect(mapStateToProps, mapDispatchToProps)(WidgetDetail);

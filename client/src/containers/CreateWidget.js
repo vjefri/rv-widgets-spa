@@ -120,11 +120,8 @@ function mapStateToProps (state) {
     data: state.form.CreateWidget
   };
 }
-function mapDispatchToProps (dispatch) {
-  return bindActionCreators({addWidget}, dispatch);
-}
 
 export default reduxForm({
   form: 'CreateWidget',
   fields: ['name', 'price', 'color', 'melts', 'inventory']
-}, mapStateToProps, mapDispatchToProps)(CreateWidget);
+}, mapStateToProps)(CreateWidget);

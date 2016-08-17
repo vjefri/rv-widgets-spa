@@ -2,9 +2,16 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-class SingleUser extends Component {
+import { getUser } from '../actions';
+
+class UserDetail extends Component {
   constructor (props) {
     super(props);
+  }
+
+  componentDidMount () {
+    const { userId } = this.props ? this.props.params : this.props.params;
+    this.props.getUser(userId);
   }
 
   render () {
@@ -54,7 +61,7 @@ class SingleUser extends Component {
   }
 }
 
-SingleUser.contextTypes = {
+UserDetail.contextTypes = {
   router: PropTypes.object
 };
 
@@ -65,10 +72,10 @@ function mapStateToProps (state) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({getUser}, dispatch);
 }
 
-SingleUser.propTypes = {
+UserDetail.propTypes = {
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleUser);
+export default connect(mapStateToProps, mapDispatchToProps)(UserDetail);

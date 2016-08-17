@@ -1,19 +1,23 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { reduxForm } from 'redux-form';
 
 class EditWidget extends Component {
   constructor (props) {
     super(props);
   }
 
+  handleSubmit (values, dispatch) {}
+
   render () {
+    const {fields: { name, price, color, melts, inventory }, handleSubmit, submitting} = this.props;
     return (
       <div className='row'>
         <div className='col-lg-12'>
           <div className='widget'>
             <div className='widget-body'>
-              <form className='form-horizontal'>
+              <form className='form-horizontal' onSubmit={handleSubmit(this.handleSubmit)}>
                 <legend>
                   Edit Widget
                 </legend>
@@ -24,7 +28,8 @@ class EditWidget extends Component {
                     name='widget-name'
                     type='text'
                     placeholder='foo-bar'
-                    className='input-medium' />
+                    className='input-medium'
+                    {...name}/>
                 </div>
                 <div className='controls'>
                   <div className='input-prepend'>
@@ -34,13 +39,18 @@ class EditWidget extends Component {
                       id='widget-price'
                       name='widget-price'
                       className='input-medium'
-                      placeholder='0.00'
-                      type='text' />
+                      placeholder=''
+                      type='text'
+                      {...price}/>
                   </div>
                 </div>
                 <div className='controls'>
                   Color
-                  <select id='widget-color' name='widget-color' className='input-large'>
+                  <select
+                    id='widget-color'
+                    name='widget-color'
+                    className='input-large'
+                    {...color}>
                     <option>
                       red
                     </option>
@@ -70,7 +80,8 @@ class EditWidget extends Component {
                     type='checkbox'
                     name='widget-properties'
                     id='widget-properties-0'
-                    value='melts' />
+                    value='melts'
+                    {...melts}/>
                 </div>
                 <div className='controls'>
                   Inventory
@@ -79,8 +90,12 @@ class EditWidget extends Component {
                     name='widget-count'
                     type='text'
                     placeholder='#?'
-                    className='input-small' />
+                    className='input-small'
+                    {...inventory}/>
                 </div>
+                <button type='submit'>
+                  Submit
+                </button>
               </form>
             </div>
           </div>
@@ -90,20 +105,20 @@ class EditWidget extends Component {
   }
 }
 
-EditWidget.contextTypes = {
-  router: PropTypes.object
+EditWidget.PropTypes = {
+  handleSubmit: PropTypes.func,
+  submitting: PropTypes.bool,
+  fields: PropTypes.object,
+  editWidget: PropTypes.func
 };
 
 function mapStateToProps (state) {
   return {
+    data: state.form.EditWidget
   };
 }
 
-function mapDispatchToProps (dispatch) {
-  return bindActionCreators({}, dispatch);
-}
-
-EditWidget.propTypes = {
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(EditWidget);
+export default reduxForm({
+  form: 'EditWidget',
+  fields: ['name', 'price', 'color', 'melts', 'inventory']
+}, mapStateToProps)(EditWidget);
