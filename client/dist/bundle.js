@@ -94,9 +94,6 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	// import './styles/main.scss'
-	// require.context('./styles', true, /^\.\/.*\.css/)
-	
 	var store = (0, _store2['default'])();
 	
 	(0, _reactDom.render)(_react2['default'].createElement(
@@ -33133,7 +33130,7 @@
 	          _react2['default'].createElement(
 	            'a',
 	            { href: '#', className: 'dropdown-toggle' },
-	            _react2['default'].createElement('img', { src: '../styles/img/avatar.jpg', alt: '' })
+	            _react2['default'].createElement('img', { src: 'https://goo.gl/fZBPUZ', alt: '' })
 	          )
 	        )
 	      ),

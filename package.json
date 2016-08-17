@@ -7,7 +7,7 @@
     "clean": "rimraf client/dist",
     "start": "node --harmony app.js",
     "dev": "webpack --config webpack.config.dev.js --progress --colors --watch",
-    "build": "npm run clean && webpack --config webpack.config.prod.js --progress --colors",
+    "build": "npm run clean && webpack --config webpack.config.prod.js --progress --colors && cp -R  client/src/styles/ client/dist/",
     "test:client": "mocha --require client/test/test_helper.js --recursive client/test",
     "test:server": "mocha --recursive server/test"
   },
