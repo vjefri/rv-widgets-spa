@@ -5,13 +5,11 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf client/dist",
-    "start:prod": "node --harmony app.js",
     "start": "node --harmony app.js",
-    "watch": "webpack --config webpack.config.dev.js --progress --colors --watch",
+    "dev": "webpack --config webpack.config.dev.js --progress --colors --watch",
     "build": "npm run clean && webpack --config webpack.config.prod.js --progress --colors",
     "test:client": "mocha --require client/test/test_helper.js --recursive client/test",
     "test:server": "mocha --recursive server/test",
-    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -24,6 +22,7 @@
   },
   "homepage": "https://github.com/vjefri/rv-widgets-spa#readme",
   "dependencies": {
+    "axios": "^0.13.1",
     "babel-core": "^6.9.0",
     "babel-loader": "^6.2.4",
     "babel-plugin-react-transform": "^2.0.2",
@@ -58,6 +57,6 @@
     "expect": "^1.20.1",
     "morgan": "^1.7.0",
     "rimraf": "^2.5.4",
-    "semistandard": "^8.0.0",
+    "semistandard": "^8.0.0"
   }
 }

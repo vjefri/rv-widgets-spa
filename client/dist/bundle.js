@@ -68,27 +68,27 @@
 	
 	var _Dashboard2 = _interopRequireDefault(_Dashboard);
 	
-	var _UsersPage = __webpack_require__(362);
+	var _UsersPage = __webpack_require__(350);
 	
 	var _UsersPage2 = _interopRequireDefault(_UsersPage);
 	
-	var _WidgetsPage = __webpack_require__(361);
+	var _WidgetsPage = __webpack_require__(351);
 	
 	var _WidgetsPage2 = _interopRequireDefault(_WidgetsPage);
 	
-	var _CreateWidget = __webpack_require__(354);
+	var _CreateWidget = __webpack_require__(352);
 	
 	var _CreateWidget2 = _interopRequireDefault(_CreateWidget);
 	
-	var _EditWidget = __webpack_require__(355);
+	var _EditWidget = __webpack_require__(353);
 	
 	var _EditWidget2 = _interopRequireDefault(_EditWidget);
 	
-	var _UserDetail = __webpack_require__(356);
+	var _UserDetail = __webpack_require__(354);
 	
 	var _UserDetail2 = _interopRequireDefault(_UserDetail);
 	
-	var _WidgetDetail = __webpack_require__(358);
+	var _WidgetDetail = __webpack_require__(355);
 	
 	var _WidgetDetail2 = _interopRequireDefault(_WidgetDetail);
 	
@@ -33185,11 +33185,11 @@
 	
 	var _SideBar2 = _interopRequireDefault(_SideBar);
 	
-	var _DashUsers = __webpack_require__(359);
+	var _DashUsers = __webpack_require__(321);
 	
 	var _DashUsers2 = _interopRequireDefault(_DashUsers);
 	
-	var _DashWidgets = __webpack_require__(360);
+	var _DashWidgets = __webpack_require__(325);
 	
 	var _DashWidgets2 = _interopRequireDefault(_DashWidgets);
 	
@@ -33282,7 +33282,105 @@
 	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Dashboard);
 
 /***/ },
-/* 321 */,
+/* 321 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _lodash = __webpack_require__(322);
+	
+	var _lodash2 = _interopRequireDefault(_lodash);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _Search = __webpack_require__(324);
+	
+	var _Search2 = _interopRequireDefault(_Search);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var DashUsers = function () {
+	  function DashUsers(props) {
+	    return _react2['default'].createElement(
+	      'div',
+	      { className: 'col-lg-6' },
+	      _react2['default'].createElement(
+	        'div',
+	        { className: 'widget' },
+	        _react2['default'].createElement(
+	          'div',
+	          { className: 'widget-header' },
+	          'Users',
+	          _react2['default'].createElement(_Search2['default'], { name: 'Search Users' })
+	        ),
+	        _react2['default'].createElement(
+	          'div',
+	          { className: 'table-responsive' },
+	          _react2['default'].createElement(
+	            'table',
+	            { className: 'table' },
+	            _react2['default'].createElement(
+	              'thead',
+	              null,
+	              _react2['default'].createElement(
+	                'tr',
+	                null,
+	                _react2['default'].createElement(
+	                  'th',
+	                  { className: 'text-center' },
+	                  'ID'
+	                ),
+	                _react2['default'].createElement(
+	                  'th',
+	                  null,
+	                  'Name'
+	                )
+	              )
+	            ),
+	            _react2['default'].createElement(
+	              'tbody',
+	              null,
+	              _lodash2['default'].map(props.users, function (user, key) {
+	                return _react2['default'].createElement(
+	                  'tr',
+	                  { key: key },
+	                  _react2['default'].createElement(
+	                    'td',
+	                    { className: 'text-center' },
+	                    user.id
+	                  ),
+	                  _react2['default'].createElement(
+	                    'td',
+	                    null,
+	                    _react2['default'].createElement(
+	                      _reactRouter.Link,
+	                      { to: '/user/' + user.id },
+	                      user.name
+	                    )
+	                  )
+	                );
+	              })
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	
+	  return DashUsers;
+	}();
+	
+	exports['default'] = DashUsers;
+
+/***/ },
 /* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -50073,7 +50171,102 @@
 	exports['default'] = Search;
 
 /***/ },
-/* 325 */,
+/* 325 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _Search = __webpack_require__(324);
+	
+	var _Search2 = _interopRequireDefault(_Search);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var DashWidgets = function () {
+	  function DashWidgets(props) {
+	
+	    return _react2['default'].createElement(
+	      'div',
+	      { className: 'col-lg-6' },
+	      _react2['default'].createElement(
+	        'div',
+	        { className: 'widget' },
+	        _react2['default'].createElement(
+	          'div',
+	          { className: 'widget-header' },
+	          'Widgets',
+	          _react2['default'].createElement(_Search2['default'], { name: 'Search Widgets' })
+	        ),
+	        _react2['default'].createElement(
+	          'div',
+	          { className: 'table-responsive' },
+	          _react2['default'].createElement(
+	            'table',
+	            { className: 'table' },
+	            _react2['default'].createElement(
+	              'thead',
+	              null,
+	              _react2['default'].createElement(
+	                'tr',
+	                null,
+	                _react2['default'].createElement(
+	                  'th',
+	                  { className: 'text-center' },
+	                  'ID'
+	                ),
+	                _react2['default'].createElement(
+	                  'th',
+	                  null,
+	                  'Name'
+	                )
+	              )
+	            ),
+	            _react2['default'].createElement(
+	              'tbody',
+	              null,
+	              _.map(props.widgets, function (widget, index) {
+	                return _react2['default'].createElement(
+	                  'tr',
+	                  { key: index },
+	                  _react2['default'].createElement(
+	                    'td',
+	                    { className: 'text-center' },
+	                    widget.id
+	                  ),
+	                  _react2['default'].createElement(
+	                    'td',
+	                    null,
+	                    _react2['default'].createElement(
+	                      _reactRouter.Link,
+	                      { to: '/widget/' + widget.id },
+	                      widget.name
+	                    )
+	                  )
+	                );
+	              })
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	
+	  return DashWidgets;
+	}();
+	
+	exports['default'] = DashWidgets;
+
+/***/ },
 /* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -50172,7 +50365,7 @@
 	exports.addWidget = addWidget;
 	exports.editWidget = editWidget;
 	
-	var _axios = __webpack_require__(330);
+	var _axios = __webpack_require__(328);
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
@@ -50397,22 +50590,20 @@
 	};
 
 /***/ },
-/* 328 */,
-/* 329 */,
-/* 330 */
+/* 328 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(331);
+	module.exports = __webpack_require__(329);
 
 /***/ },
-/* 331 */
+/* 329 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(332);
-	var bind = __webpack_require__(333);
-	var Axios = __webpack_require__(334);
+	var utils = __webpack_require__(330);
+	var bind = __webpack_require__(331);
+	var Axios = __webpack_require__(332);
 	
 	/**
 	 * Create an instance of Axios
@@ -50448,16 +50639,16 @@
 	axios.all = function all(promises) {
 	  return Promise.all(promises);
 	};
-	axios.spread = __webpack_require__(351);
+	axios.spread = __webpack_require__(349);
 
 
 /***/ },
-/* 332 */
+/* 330 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var bind = __webpack_require__(333);
+	var bind = __webpack_require__(331);
 	
 	/*global toString:true*/
 	
@@ -50757,7 +50948,7 @@
 
 
 /***/ },
-/* 333 */
+/* 331 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -50774,17 +50965,17 @@
 
 
 /***/ },
-/* 334 */
+/* 332 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var defaults = __webpack_require__(335);
-	var utils = __webpack_require__(332);
-	var InterceptorManager = __webpack_require__(337);
-	var dispatchRequest = __webpack_require__(338);
-	var isAbsoluteURL = __webpack_require__(349);
-	var combineURLs = __webpack_require__(350);
+	var defaults = __webpack_require__(333);
+	var utils = __webpack_require__(330);
+	var InterceptorManager = __webpack_require__(335);
+	var dispatchRequest = __webpack_require__(336);
+	var isAbsoluteURL = __webpack_require__(347);
+	var combineURLs = __webpack_require__(348);
 	
 	/**
 	 * Create a new instance of Axios
@@ -50865,13 +51056,13 @@
 
 
 /***/ },
-/* 335 */
+/* 333 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(332);
-	var normalizeHeaderName = __webpack_require__(336);
+	var utils = __webpack_require__(330);
+	var normalizeHeaderName = __webpack_require__(334);
 	
 	var PROTECTION_PREFIX = /^\)\]\}',?\n/;
 	var DEFAULT_CONTENT_TYPE = {
@@ -50943,12 +51134,12 @@
 
 
 /***/ },
-/* 336 */
+/* 334 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(332);
+	var utils = __webpack_require__(330);
 	
 	module.exports = function normalizeHeaderName(headers, normalizedName) {
 	  utils.forEach(headers, function processHeader(value, name) {
@@ -50961,12 +51152,12 @@
 
 
 /***/ },
-/* 337 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(332);
+	var utils = __webpack_require__(330);
 	
 	function InterceptorManager() {
 	  this.handlers = [];
@@ -51019,13 +51210,13 @@
 
 
 /***/ },
-/* 338 */
+/* 336 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
-	var utils = __webpack_require__(332);
-	var transformData = __webpack_require__(339);
+	var utils = __webpack_require__(330);
+	var transformData = __webpack_require__(337);
 	
 	/**
 	 * Dispatch a request to the server using whichever adapter
@@ -51066,10 +51257,10 @@
 	    adapter = config.adapter;
 	  } else if (typeof XMLHttpRequest !== 'undefined') {
 	    // For browsers use XHR adapter
-	    adapter = __webpack_require__(340);
+	    adapter = __webpack_require__(338);
 	  } else if (typeof process !== 'undefined') {
 	    // For node use HTTP adapter
-	    adapter = __webpack_require__(340);
+	    adapter = __webpack_require__(338);
 	  }
 	
 	  return Promise.resolve(config)
@@ -51101,12 +51292,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 339 */
+/* 337 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(332);
+	var utils = __webpack_require__(330);
 	
 	/**
 	 * Transform the data for a request or a response
@@ -51127,18 +51318,18 @@
 
 
 /***/ },
-/* 340 */
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
-	var utils = __webpack_require__(332);
-	var settle = __webpack_require__(341);
-	var buildURL = __webpack_require__(344);
-	var parseHeaders = __webpack_require__(345);
-	var isURLSameOrigin = __webpack_require__(346);
-	var createError = __webpack_require__(342);
-	var btoa = (typeof window !== 'undefined' && window.btoa) || __webpack_require__(347);
+	var utils = __webpack_require__(330);
+	var settle = __webpack_require__(339);
+	var buildURL = __webpack_require__(342);
+	var parseHeaders = __webpack_require__(343);
+	var isURLSameOrigin = __webpack_require__(344);
+	var createError = __webpack_require__(340);
+	var btoa = (typeof window !== 'undefined' && window.btoa) || __webpack_require__(345);
 	
 	module.exports = function xhrAdapter(config) {
 	  return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -51232,7 +51423,7 @@
 	    // This is only done if running in a standard browser environment.
 	    // Specifically not if we're in a web worker, or react-native.
 	    if (utils.isStandardBrowserEnv()) {
-	      var cookies = __webpack_require__(348);
+	      var cookies = __webpack_require__(346);
 	
 	      // Add xsrf header
 	      var xsrfValue = config.withCredentials || isURLSameOrigin(config.url) ?
@@ -51294,12 +51485,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 341 */
+/* 339 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var createError = __webpack_require__(342);
+	var createError = __webpack_require__(340);
 	
 	/**
 	 * Resolve or reject a Promise based on response status.
@@ -51325,12 +51516,12 @@
 
 
 /***/ },
-/* 342 */
+/* 340 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var enhanceError = __webpack_require__(343);
+	var enhanceError = __webpack_require__(341);
 	
 	/**
 	 * Create an Error with the specified message, config, error code, and response.
@@ -51348,7 +51539,7 @@
 
 
 /***/ },
-/* 343 */
+/* 341 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -51373,12 +51564,12 @@
 
 
 /***/ },
-/* 344 */
+/* 342 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(332);
+	var utils = __webpack_require__(330);
 	
 	function encode(val) {
 	  return encodeURIComponent(val).
@@ -51447,12 +51638,12 @@
 
 
 /***/ },
-/* 345 */
+/* 343 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(332);
+	var utils = __webpack_require__(330);
 	
 	/**
 	 * Parse headers into an object
@@ -51490,12 +51681,12 @@
 
 
 /***/ },
-/* 346 */
+/* 344 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(332);
+	var utils = __webpack_require__(330);
 	
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -51564,7 +51755,7 @@
 
 
 /***/ },
-/* 347 */
+/* 345 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -51606,12 +51797,12 @@
 
 
 /***/ },
-/* 348 */
+/* 346 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var utils = __webpack_require__(332);
+	var utils = __webpack_require__(330);
 	
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -51665,7 +51856,7 @@
 
 
 /***/ },
-/* 349 */
+/* 347 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -51685,7 +51876,7 @@
 
 
 /***/ },
-/* 350 */
+/* 348 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -51703,7 +51894,7 @@
 
 
 /***/ },
-/* 351 */
+/* 349 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -51736,9 +51927,407 @@
 
 
 /***/ },
-/* 352 */,
-/* 353 */,
-/* 354 */
+/* 350 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(175);
+	
+	var _redux = __webpack_require__(182);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _actions = __webpack_require__(327);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var UsersPage = function (_Component) {
+	  _inherits(UsersPage, _Component);
+	
+	  function UsersPage(props) {
+	    _classCallCheck(this, UsersPage);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(UsersPage).call(this, props));
+	  }
+	
+	  _createClass(UsersPage, [{
+	    key: 'componentDidMount',
+	    value: function () {
+	      function componentDidMount() {
+	        if (!this.props.users) {
+	          this.props.getUsers();
+	        }
+	      }
+	
+	      return componentDidMount;
+	    }()
+	  }, {
+	    key: 'render',
+	    value: function () {
+	      function render() {
+	        return _react2['default'].createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2['default'].createElement(
+	            'div',
+	            { className: 'col-lg-12' },
+	            _react2['default'].createElement(
+	              'div',
+	              { className: 'widget' },
+	              _react2['default'].createElement(
+	                'div',
+	                { className: 'widget-header' },
+	                'Users'
+	              ),
+	              _react2['default'].createElement(
+	                'div',
+	                { className: 'table-responsive' },
+	                _react2['default'].createElement(
+	                  'table',
+	                  { className: 'table' },
+	                  _react2['default'].createElement(
+	                    'thead',
+	                    null,
+	                    _react2['default'].createElement(
+	                      'tr',
+	                      null,
+	                      _react2['default'].createElement(
+	                        'th',
+	                        { className: 'text-center' },
+	                        'ID'
+	                      ),
+	                      _react2['default'].createElement(
+	                        'th',
+	                        null,
+	                        'Name'
+	                      ),
+	                      _react2['default'].createElement(
+	                        'th',
+	                        null,
+	                        'Avatar'
+	                      )
+	                    )
+	                  ),
+	                  _react2['default'].createElement(
+	                    'tbody',
+	                    null,
+	                    _.map(this.props.users, function (user, key) {
+	                      return _react2['default'].createElement(
+	                        'tr',
+	                        { key: key },
+	                        _react2['default'].createElement(
+	                          'td',
+	                          { className: 'text-center' },
+	                          user.id
+	                        ),
+	                        _react2['default'].createElement(
+	                          'td',
+	                          null,
+	                          _react2['default'].createElement(
+	                            'a',
+	                            null,
+	                            _react2['default'].createElement(
+	                              _reactRouter.Link,
+	                              { to: '/user/' + user.id },
+	                              user.name,
+	                              ' '
+	                            )
+	                          )
+	                        ),
+	                        _react2['default'].createElement(
+	                          'td',
+	                          null,
+	                          _react2['default'].createElement('img', { src: user.gravatar })
+	                        )
+	                      );
+	                    })
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        );
+	      }
+	
+	      return render;
+	    }()
+	  }]);
+	
+	  return UsersPage;
+	}(_react.Component);
+	
+	UsersPage.contextTypes = {
+	  router: _react.PropTypes.object
+	};
+	
+	function mapStateToProps(state) {
+	  return {
+	    users: state.main.users
+	  };
+	}
+	
+	function mapDispatchToProps(dispatch) {
+	  return (0, _redux.bindActionCreators)({ getUsers: _actions.getUsers }, dispatch);
+	}
+	
+	UsersPage.propTypes = {};
+	
+	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(UsersPage);
+
+/***/ },
+/* 351 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(175);
+	
+	var _redux = __webpack_require__(182);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _lodash = __webpack_require__(322);
+	
+	var _lodash2 = _interopRequireDefault(_lodash);
+	
+	var _actions = __webpack_require__(327);
+	
+	var _Search = __webpack_require__(324);
+	
+	var _Search2 = _interopRequireDefault(_Search);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var WidgetsLong = function (_Component) {
+	  _inherits(WidgetsLong, _Component);
+	
+	  function WidgetsLong(props) {
+	    _classCallCheck(this, WidgetsLong);
+	
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(WidgetsLong).call(this, props));
+	
+	    _this.state = { filteredList: null };
+	    _this.handleCreate = _this.handleCreate.bind(_this);
+	    _this.handleSearch = _this.handleSearch.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(WidgetsLong, [{
+	    key: 'componentDidMount',
+	    value: function () {
+	      function componentDidMount() {
+	        this.props.getWidgets();
+	        this.setState({ filteredList: this.props.widgets });
+	      }
+	
+	      return componentDidMount;
+	    }()
+	  }, {
+	    key: 'handleCreate',
+	    value: function () {
+	      function handleCreate(e) {
+	        e.preventDefault();
+	        _reactRouter.browserHistory.push('/createWidget');
+	      }
+	
+	      return handleCreate;
+	    }()
+	  }, {
+	    key: 'handleSearch',
+	    value: function () {
+	      function handleSearch(e) {
+	        var search = e.target.value;
+	        var filteredList = this.props.widgets.filter(function (item) {
+	          return item.name.match('^' + search);
+	        });
+	        this.setState({ filteredList: filteredList });
+	      }
+	
+	      return handleSearch;
+	    }()
+	  }, {
+	    key: 'render',
+	    value: function () {
+	      function render() {
+	        return _react2['default'].createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2['default'].createElement(
+	            'div',
+	            { className: 'col-lg-12' },
+	            _react2['default'].createElement(
+	              'div',
+	              { className: 'widget' },
+	              _react2['default'].createElement(
+	                'div',
+	                { className: 'widget-header' },
+	                'Widgets',
+	                _react2['default'].createElement(
+	                  'div',
+	                  { className: 'pull-right' },
+	                  _react2['default'].createElement(
+	                    'button',
+	                    { className: 'btn btn-sm btn-info', onClick: this.handleCreate },
+	                    '+ Create'
+	                  )
+	                ),
+	                _react2['default'].createElement(_Search2['default'], { handleSearch: this.handleSearch })
+	              ),
+	              _react2['default'].createElement(
+	                'div',
+	                { className: 'table-responsive' },
+	                _react2['default'].createElement(
+	                  'table',
+	                  { className: 'table' },
+	                  _react2['default'].createElement(
+	                    'thead',
+	                    null,
+	                    _react2['default'].createElement(
+	                      'tr',
+	                      null,
+	                      _react2['default'].createElement(
+	                        'th',
+	                        { className: 'text-center' },
+	                        'ID'
+	                      ),
+	                      _react2['default'].createElement(
+	                        'th',
+	                        null,
+	                        'Name'
+	                      ),
+	                      _react2['default'].createElement(
+	                        'th',
+	                        null,
+	                        'Color'
+	                      ),
+	                      _react2['default'].createElement(
+	                        'th',
+	                        null,
+	                        'Price'
+	                      ),
+	                      _react2['default'].createElement(
+	                        'th',
+	                        null,
+	                        'Melts?'
+	                      ),
+	                      _react2['default'].createElement(
+	                        'th',
+	                        null,
+	                        'Inventory'
+	                      )
+	                    )
+	                  ),
+	                  this.state.filteredList ? _react2['default'].createElement(
+	                    'tbody',
+	                    null,
+	                    _lodash2['default'].map(this.state.filteredList, function (widget, key) {
+	                      return _react2['default'].createElement(
+	                        'tr',
+	                        { key: key },
+	                        _react2['default'].createElement(
+	                          'td',
+	                          null,
+	                          widget.id
+	                        ),
+	                        _react2['default'].createElement(
+	                          'td',
+	                          null,
+	                          _react2['default'].createElement(
+	                            _reactRouter.Link,
+	                            { to: '/widget/' + widget.id },
+	                            widget.name
+	                          )
+	                        ),
+	                        _react2['default'].createElement(
+	                          'td',
+	                          { className: 'text-center' },
+	                          widget.color
+	                        ),
+	                        _react2['default'].createElement(
+	                          'td',
+	                          null,
+	                          widget.price
+	                        ),
+	                        _react2['default'].createElement(
+	                          'td',
+	                          null,
+	                          widget.melts
+	                        ),
+	                        _react2['default'].createElement(
+	                          'td',
+	                          null,
+	                          widget.inventory
+	                        )
+	                      );
+	                    })
+	                  ) : console.log('loading')
+	                )
+	              )
+	            )
+	          )
+	        );
+	      }
+	
+	      return render;
+	    }()
+	  }]);
+	
+	  return WidgetsLong;
+	}(_react.Component);
+	
+	WidgetsLong.contextTypes = {
+	  router: _react.PropTypes.object
+	};
+	
+	function mapStateToProps(state) {
+	  return {
+	    widgets: state.main.widgets
+	  };
+	}
+	
+	function mapDispatchToProps(dispatch) {
+	  return (0, _redux.bindActionCreators)({ getWidget: _actions.getWidget, getWidgets: _actions.getWidgets }, dispatch);
+	}
+	
+	WidgetsLong.propTypes = {};
+	
+	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(WidgetsLong);
+
+/***/ },
+/* 352 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51965,7 +52554,7 @@
 	}, mapStateToProps)(CreateWidget);
 
 /***/ },
-/* 355 */
+/* 353 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52201,7 +52790,7 @@
 	}, mapStateToProps)(EditWidget);
 
 /***/ },
-/* 356 */
+/* 354 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52358,8 +52947,7 @@
 	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(UserDetail);
 
 /***/ },
-/* 357 */,
-/* 358 */
+/* 355 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52559,601 +53147,6 @@
 	WidgetDetail.propTypes = {};
 	
 	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(WidgetDetail);
-
-/***/ },
-/* 359 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _lodash = __webpack_require__(322);
-	
-	var _lodash2 = _interopRequireDefault(_lodash);
-	
-	var _reactRouter = __webpack_require__(198);
-	
-	var _Search = __webpack_require__(324);
-	
-	var _Search2 = _interopRequireDefault(_Search);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var DashUsers = function () {
-	  function DashUsers(props) {
-	    return _react2['default'].createElement(
-	      'div',
-	      { className: 'col-lg-6' },
-	      _react2['default'].createElement(
-	        'div',
-	        { className: 'widget' },
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'widget-header' },
-	          'Users',
-	          _react2['default'].createElement(_Search2['default'], { name: 'Search Users' })
-	        ),
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'table-responsive' },
-	          _react2['default'].createElement(
-	            'table',
-	            { className: 'table' },
-	            _react2['default'].createElement(
-	              'thead',
-	              null,
-	              _react2['default'].createElement(
-	                'tr',
-	                null,
-	                _react2['default'].createElement(
-	                  'th',
-	                  { className: 'text-center' },
-	                  'ID'
-	                ),
-	                _react2['default'].createElement(
-	                  'th',
-	                  null,
-	                  'Name'
-	                )
-	              )
-	            ),
-	            _react2['default'].createElement(
-	              'tbody',
-	              null,
-	              _lodash2['default'].map(props.users, function (user, key) {
-	                return _react2['default'].createElement(
-	                  'tr',
-	                  { key: key },
-	                  _react2['default'].createElement(
-	                    'td',
-	                    { className: 'text-center' },
-	                    user.id
-	                  ),
-	                  _react2['default'].createElement(
-	                    'td',
-	                    null,
-	                    _react2['default'].createElement(
-	                      _reactRouter.Link,
-	                      { to: '/user/' + user.id },
-	                      user.name
-	                    )
-	                  )
-	                );
-	              })
-	            )
-	          )
-	        )
-	      )
-	    );
-	  }
-	
-	  return DashUsers;
-	}();
-	
-	exports['default'] = DashUsers;
-
-/***/ },
-/* 360 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(198);
-	
-	var _Search = __webpack_require__(324);
-	
-	var _Search2 = _interopRequireDefault(_Search);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var DashWidgets = function () {
-	  function DashWidgets(props) {
-	
-	    return _react2['default'].createElement(
-	      'div',
-	      { className: 'col-lg-6' },
-	      _react2['default'].createElement(
-	        'div',
-	        { className: 'widget' },
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'widget-header' },
-	          'Widgets',
-	          _react2['default'].createElement(_Search2['default'], { name: 'Search Widgets' })
-	        ),
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'table-responsive' },
-	          _react2['default'].createElement(
-	            'table',
-	            { className: 'table' },
-	            _react2['default'].createElement(
-	              'thead',
-	              null,
-	              _react2['default'].createElement(
-	                'tr',
-	                null,
-	                _react2['default'].createElement(
-	                  'th',
-	                  { className: 'text-center' },
-	                  'ID'
-	                ),
-	                _react2['default'].createElement(
-	                  'th',
-	                  null,
-	                  'Name'
-	                )
-	              )
-	            ),
-	            _react2['default'].createElement(
-	              'tbody',
-	              null,
-	              _.map(props.widgets, function (widget, index) {
-	                return _react2['default'].createElement(
-	                  'tr',
-	                  { key: index },
-	                  _react2['default'].createElement(
-	                    'td',
-	                    { className: 'text-center' },
-	                    widget.id
-	                  ),
-	                  _react2['default'].createElement(
-	                    'td',
-	                    null,
-	                    _react2['default'].createElement(
-	                      _reactRouter.Link,
-	                      { to: '/widget/' + widget.id },
-	                      widget.name
-	                    )
-	                  )
-	                );
-	              })
-	            )
-	          )
-	        )
-	      )
-	    );
-	  }
-	
-	  return DashWidgets;
-	}();
-	
-	exports['default'] = DashWidgets;
-
-/***/ },
-/* 361 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(175);
-	
-	var _redux = __webpack_require__(182);
-	
-	var _reactRouter = __webpack_require__(198);
-	
-	var _lodash = __webpack_require__(322);
-	
-	var _lodash2 = _interopRequireDefault(_lodash);
-	
-	var _actions = __webpack_require__(327);
-	
-	var _Search = __webpack_require__(324);
-	
-	var _Search2 = _interopRequireDefault(_Search);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var WidgetsLong = function (_Component) {
-	  _inherits(WidgetsLong, _Component);
-	
-	  function WidgetsLong(props) {
-	    _classCallCheck(this, WidgetsLong);
-	
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(WidgetsLong).call(this, props));
-	
-	    _this.state = { filteredList: null };
-	    _this.handleCreate = _this.handleCreate.bind(_this);
-	    _this.handleSearch = _this.handleSearch.bind(_this);
-	    return _this;
-	  }
-	
-	  _createClass(WidgetsLong, [{
-	    key: 'componentDidMount',
-	    value: function () {
-	      function componentDidMount() {
-	        this.props.getWidgets();
-	        this.setState({ filteredList: this.props.widgets });
-	      }
-	
-	      return componentDidMount;
-	    }()
-	  }, {
-	    key: 'handleCreate',
-	    value: function () {
-	      function handleCreate(e) {
-	        e.preventDefault();
-	        _reactRouter.browserHistory.push('/createWidget');
-	      }
-	
-	      return handleCreate;
-	    }()
-	  }, {
-	    key: 'handleSearch',
-	    value: function () {
-	      function handleSearch(e) {
-	        var search = e.target.value;
-	        var filteredList = this.props.widgets.filter(function (item) {
-	          return item.name.match('^' + search);
-	        });
-	        this.setState({ filteredList: filteredList });
-	      }
-	
-	      return handleSearch;
-	    }()
-	  }, {
-	    key: 'render',
-	    value: function () {
-	      function render() {
-	        return _react2['default'].createElement(
-	          'div',
-	          { className: 'row' },
-	          _react2['default'].createElement(
-	            'div',
-	            { className: 'col-lg-12' },
-	            _react2['default'].createElement(
-	              'div',
-	              { className: 'widget' },
-	              _react2['default'].createElement(
-	                'div',
-	                { className: 'widget-header' },
-	                'Widgets',
-	                _react2['default'].createElement(
-	                  'div',
-	                  { className: 'pull-right' },
-	                  _react2['default'].createElement(
-	                    'button',
-	                    { className: 'btn btn-sm btn-info', onClick: this.handleCreate },
-	                    '+ Create'
-	                  )
-	                ),
-	                _react2['default'].createElement(_Search2['default'], { handleSearch: this.handleSearch })
-	              ),
-	              _react2['default'].createElement(
-	                'div',
-	                { className: 'table-responsive' },
-	                _react2['default'].createElement(
-	                  'table',
-	                  { className: 'table' },
-	                  _react2['default'].createElement(
-	                    'thead',
-	                    null,
-	                    _react2['default'].createElement(
-	                      'tr',
-	                      null,
-	                      _react2['default'].createElement(
-	                        'th',
-	                        { className: 'text-center' },
-	                        'ID'
-	                      ),
-	                      _react2['default'].createElement(
-	                        'th',
-	                        null,
-	                        'Name'
-	                      ),
-	                      _react2['default'].createElement(
-	                        'th',
-	                        null,
-	                        'Color'
-	                      ),
-	                      _react2['default'].createElement(
-	                        'th',
-	                        null,
-	                        'Price'
-	                      ),
-	                      _react2['default'].createElement(
-	                        'th',
-	                        null,
-	                        'Melts?'
-	                      ),
-	                      _react2['default'].createElement(
-	                        'th',
-	                        null,
-	                        'Inventory'
-	                      )
-	                    )
-	                  ),
-	                  this.state.filteredList ? _react2['default'].createElement(
-	                    'tbody',
-	                    null,
-	                    _lodash2['default'].map(this.state.filteredList, function (widget, key) {
-	                      return _react2['default'].createElement(
-	                        'tr',
-	                        { key: key },
-	                        _react2['default'].createElement(
-	                          'td',
-	                          null,
-	                          widget.id
-	                        ),
-	                        _react2['default'].createElement(
-	                          'td',
-	                          null,
-	                          _react2['default'].createElement(
-	                            _reactRouter.Link,
-	                            { to: '/widget/' + widget.id },
-	                            widget.name
-	                          )
-	                        ),
-	                        _react2['default'].createElement(
-	                          'td',
-	                          { className: 'text-center' },
-	                          widget.color
-	                        ),
-	                        _react2['default'].createElement(
-	                          'td',
-	                          null,
-	                          widget.price
-	                        ),
-	                        _react2['default'].createElement(
-	                          'td',
-	                          null,
-	                          widget.melts
-	                        ),
-	                        _react2['default'].createElement(
-	                          'td',
-	                          null,
-	                          widget.inventory
-	                        )
-	                      );
-	                    })
-	                  ) : console.log('loading')
-	                )
-	              )
-	            )
-	          )
-	        );
-	      }
-	
-	      return render;
-	    }()
-	  }]);
-	
-	  return WidgetsLong;
-	}(_react.Component);
-	
-	WidgetsLong.contextTypes = {
-	  router: _react.PropTypes.object
-	};
-	
-	function mapStateToProps(state) {
-	  return {
-	    widgets: state.main.widgets
-	  };
-	}
-	
-	function mapDispatchToProps(dispatch) {
-	  return (0, _redux.bindActionCreators)({ getWidget: _actions.getWidget, getWidgets: _actions.getWidgets }, dispatch);
-	}
-	
-	WidgetsLong.propTypes = {};
-	
-	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(WidgetsLong);
-
-/***/ },
-/* 362 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(175);
-	
-	var _redux = __webpack_require__(182);
-	
-	var _reactRouter = __webpack_require__(198);
-	
-	var _actions = __webpack_require__(327);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var UsersPage = function (_Component) {
-	  _inherits(UsersPage, _Component);
-	
-	  function UsersPage(props) {
-	    _classCallCheck(this, UsersPage);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(UsersPage).call(this, props));
-	  }
-	
-	  _createClass(UsersPage, [{
-	    key: 'componentDidMount',
-	    value: function () {
-	      function componentDidMount() {
-	        if (!this.props.users) {
-	          this.props.getUsers();
-	        }
-	      }
-	
-	      return componentDidMount;
-	    }()
-	  }, {
-	    key: 'render',
-	    value: function () {
-	      function render() {
-	        return _react2['default'].createElement(
-	          'div',
-	          { className: 'row' },
-	          _react2['default'].createElement(
-	            'div',
-	            { className: 'col-lg-12' },
-	            _react2['default'].createElement(
-	              'div',
-	              { className: 'widget' },
-	              _react2['default'].createElement(
-	                'div',
-	                { className: 'widget-header' },
-	                'Users'
-	              ),
-	              _react2['default'].createElement(
-	                'div',
-	                { className: 'table-responsive' },
-	                _react2['default'].createElement(
-	                  'table',
-	                  { className: 'table' },
-	                  _react2['default'].createElement(
-	                    'thead',
-	                    null,
-	                    _react2['default'].createElement(
-	                      'tr',
-	                      null,
-	                      _react2['default'].createElement(
-	                        'th',
-	                        { className: 'text-center' },
-	                        'ID'
-	                      ),
-	                      _react2['default'].createElement(
-	                        'th',
-	                        null,
-	                        'Name'
-	                      ),
-	                      _react2['default'].createElement(
-	                        'th',
-	                        null,
-	                        'Avatar'
-	                      )
-	                    )
-	                  ),
-	                  _react2['default'].createElement(
-	                    'tbody',
-	                    null,
-	                    _.map(this.props.users, function (user, key) {
-	                      return _react2['default'].createElement(
-	                        'tr',
-	                        { key: key },
-	                        _react2['default'].createElement(
-	                          'td',
-	                          { className: 'text-center' },
-	                          user.id
-	                        ),
-	                        _react2['default'].createElement(
-	                          'td',
-	                          null,
-	                          _react2['default'].createElement(
-	                            'a',
-	                            null,
-	                            _react2['default'].createElement(
-	                              _reactRouter.Link,
-	                              { to: '/user/' + user.id },
-	                              user.name,
-	                              ' '
-	                            )
-	                          )
-	                        ),
-	                        _react2['default'].createElement(
-	                          'td',
-	                          null,
-	                          _react2['default'].createElement('img', { src: user.gravatar })
-	                        )
-	                      );
-	                    })
-	                  )
-	                )
-	              )
-	            )
-	          )
-	        );
-	      }
-	
-	      return render;
-	    }()
-	  }]);
-	
-	  return UsersPage;
-	}(_react.Component);
-	
-	UsersPage.contextTypes = {
-	  router: _react.PropTypes.object
-	};
-	
-	function mapStateToProps(state) {
-	  return {
-	    users: state.main.users
-	  };
-	}
-	
-	function mapDispatchToProps(dispatch) {
-	  return (0, _redux.bindActionCreators)({ getUsers: _actions.getUsers }, dispatch);
-	}
-	
-	UsersPage.propTypes = {};
-	
-	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(UsersPage);
 
 /***/ }
 /******/ ]);
