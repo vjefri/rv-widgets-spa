@@ -30,7 +30,7 @@ class CreateWidget extends Component {
                     id='widget-name'
                     name='widget-name'
                     type='text'
-                    placeholder='foo-bar'
+                    placeholder='foo'
                     className='input-medium'
                     {...name}/>
                 </div>
@@ -53,7 +53,10 @@ class CreateWidget extends Component {
                     id='widget-color'
                     name='widget-color'
                     className='input-large'
+                    placeholder='green'
                     {...color}>
+                    <option>
+                    </option>
                     <option>
                       red
                     </option>
@@ -92,7 +95,7 @@ class CreateWidget extends Component {
                     id='widget-count'
                     name='widget-count'
                     type='text'
-                    placeholder='#?'
+                    placeholder='10'
                     className='input-small'
                     {...inventory}/>
                 </div>

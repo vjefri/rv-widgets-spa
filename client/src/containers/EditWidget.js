@@ -48,8 +48,8 @@ class EditWidget extends Component {
                       id='widget-price'
                       name='widget-price'
                       className='input-medium'
-                      placeholder={currentWidget ? currentWidget.price : 'I always pay my debts'}
-                      type='text'
+                      placeholder={currentWidget ? currentWidget.price : 100000}
+                      type='number'
                       {...price}/>
                   </div>
                 </div>
@@ -59,6 +59,7 @@ class EditWidget extends Component {
                     id='widget-color'
                     name='widget-color'
                     className='input-large'
+                    type='radio'
                     placeholder={currentWidget ? currentWidget.color : 'red'}
                     {...color}>
                     <option>
@@ -99,7 +100,7 @@ class EditWidget extends Component {
                   <input
                     id='widget-count'
                     name='widget-count'
-                    type='text'
+                    type='number'
                     placeholder={currentWidget ? currentWidget.inventory : 'One Dragon'}
                     className='input-small'
                     {...inventory}/>

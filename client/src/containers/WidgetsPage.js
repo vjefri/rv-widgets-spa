@@ -15,9 +15,7 @@ class WidgetsLong extends Component {
     this.handleSearch = this.handleSearch.bind(this);
   }
   componentDidMount () {
-    if (!this.props.users) {
-      this.props.getWidgets();
-    }
+    this.props.getWidgets();
     this.setState({filteredList: this.props.widgets });
   }
 
@@ -41,12 +39,12 @@ class WidgetsLong extends Component {
           <div className='widget'>
             <div className='widget-header'>
               Widgets
-              <Search handleSearch={this.handleSearch} />
               <div className='pull-right'>
                 <button className='btn btn-sm btn-info' onClick={this.handleCreate}>
                   + Create
                 </button>
               </div>
+              <Search handleSearch={this.handleSearch} />
             </div>
             <div className='table-responsive'>
               <table className='table'>

@@ -1,4 +1,3 @@
-import fetch from 'isomorphic-fetch';
 import axios from 'axios';
 
 import * as ACTIONS from '../constants/';
@@ -14,11 +13,11 @@ function UserRequest () {
 }
 
 function UserSuccess (users) {
-  const usersLength = users.length;
+  const usersLength = users.data.length;
 
   return {
     type: ACTIONS.GET_USERS_SUCCESS,
-    users: users,
+    users: users.data,
     usersLength: usersLength,
     error: null
   };
@@ -34,16 +33,13 @@ function UserFailure (err) {
 export function getUsers () {
   return dispatch => {
     dispatch(UserRequest());
-    return fetch(`${url}/users`, { method: 'GET' })
-      .then(res => res.json())
-      .then(data => {
-        return dispatch(UserSuccess(data));
-      })
+    return axios.get(`${url}/users`)
+      .then(response => dispatch(UserSuccess(response)))
       .catch(err => dispatch(UserFailure(err)));
   };
 };
 
-// Single User 
+// Get Single User 
 
 function SingleUserRequest () {
   return {
@@ -54,7 +50,7 @@ function SingleUserRequest () {
 function SingleUserSuccess (currentUser) {
   return {
     type: ACTIONS.GET_SINGLE_USER_SUCCESS,
-    currentUser: currentUser,
+    currentUser: currentUser.data,
     error: null
   };
 }
@@ -69,11 +65,8 @@ function SingleUserFailure (err) {
 export function getUser (id) {
   return dispatch => {
     dispatch(SingleUserRequest());
-    return fetch(`${url}/users/${id}`, { method: 'GET' })
-      .then(res => res.json())
-      .then(data => {
-        return dispatch(SingleUserSuccess(data));
-      })
+    return axios.get(`${url}/users/${id}`)
+      .then(response => dispatch(SingleUserSuccess(response)))
       .catch(err => dispatch(SingleUserFailure(err)));
   };
 };
@@ -87,11 +80,11 @@ function WidgetRequest () {
 }
 
 function WidgetSuccess (widgets) {
-  const widgetsLength = widgets.length;
+  const widgetsLength = widgets.data.length;
 
   return {
     type: ACTIONS.GET_WIDGETS_SUCCESS,
-    widgets: widgets,
+    widgets: widgets.data,
     widgetsLength: widgetsLength,
     error: null
   };
@@ -107,16 +100,13 @@ function WidgetFailure (err) {
 export function getWidgets () {
   return dispatch => {
     dispatch(WidgetRequest());
-    return fetch(`${url}/widgets`, { method: 'GET' })
-      .then(res => res.json())
-      .then(data => {
-        return dispatch(WidgetSuccess(data));
-      })
+    return axios.get(`${url}/widgets`)
+      .then(response => dispatch(WidgetSuccess(response)))
       .catch(err => dispatch(WidgetFailure(err)));
   };
 };
 
-// Single Widget 
+// Get Single Widget 
 
 function SingleWidgetRequest () {
   return {
@@ -127,7 +117,7 @@ function SingleWidgetRequest () {
 function SingleWidgetSuccess (currentWidget) {
   return {
     type: ACTIONS.GET_SINGLE_WIDGET_SUCCESS,
-    currentWidget: currentWidget,
+    currentWidget: currentWidget.data,
     error: null
   };
 }
@@ -142,16 +132,13 @@ function SingleWidgetFailure (err) {
 export function getWidget (id) {
   return dispatch => {
     dispatch(SingleWidgetRequest());
-    return fetch(`${url}/widgets/${id}`, { method: 'GET' })
-      .then(res => res.json())
-      .then(data => {
-        return dispatch(SingleWidgetSuccess(data));
-      })
+    return axios.get(`${url}/widgets/${id}`)
+      .then(response => dispatch(SingleWidgetSuccess(response)))
       .catch(err => dispatch(SingleWidgetFailure(err)));
   };
 };
 
-// Post Widget
+// Add Widget
 
 function PostWidgetRequest () {
   return {
@@ -162,7 +149,7 @@ function PostWidgetRequest () {
 function PostWidgetSuccess (data) {
   return {
     type: ACTIONS.POST_WIDGET_SUCCESS,
-    data: data,
+    data: data.data,
     error: null
   };
 }
@@ -175,7 +162,42 @@ function PostWidgetFailure (err) {
 }
 
 export function addWidget (values) {
-  axios.post(`${url}/widgets`, values, { header: { 'Content-type': 'application/json' } })
-    .then(response => dispatch(PostWidgetSuccess(response)))
-    .catch(err => dispatch(SingleWidgetFailure(err)));
+  return dispatch => {
+    dispatch(SingleWidgetRequest());
+    return axios.post(`${url}/widgets`, values, { header: { 'Content-type': 'application/json' } })
+      .then(response => dispatch(PostWidgetSuccess(response)))
+      .catch(err => dispatch(PostWidgetFailure(err)));
+  };
+};
+
+// Edit Widget
+
+function EditWidgetRequest () {
+  return {
+    type: ACTIONS.EDIT_WIDGET_REQUEST
+  };
+}
+
+function EditWidgetSuccess (data) {
+  return {
+    type: ACTIONS.EDIT_WIDGET_SUCCESS,
+    data: data.data,
+    error: null
+  };
+}
+
+function EditWidgetFailure (err) {
+  return {
+    type: ACTIONS.EDIT_WIDGET_FAILURE,
+    error: err
+  };
+}
+
+export function editWidget (id, values) {
+  return dispatch => {
+    dispatch(EditWidgetRequest());
+    return axios.put(`${url}/widgets/${id}`, values, { header: { 'Content-type': 'application/json' } })
+      .then(response => dispatch(EditWidgetSuccess(response)))
+      .catch(err => dispatch(EditWidgetFailure(err)));
+  };
 };
