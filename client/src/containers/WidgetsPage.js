@@ -1,24 +1,37 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
+import _ from 'lodash';
 
 import { getWidget, getWidgets } from '../actions';
+import Search from '../components/Search';
 
 class WidgetsLong extends Component {
   constructor (props) {
     super(props);
+    this.state = {filteredList: null };
     this.handleCreate = this.handleCreate.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
   componentDidMount () {
-    if (!this.props.widgets) {
+    if (!this.props.users) {
       this.props.getWidgets();
     }
+    this.setState({filteredList: this.props.widgets });
   }
 
   handleCreate (e) {
     e.preventDefault();
     browserHistory.push('/createWidget');
+  }
+
+  handleSearch (e) {
+    var search = e.target.value;
+    let filteredList = this.props.widgets.filter(function (item) {
+      return item.name.match(`^${search}`);
+    });
+    this.setState({filteredList: filteredList});
   }
 
   render () {
@@ -28,6 +41,7 @@ class WidgetsLong extends Component {
           <div className='widget'>
             <div className='widget-header'>
               Widgets
+              <Search handleSearch={this.handleSearch} />
               <div className='pull-right'>
                 <button className='btn btn-sm btn-info' onClick={this.handleCreate}>
                   + Create
@@ -58,30 +72,33 @@ class WidgetsLong extends Component {
                     </th>
                   </tr>
                 </thead>
-                <tbody>
-                  {_.map(this.props.widgets, (widget, key) => {
-                     return (<tr key={key}>
-                               <td>
-                                 {widget.id}
-                               </td>
-                               <td>
-                                 {widget.name}
-                               </td>
-                               <td className='text-center'>
-                                 {widget.color}
-                               </td>
-                               <td>
-                                 {widget.price}
-                               </td>
-                               <td>
-                                 {widget.melts}
-                               </td>
-                               <td>
-                                 {widget.inventory}
-                               </td>
-                             </tr>);
-                   })}
-                </tbody>
+                {this.state.filteredList ?
+                   <tbody>
+                     {_.map(this.state.filteredList, (widget, key) => {
+                        return (<tr key={key}>
+                                  <td>
+                                    {widget.id}
+                                  </td>
+                                  <td>
+                                    <Link to={`/widget/${widget.id}`}>
+                                    {widget.name}
+                                    </Link>
+                                  </td>
+                                  <td className='text-center'>
+                                    {widget.color}
+                                  </td>
+                                  <td>
+                                    {widget.price}
+                                  </td>
+                                  <td>
+                                    {widget.melts}
+                                  </td>
+                                  <td>
+                                    {widget.inventory}
+                                  </td>
+                                </tr>);
+                      })}
+                   </tbody> : console.log('loading')}
               </table>
             </div>
           </div>

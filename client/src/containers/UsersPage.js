@@ -1,25 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 
-import { getUser, getUsers } from '../actions';
+import { getUsers } from '../actions';
 
 class UsersPage extends Component {
   constructor (props) {
     super(props);
-    this.handleUserDetails = this.handleUserDetails.bind(this);
   }
 
   componentDidMount () {
-    if (this.props.users === undefined) {
+    if (!this.props.users) {
       this.props.getUsers();
     }
-  }
-
-  handleUserDetails (id) {
-    this.props.getUser(id);
-    browserHistory.push('/user');
   }
 
   render () {
@@ -51,8 +45,11 @@ class UsersPage extends Component {
                                <td className='text-center'>
                                  {user.id}
                                </td>
-                               <td onClick={this.handleUserDetails.bind(null, user.id)}>
-                                 {user.name}
+                               <td>
+                                 <a>
+                                   <Link to={`/user/${user.id}`}>
+                                   {user.name} </Link>
+                                 </a>
                                </td>
                                <td>
                                  <img src={user.gravatar} />
@@ -80,7 +77,7 @@ function mapStateToProps (state) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators({getUser, getUsers}, dispatch);
+  return bindActionCreators({getUsers}, dispatch);
 }
 
 UsersPage.propTypes = {

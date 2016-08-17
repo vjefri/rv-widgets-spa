@@ -9,12 +9,12 @@ import storeConfig from './store';
 
 import App from './containers';
 import Dashboard from './containers/Dashboard';
-import UsersLong from './containers/UsersLong';
-import WidgetsLong from './containers/WidgetsLong';
+import UsersPage from './containers/UsersPage';
+import WidgetsPage from './containers/WidgetsPage';
 import CreateWidget from './containers/CreateWidget';
 import EditWidget from './containers/EditWidget';
-import SingleUser from './containers/SingleUser';
-import SingleWidget from './containers/SingleWidget';
+import UserDetail from './containers/UserDetail';
+import WidgetDetail from './containers/WidgetDetail';
 
 const store = storeConfig();
 
@@ -23,12 +23,12 @@ render(
     <Router history={browserHistory}>
       <Route path='/' component={App}>
         <IndexRoute component={Dashboard} />
-        <Route path='/users' component={UsersLong} />
-        <Route path='/widgets' component={WidgetsLong} />
+        <Route path='/users' component={UsersPage} />
+        <Route path='/widgets' component={WidgetsPage} />
         <Route path='/createWidget' component={CreateWidget} />
-        <Route path='/editWidget' component={EditWidget} />
-        <Route path='/user' component={SingleUser} />
-        <Route path='/widget' component={SingleWidget} />
+        <Route path='/editWidget/:widgetId' component={EditWidget} />
+        <Route path='/user/:userId' component={UserDetail} />
+        <Route path='/widget/:widgetId' component={WidgetDetail} />
       </Route>
     </Router>
   </Provider>,

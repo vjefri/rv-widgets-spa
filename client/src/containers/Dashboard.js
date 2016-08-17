@@ -21,6 +21,7 @@ class Dashboard extends Component {
 
   render () {
     const { users, widgets, usersLength, widgetsLength } = this.props;
+
     return (
       <div>
         <DashboardBoxes usersLength={usersLength} widgetsLength={widgetsLength} />

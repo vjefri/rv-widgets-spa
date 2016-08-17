@@ -68,13 +68,13 @@
 	
 	var _Dashboard2 = _interopRequireDefault(_Dashboard);
 	
-	var _UsersLong = __webpack_require__(352);
+	var _UsersPage = __webpack_require__(362);
 	
-	var _UsersLong2 = _interopRequireDefault(_UsersLong);
+	var _UsersPage2 = _interopRequireDefault(_UsersPage);
 	
-	var _WidgetsLong = __webpack_require__(353);
+	var _WidgetsPage = __webpack_require__(361);
 	
-	var _WidgetsLong2 = _interopRequireDefault(_WidgetsLong);
+	var _WidgetsPage2 = _interopRequireDefault(_WidgetsPage);
 	
 	var _CreateWidget = __webpack_require__(354);
 	
@@ -84,13 +84,13 @@
 	
 	var _EditWidget2 = _interopRequireDefault(_EditWidget);
 	
-	var _SingleUser = __webpack_require__(356);
+	var _UserDetail = __webpack_require__(356);
 	
-	var _SingleUser2 = _interopRequireDefault(_SingleUser);
+	var _UserDetail2 = _interopRequireDefault(_UserDetail);
 	
-	var _SingleWidget = __webpack_require__(357);
+	var _WidgetDetail = __webpack_require__(358);
 	
-	var _SingleWidget2 = _interopRequireDefault(_SingleWidget);
+	var _WidgetDetail2 = _interopRequireDefault(_WidgetDetail);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
@@ -109,12 +109,12 @@
 	      _reactRouter.Route,
 	      { path: '/', component: _containers2['default'] },
 	      _react2['default'].createElement(_reactRouter.IndexRoute, { component: _Dashboard2['default'] }),
-	      _react2['default'].createElement(_reactRouter.Route, { path: '/users', component: _UsersLong2['default'] }),
-	      _react2['default'].createElement(_reactRouter.Route, { path: '/widgets', component: _WidgetsLong2['default'] }),
+	      _react2['default'].createElement(_reactRouter.Route, { path: '/users', component: _UsersPage2['default'] }),
+	      _react2['default'].createElement(_reactRouter.Route, { path: '/widgets', component: _WidgetsPage2['default'] }),
 	      _react2['default'].createElement(_reactRouter.Route, { path: '/createWidget', component: _CreateWidget2['default'] }),
-	      _react2['default'].createElement(_reactRouter.Route, { path: '/editWidget', component: _EditWidget2['default'] }),
-	      _react2['default'].createElement(_reactRouter.Route, { path: '/user', component: _SingleUser2['default'] }),
-	      _react2['default'].createElement(_reactRouter.Route, { path: '/widget', component: _SingleWidget2['default'] })
+	      _react2['default'].createElement(_reactRouter.Route, { path: '/editWidget/:widgetId', component: _EditWidget2['default'] }),
+	      _react2['default'].createElement(_reactRouter.Route, { path: '/user/:userId', component: _UserDetail2['default'] }),
+	      _react2['default'].createElement(_reactRouter.Route, { path: '/widget/:widgetId', component: _WidgetDetail2['default'] })
 	    )
 	  )
 	), document.getElementById('root'));
@@ -33169,13 +33169,13 @@
 	
 	var _SideBar2 = _interopRequireDefault(_SideBar);
 	
-	var _Users = __webpack_require__(321);
+	var _DashUsers = __webpack_require__(359);
 	
-	var _Users2 = _interopRequireDefault(_Users);
+	var _DashUsers2 = _interopRequireDefault(_DashUsers);
 	
-	var _Widgets = __webpack_require__(325);
+	var _DashWidgets = __webpack_require__(360);
 	
-	var _Widgets2 = _interopRequireDefault(_Widgets);
+	var _DashWidgets2 = _interopRequireDefault(_DashWidgets);
 	
 	var _DashboardBoxes = __webpack_require__(326);
 	
@@ -33197,11 +33197,7 @@
 	  function Dashboard(props) {
 	    _classCallCheck(this, Dashboard);
 	
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Dashboard).call(this, props));
-	
-	    _this.handleUserDetails = _this.handleUserDetails.bind(_this);
-	    _this.handleWidgetDetails = _this.handleWidgetDetails.bind(_this);
-	    return _this;
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Dashboard).call(this, props));
 	  }
 	
 	  _createClass(Dashboard, [{
@@ -33215,26 +33211,6 @@
 	      return componentDidMount;
 	    }()
 	  }, {
-	    key: 'handleUserDetails',
-	    value: function () {
-	      function handleUserDetails(id) {
-	        this.props.getUser(id);
-	        _reactRouter.browserHistory.push('/user');
-	      }
-	
-	      return handleUserDetails;
-	    }()
-	  }, {
-	    key: 'handleWidgetDetails',
-	    value: function () {
-	      function handleWidgetDetails(id) {
-	        this.props.getWidget(id);
-	        _reactRouter.browserHistory.push('/widget');
-	      }
-	
-	      return handleWidgetDetails;
-	    }()
-	  }, {
 	    key: 'render',
 	    value: function () {
 	      function render() {
@@ -33244,6 +33220,7 @@
 	        var usersLength = _props.usersLength;
 	        var widgetsLength = _props.widgetsLength;
 	
+	
 	        return _react2['default'].createElement(
 	          'div',
 	          null,
@@ -33251,8 +33228,8 @@
 	          _react2['default'].createElement(
 	            'div',
 	            { className: 'row' },
-	            users ? _react2['default'].createElement(_Users2['default'], { users: users, handleUserDetails: this.handleUserDetails }) : console.log('loading...'),
-	            widgets ? _react2['default'].createElement(_Widgets2['default'], { widgets: widgets.slice(0, 10), handleWidgetDetails: this.handleWidgetDetails }) : console.log('loading...')
+	            users ? _react2['default'].createElement(_DashUsers2['default'], { users: users }) : console.log('loading...'),
+	            widgets ? _react2['default'].createElement(_DashWidgets2['default'], { widgets: widgets.slice(0, 10) }) : console.log('loading...')
 	          )
 	        );
 	      }
@@ -33283,105 +33260,13 @@
 	}
 	
 	function mapDispatchToProps(dispatch) {
-	  return (0, _redux.bindActionCreators)({ getUsers: _actions.getUsers, getWidgets: _actions.getWidgets, getUser: _actions.getUser, getWidget: _actions.getWidget }, dispatch);
+	  return (0, _redux.bindActionCreators)({ getUsers: _actions.getUsers, getWidgets: _actions.getWidgets }, dispatch);
 	}
 	
 	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Dashboard);
 
 /***/ },
-/* 321 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _lodash = __webpack_require__(322);
-	
-	var _lodash2 = _interopRequireDefault(_lodash);
-	
-	var _Search = __webpack_require__(324);
-	
-	var _Search2 = _interopRequireDefault(_Search);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var Users = function () {
-	  function Users(props) {
-	    return _react2['default'].createElement(
-	      'div',
-	      { className: 'col-lg-6' },
-	      _react2['default'].createElement(
-	        'div',
-	        { className: 'widget' },
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'widget-header' },
-	          'Users',
-	          _react2['default'].createElement(_Search2['default'], { name: 'Search Users' })
-	        ),
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'table-responsive' },
-	          _react2['default'].createElement(
-	            'table',
-	            { className: 'table' },
-	            _react2['default'].createElement(
-	              'thead',
-	              null,
-	              _react2['default'].createElement(
-	                'tr',
-	                null,
-	                _react2['default'].createElement(
-	                  'th',
-	                  { className: 'text-center' },
-	                  'ID'
-	                ),
-	                _react2['default'].createElement(
-	                  'th',
-	                  null,
-	                  'Name'
-	                )
-	              )
-	            ),
-	            _react2['default'].createElement(
-	              'tbody',
-	              null,
-	              _lodash2['default'].map(props.users, function (user, key) {
-	                return _react2['default'].createElement(
-	                  'tr',
-	                  { key: key },
-	                  _react2['default'].createElement(
-	                    'td',
-	                    { className: 'text-center' },
-	                    user.id
-	                  ),
-	                  _react2['default'].createElement(
-	                    'td',
-	                    { onClick: props.handleUserDetails.bind(null, user.id) },
-	                    user.name
-	                  )
-	                );
-	              })
-	            )
-	          )
-	        )
-	      )
-	    );
-	  }
-	
-	  return Users;
-	}();
-	
-	exports['default'] = Users;
-
-/***/ },
+/* 321 */,
 /* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -50158,7 +50043,11 @@
 	    return _react2['default'].createElement(
 	      'div',
 	      { className: 'pull-right' },
-	      _react2['default'].createElement('input', { type: 'text', placeholder: props.name, className: 'form-control input-sm' })
+	      _react2['default'].createElement('input', {
+	        type: 'text',
+	        placeholder: 'Search...',
+	        onChange: props.handleSearch,
+	        className: 'form-control input-sm' })
 	    );
 	  }
 	
@@ -50168,96 +50057,7 @@
 	exports['default'] = Search;
 
 /***/ },
-/* 325 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _Search = __webpack_require__(324);
-	
-	var _Search2 = _interopRequireDefault(_Search);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var Widgets = function () {
-	  function Widgets(props) {
-	
-	    return _react2['default'].createElement(
-	      'div',
-	      { className: 'col-lg-6' },
-	      _react2['default'].createElement(
-	        'div',
-	        { className: 'widget' },
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'widget-header' },
-	          'Widgets',
-	          _react2['default'].createElement(_Search2['default'], { name: 'Search Widgets' })
-	        ),
-	        _react2['default'].createElement(
-	          'div',
-	          { className: 'table-responsive' },
-	          _react2['default'].createElement(
-	            'table',
-	            { className: 'table' },
-	            _react2['default'].createElement(
-	              'thead',
-	              null,
-	              _react2['default'].createElement(
-	                'tr',
-	                null,
-	                _react2['default'].createElement(
-	                  'th',
-	                  { className: 'text-center' },
-	                  'ID'
-	                ),
-	                _react2['default'].createElement(
-	                  'th',
-	                  null,
-	                  'Name'
-	                )
-	              )
-	            ),
-	            _react2['default'].createElement(
-	              'tbody',
-	              null,
-	              _.map(props.widgets, function (widget, index) {
-	                return _react2['default'].createElement(
-	                  'tr',
-	                  { key: index },
-	                  _react2['default'].createElement(
-	                    'td',
-	                    { className: 'text-center' },
-	                    widget.id
-	                  ),
-	                  _react2['default'].createElement(
-	                    'td',
-	                    { onClick: props.handleWidgetDetails.bind(null, widget.id) },
-	                    widget.name
-	                  )
-	                );
-	              })
-	            )
-	          )
-	        )
-	      )
-	    );
-	  }
-	
-	  return Widgets;
-	}();
-	
-	exports['default'] = Widgets;
-
-/***/ },
+/* 325 */,
 /* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -52343,385 +52143,8 @@
 
 
 /***/ },
-/* 352 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(175);
-	
-	var _redux = __webpack_require__(182);
-	
-	var _reactRouter = __webpack_require__(198);
-	
-	var _actions = __webpack_require__(327);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var UsersLong = function (_Component) {
-	  _inherits(UsersLong, _Component);
-	
-	  function UsersLong(props) {
-	    _classCallCheck(this, UsersLong);
-	
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(UsersLong).call(this, props));
-	
-	    _this.handleUserDetails = _this.handleUserDetails.bind(_this);
-	    return _this;
-	  }
-	
-	  _createClass(UsersLong, [{
-	    key: 'componentDidMount',
-	    value: function () {
-	      function componentDidMount() {
-	        if (this.props.users === undefined) {
-	          this.props.getUsers();
-	        }
-	      }
-	
-	      return componentDidMount;
-	    }()
-	  }, {
-	    key: 'handleUserDetails',
-	    value: function () {
-	      function handleUserDetails(id) {
-	        this.props.getUser(id);
-	        _reactRouter.browserHistory.push('/user');
-	      }
-	
-	      return handleUserDetails;
-	    }()
-	  }, {
-	    key: 'render',
-	    value: function () {
-	      function render() {
-	        var _this2 = this;
-	
-	        return _react2['default'].createElement(
-	          'div',
-	          { className: 'row' },
-	          _react2['default'].createElement(
-	            'div',
-	            { className: 'col-lg-12' },
-	            _react2['default'].createElement(
-	              'div',
-	              { className: 'widget' },
-	              _react2['default'].createElement(
-	                'div',
-	                { className: 'widget-header' },
-	                'Users'
-	              ),
-	              _react2['default'].createElement(
-	                'div',
-	                { className: 'table-responsive' },
-	                _react2['default'].createElement(
-	                  'table',
-	                  { className: 'table' },
-	                  _react2['default'].createElement(
-	                    'thead',
-	                    null,
-	                    _react2['default'].createElement(
-	                      'tr',
-	                      null,
-	                      _react2['default'].createElement(
-	                        'th',
-	                        { className: 'text-center' },
-	                        'ID'
-	                      ),
-	                      _react2['default'].createElement(
-	                        'th',
-	                        null,
-	                        'Name'
-	                      ),
-	                      _react2['default'].createElement(
-	                        'th',
-	                        null,
-	                        'Avatar'
-	                      )
-	                    )
-	                  ),
-	                  _react2['default'].createElement(
-	                    'tbody',
-	                    null,
-	                    _.map(this.props.users, function (user, key) {
-	                      return _react2['default'].createElement(
-	                        'tr',
-	                        { key: key },
-	                        _react2['default'].createElement(
-	                          'td',
-	                          { className: 'text-center' },
-	                          user.id
-	                        ),
-	                        _react2['default'].createElement(
-	                          'td',
-	                          { onClick: _this2.handleUserDetails.bind(null, user.id) },
-	                          user.name
-	                        ),
-	                        _react2['default'].createElement(
-	                          'td',
-	                          null,
-	                          _react2['default'].createElement('img', { src: user.gravatar })
-	                        )
-	                      );
-	                    })
-	                  )
-	                )
-	              )
-	            )
-	          )
-	        );
-	      }
-	
-	      return render;
-	    }()
-	  }]);
-	
-	  return UsersLong;
-	}(_react.Component);
-	
-	UsersLong.contextTypes = {
-	  router: _react.PropTypes.object
-	};
-	
-	function mapStateToProps(state) {
-	  return {
-	    users: state.main.users
-	  };
-	}
-	
-	function mapDispatchToProps(dispatch) {
-	  return (0, _redux.bindActionCreators)({ getUser: _actions.getUser, getUsers: _actions.getUsers }, dispatch);
-	}
-	
-	UsersLong.propTypes = {};
-	
-	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(UsersLong);
-
-/***/ },
-/* 353 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(175);
-	
-	var _redux = __webpack_require__(182);
-	
-	var _reactRouter = __webpack_require__(198);
-	
-	var _actions = __webpack_require__(327);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var WidgetsLong = function (_Component) {
-	  _inherits(WidgetsLong, _Component);
-	
-	  function WidgetsLong(props) {
-	    _classCallCheck(this, WidgetsLong);
-	
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(WidgetsLong).call(this, props));
-	
-	    _this.handleCreate = _this.handleCreate.bind(_this);
-	    return _this;
-	  }
-	
-	  _createClass(WidgetsLong, [{
-	    key: 'componentDidMount',
-	    value: function () {
-	      function componentDidMount() {
-	        if (!this.props.widgets) {
-	          this.props.getWidgets();
-	        }
-	      }
-	
-	      return componentDidMount;
-	    }()
-	  }, {
-	    key: 'handleCreate',
-	    value: function () {
-	      function handleCreate(e) {
-	        e.preventDefault();
-	        _reactRouter.browserHistory.push('/createWidget');
-	      }
-	
-	      return handleCreate;
-	    }()
-	  }, {
-	    key: 'render',
-	    value: function () {
-	      function render() {
-	        return _react2['default'].createElement(
-	          'div',
-	          { className: 'row' },
-	          _react2['default'].createElement(
-	            'div',
-	            { className: 'col-lg-12' },
-	            _react2['default'].createElement(
-	              'div',
-	              { className: 'widget' },
-	              _react2['default'].createElement(
-	                'div',
-	                { className: 'widget-header' },
-	                'Widgets',
-	                _react2['default'].createElement(
-	                  'div',
-	                  { className: 'pull-right' },
-	                  _react2['default'].createElement(
-	                    'button',
-	                    { className: 'btn btn-sm btn-info', onClick: this.handleCreate },
-	                    '+ Create'
-	                  )
-	                )
-	              ),
-	              _react2['default'].createElement(
-	                'div',
-	                { className: 'table-responsive' },
-	                _react2['default'].createElement(
-	                  'table',
-	                  { className: 'table' },
-	                  _react2['default'].createElement(
-	                    'thead',
-	                    null,
-	                    _react2['default'].createElement(
-	                      'tr',
-	                      null,
-	                      _react2['default'].createElement(
-	                        'th',
-	                        { className: 'text-center' },
-	                        'ID'
-	                      ),
-	                      _react2['default'].createElement(
-	                        'th',
-	                        null,
-	                        'Name'
-	                      ),
-	                      _react2['default'].createElement(
-	                        'th',
-	                        null,
-	                        'Color'
-	                      ),
-	                      _react2['default'].createElement(
-	                        'th',
-	                        null,
-	                        'Price'
-	                      ),
-	                      _react2['default'].createElement(
-	                        'th',
-	                        null,
-	                        'Melts?'
-	                      ),
-	                      _react2['default'].createElement(
-	                        'th',
-	                        null,
-	                        'Inventory'
-	                      )
-	                    )
-	                  ),
-	                  _react2['default'].createElement(
-	                    'tbody',
-	                    null,
-	                    _.map(this.props.widgets, function (widget, key) {
-	                      return _react2['default'].createElement(
-	                        'tr',
-	                        { key: key },
-	                        _react2['default'].createElement(
-	                          'td',
-	                          null,
-	                          widget.id
-	                        ),
-	                        _react2['default'].createElement(
-	                          'td',
-	                          null,
-	                          widget.name
-	                        ),
-	                        _react2['default'].createElement(
-	                          'td',
-	                          { className: 'text-center' },
-	                          widget.color
-	                        ),
-	                        _react2['default'].createElement(
-	                          'td',
-	                          null,
-	                          widget.price
-	                        ),
-	                        _react2['default'].createElement(
-	                          'td',
-	                          null,
-	                          widget.melts
-	                        ),
-	                        _react2['default'].createElement(
-	                          'td',
-	                          null,
-	                          widget.inventory
-	                        )
-	                      );
-	                    })
-	                  )
-	                )
-	              )
-	            )
-	          )
-	        );
-	      }
-	
-	      return render;
-	    }()
-	  }]);
-	
-	  return WidgetsLong;
-	}(_react.Component);
-	
-	WidgetsLong.contextTypes = {
-	  router: _react.PropTypes.object
-	};
-	
-	function mapStateToProps(state) {
-	  return {
-	    widgets: state.main.widgets
-	  };
-	}
-	
-	function mapDispatchToProps(dispatch) {
-	  return (0, _redux.bindActionCreators)({ getWidget: _actions.getWidget, getWidgets: _actions.getWidgets }, dispatch);
-	}
-	
-	WidgetsLong.propTypes = {};
-	
-	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(WidgetsLong);
-
-/***/ },
+/* 352 */,
+/* 353 */,
 /* 354 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -52940,14 +52363,11 @@
 	    data: state.form.CreateWidget
 	  };
 	}
-	function mapDispatchToProps(dispatch) {
-	  return (0, _redux.bindActionCreators)({ addWidget: _actions.addWidget }, dispatch);
-	}
 	
 	exports['default'] = (0, _reduxForm.reduxForm)({
 	  form: 'CreateWidget',
 	  fields: ['name', 'price', 'color', 'melts', 'inventory']
-	}, mapStateToProps, mapDispatchToProps)(CreateWidget);
+	}, mapStateToProps)(CreateWidget);
 
 /***/ },
 /* 355 */
@@ -52959,6 +52379,8 @@
 	  value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(1);
@@ -52968,6 +52390,10 @@
 	var _reactRedux = __webpack_require__(175);
 	
 	var _redux = __webpack_require__(182);
+	
+	var _reduxForm = __webpack_require__(270);
+	
+	var _actions = __webpack_require__(327);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
@@ -52987,9 +52413,41 @@
 	  }
 	
 	  _createClass(EditWidget, [{
+	    key: 'componentDidMount',
+	    value: function () {
+	      function componentDidMount() {
+	        var _ref = this.props ? this.props.params : this.props.params;
+	
+	        var widgetId = _ref.widgetId;
+	
+	        dispatch(this.getWidget(widgetId));
+	        console.log(widgetId);
+	      }
+	
+	      return componentDidMount;
+	    }()
+	  }, {
+	    key: 'handleSubmit',
+	    value: function () {
+	      function handleSubmit(values, dispatch) {}
+	
+	      return handleSubmit;
+	    }()
+	  }, {
 	    key: 'render',
 	    value: function () {
 	      function render() {
+	        var currentWidget = this.props.currentWidget;
+	        var _props = this.props;
+	        var _props$fields = _props.fields;
+	        var name = _props$fields.name;
+	        var price = _props$fields.price;
+	        var color = _props$fields.color;
+	        var melts = _props$fields.melts;
+	        var inventory = _props$fields.inventory;
+	        var handleSubmit = _props.handleSubmit;
+	        var submitting = _props.submitting;
+	
 	        return _react2['default'].createElement(
 	          'div',
 	          { className: 'row' },
@@ -53004,7 +52462,7 @@
 	                { className: 'widget-body' },
 	                _react2['default'].createElement(
 	                  'form',
-	                  { className: 'form-horizontal' },
+	                  { className: 'form-horizontal', onSubmit: handleSubmit(this.handleSubmit) },
 	                  _react2['default'].createElement(
 	                    'legend',
 	                    null,
@@ -53014,12 +52472,13 @@
 	                    'div',
 	                    { className: 'controls' },
 	                    'Name',
-	                    _react2['default'].createElement('input', {
+	                    _react2['default'].createElement('input', _extends({
 	                      id: 'widget-name',
 	                      name: 'widget-name',
 	                      type: 'text',
-	                      placeholder: 'foo-bar',
-	                      className: 'input-medium' })
+	                      placeholder: currentWidget ? currentWidget.name : 'Tyrion Lannister',
+	                      className: 'input-medium'
+	                    }, name))
 	                  ),
 	                  _react2['default'].createElement(
 	                    'div',
@@ -53033,12 +52492,13 @@
 	                        { className: 'add-on' },
 	                        '$'
 	                      ),
-	                      _react2['default'].createElement('input', {
+	                      _react2['default'].createElement('input', _extends({
 	                        id: 'widget-price',
 	                        name: 'widget-price',
 	                        className: 'input-medium',
-	                        placeholder: '0.00',
-	                        type: 'text' })
+	                        placeholder: currentWidget ? currentWidget.price : 'I always pay my debts',
+	                        type: 'text'
+	                      }, price))
 	                    )
 	                  ),
 	                  _react2['default'].createElement(
@@ -53047,7 +52507,12 @@
 	                    'Color',
 	                    _react2['default'].createElement(
 	                      'select',
-	                      { id: 'widget-color', name: 'widget-color', className: 'input-large' },
+	                      _extends({
+	                        id: 'widget-color',
+	                        name: 'widget-color',
+	                        className: 'input-large',
+	                        placeholder: currentWidget ? currentWidget.color : 'red'
+	                      }, color),
 	                      _react2['default'].createElement(
 	                        'option',
 	                        null,
@@ -53089,22 +52554,30 @@
 	                    'div',
 	                    { className: 'controls' },
 	                    'Melts',
-	                    _react2['default'].createElement('input', {
+	                    _react2['default'].createElement('input', _extends({
 	                      type: 'checkbox',
 	                      name: 'widget-properties',
 	                      id: 'widget-properties-0',
-	                      value: 'melts' })
+	                      value: 'melts',
+	                      placeholder: currentWidget ? currentWidget.melts : false
+	                    }, melts))
 	                  ),
 	                  _react2['default'].createElement(
 	                    'div',
 	                    { className: 'controls' },
 	                    'Inventory',
-	                    _react2['default'].createElement('input', {
+	                    _react2['default'].createElement('input', _extends({
 	                      id: 'widget-count',
 	                      name: 'widget-count',
 	                      type: 'text',
-	                      placeholder: '#?',
-	                      className: 'input-small' })
+	                      placeholder: currentWidget ? currentWidget.inventory : 'One Dragon',
+	                      className: 'input-small'
+	                    }, inventory))
+	                  ),
+	                  _react2['default'].createElement(
+	                    'button',
+	                    { type: 'submit' },
+	                    'Submit'
 	                  )
 	                )
 	              )
@@ -53120,21 +52593,28 @@
 	  return EditWidget;
 	}(_react.Component);
 	
-	EditWidget.contextTypes = {
-	  router: _react.PropTypes.object
+	EditWidget.PropTypes = {
+	  handleSubmit: _react.PropTypes.func,
+	  submitting: _react.PropTypes.bool,
+	  fields: _react.PropTypes.object,
+	  editWidget: _react.PropTypes.func
 	};
 	
 	function mapStateToProps(state) {
-	  return {};
+	  return {
+	    data: state.form.EditWidget,
+	    currentWidget: state.main.currentWidget
+	  };
 	}
 	
 	function mapDispatchToProps(dispatch) {
-	  return (0, _redux.bindActionCreators)({}, dispatch);
+	  return (0, _redux.bindActionCreators)({ getWidget: _actions.getWidget }, dispatch);
 	}
 	
-	EditWidget.propTypes = {};
-	
-	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(EditWidget);
+	exports['default'] = (0, _reduxForm.reduxForm)({
+	  form: 'EditWidget',
+	  fields: ['name', 'price', 'color', 'melts', 'inventory']
+	}, mapStateToProps, mapDispatchToProps)(EditWidget);
 
 /***/ },
 /* 356 */
@@ -53156,6 +52636,8 @@
 	
 	var _redux = __webpack_require__(182);
 	
+	var _actions = __webpack_require__(327);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -53164,16 +52646,29 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var SingleUser = function (_Component) {
-	  _inherits(SingleUser, _Component);
+	var UserDetail = function (_Component) {
+	  _inherits(UserDetail, _Component);
 	
-	  function SingleUser(props) {
-	    _classCallCheck(this, SingleUser);
+	  function UserDetail(props) {
+	    _classCallCheck(this, UserDetail);
 	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(SingleUser).call(this, props));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(UserDetail).call(this, props));
 	  }
 	
-	  _createClass(SingleUser, [{
+	  _createClass(UserDetail, [{
+	    key: 'componentDidMount',
+	    value: function () {
+	      function componentDidMount() {
+	        var _ref = this.props ? this.props.params : this.props.params;
+	
+	        var userId = _ref.userId;
+	
+	        this.props.getUser(userId);
+	      }
+	
+	      return componentDidMount;
+	    }()
+	  }, {
 	    key: 'render',
 	    value: function () {
 	      function render() {
@@ -53226,25 +52721,25 @@
 	                  _react2['default'].createElement(
 	                    'tbody',
 	                    null,
-	                    _react2['default'].createElement(
+	                    currentUser ? _react2['default'].createElement(
 	                      'tr',
 	                      null,
 	                      _react2['default'].createElement(
 	                        'td',
 	                        { className: 'text-center' },
-	                        currentUser ? currentUser.id : console.log('loading...')
+	                        currentUser.id
 	                      ),
 	                      _react2['default'].createElement(
 	                        'td',
 	                        null,
-	                        currentUser ? currentUser.name : console.log('loading...')
+	                        currentUser.name
 	                      ),
 	                      _react2['default'].createElement(
 	                        'td',
 	                        null,
-	                        _react2['default'].createElement('img', { src: currentUser ? currentUser.gravatar : console.log('loading...') })
+	                        _react2['default'].createElement('img', { src: currentUser.gravatar })
 	                      )
-	                    )
+	                    ) : console.log('loading...')
 	                  )
 	                )
 	              )
@@ -53257,10 +52752,10 @@
 	    }()
 	  }]);
 	
-	  return SingleUser;
+	  return UserDetail;
 	}(_react.Component);
 	
-	SingleUser.contextTypes = {
+	UserDetail.contextTypes = {
 	  router: _react.PropTypes.object
 	};
 	
@@ -53271,15 +52766,16 @@
 	}
 	
 	function mapDispatchToProps(dispatch) {
-	  return (0, _redux.bindActionCreators)({}, dispatch);
+	  return (0, _redux.bindActionCreators)({ getUser: _actions.getUser }, dispatch);
 	}
 	
-	SingleUser.propTypes = {};
+	UserDetail.propTypes = {};
 	
-	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SingleUser);
+	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(UserDetail);
 
 /***/ },
-/* 357 */
+/* 357 */,
+/* 358 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53298,6 +52794,10 @@
 	
 	var _redux = __webpack_require__(182);
 	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _actions = __webpack_require__(327);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -53306,16 +52806,29 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var SingleWidget = function (_Component) {
-	  _inherits(SingleWidget, _Component);
+	var WidgetDetail = function (_Component) {
+	  _inherits(WidgetDetail, _Component);
 	
-	  function SingleWidget(props) {
-	    _classCallCheck(this, SingleWidget);
+	  function WidgetDetail(props) {
+	    _classCallCheck(this, WidgetDetail);
 	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(SingleWidget).call(this, props));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(WidgetDetail).call(this, props));
 	  }
 	
-	  _createClass(SingleWidget, [{
+	  _createClass(WidgetDetail, [{
+	    key: 'componentDidMount',
+	    value: function () {
+	      function componentDidMount() {
+	        var _ref = this.props ? this.props.params : this.props.params;
+	
+	        var widgetId = _ref.widgetId;
+	
+	        this.props.getWidget(widgetId);
+	      }
+	
+	      return componentDidMount;
+	    }()
+	  }, {
 	    key: 'render',
 	    value: function () {
 	      function render() {
@@ -53334,7 +52847,20 @@
 	              _react2['default'].createElement(
 	                'div',
 	                { className: 'widget-header' },
-	                'Users'
+	                'Users',
+	                _react2['default'].createElement(
+	                  'div',
+	                  { className: 'pull-right' },
+	                  currentWidget ? _react2['default'].createElement(
+	                    _reactRouter.Link,
+	                    { to: '/editWidget/' + currentWidget.id },
+	                    _react2['default'].createElement(
+	                      'button',
+	                      { className: 'btn btn-sm btn-info' },
+	                      '+ Edit'
+	                    )
+	                  ) : console.log('loading...')
+	                )
 	              ),
 	              _react2['default'].createElement(
 	                'div',
@@ -53380,7 +52906,7 @@
 	                      )
 	                    )
 	                  ),
-	                  _react2['default'].createElement(
+	                  currentWidget ? _react2['default'].createElement(
 	                    'tbody',
 	                    null,
 	                    _react2['default'].createElement(
@@ -53389,34 +52915,631 @@
 	                      _react2['default'].createElement(
 	                        'td',
 	                        null,
-	                        currentWidget ? currentWidget.id : console.log('pending...')
+	                        currentWidget.id
 	                      ),
 	                      _react2['default'].createElement(
 	                        'td',
 	                        null,
-	                        currentWidget ? currentWidget.name : console.log('pending...')
+	                        currentWidget.name
 	                      ),
 	                      _react2['default'].createElement(
 	                        'td',
 	                        { className: 'text-center' },
-	                        currentWidget ? currentWidget.color : console.log('pending...')
+	                        currentWidget.color
 	                      ),
 	                      _react2['default'].createElement(
 	                        'td',
 	                        null,
-	                        currentWidget ? currentWidget.price : console.log('pending...')
+	                        currentWidget.price
 	                      ),
 	                      _react2['default'].createElement(
 	                        'td',
 	                        null,
-	                        currentWidget ? currentWidget.melts : console.log('pending...')
+	                        currentWidget.melts
 	                      ),
 	                      _react2['default'].createElement(
 	                        'td',
 	                        null,
-	                        currentWidget ? currentWidget.inventory : console.log('pending...')
+	                        currentWidget.inventory
 	                      )
 	                    )
+	                  ) : console.log('pending...')
+	                )
+	              )
+	            )
+	          )
+	        );
+	      }
+	
+	      return render;
+	    }()
+	  }]);
+	
+	  return WidgetDetail;
+	}(_react.Component);
+	
+	WidgetDetail.contextTypes = {
+	  router: _react.PropTypes.object
+	};
+	
+	function mapStateToProps(state) {
+	  return {
+	    currentWidget: state.main.currentWidget
+	  };
+	}
+	
+	function mapDispatchToProps(dispatch) {
+	  return (0, _redux.bindActionCreators)({ getWidget: _actions.getWidget }, dispatch);
+	}
+	
+	WidgetDetail.propTypes = {};
+	
+	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(WidgetDetail);
+
+/***/ },
+/* 359 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _lodash = __webpack_require__(322);
+	
+	var _lodash2 = _interopRequireDefault(_lodash);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _Search = __webpack_require__(324);
+	
+	var _Search2 = _interopRequireDefault(_Search);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var DashUsers = function () {
+	  function DashUsers(props) {
+	    return _react2['default'].createElement(
+	      'div',
+	      { className: 'col-lg-6' },
+	      _react2['default'].createElement(
+	        'div',
+	        { className: 'widget' },
+	        _react2['default'].createElement(
+	          'div',
+	          { className: 'widget-header' },
+	          'Users',
+	          _react2['default'].createElement(_Search2['default'], { name: 'Search Users' })
+	        ),
+	        _react2['default'].createElement(
+	          'div',
+	          { className: 'table-responsive' },
+	          _react2['default'].createElement(
+	            'table',
+	            { className: 'table' },
+	            _react2['default'].createElement(
+	              'thead',
+	              null,
+	              _react2['default'].createElement(
+	                'tr',
+	                null,
+	                _react2['default'].createElement(
+	                  'th',
+	                  { className: 'text-center' },
+	                  'ID'
+	                ),
+	                _react2['default'].createElement(
+	                  'th',
+	                  null,
+	                  'Name'
+	                )
+	              )
+	            ),
+	            _react2['default'].createElement(
+	              'tbody',
+	              null,
+	              _lodash2['default'].map(props.users, function (user, key) {
+	                return _react2['default'].createElement(
+	                  'tr',
+	                  { key: key },
+	                  _react2['default'].createElement(
+	                    'td',
+	                    { className: 'text-center' },
+	                    user.id
+	                  ),
+	                  _react2['default'].createElement(
+	                    'td',
+	                    null,
+	                    _react2['default'].createElement(
+	                      _reactRouter.Link,
+	                      { to: '/user/' + user.id },
+	                      user.name
+	                    )
+	                  )
+	                );
+	              })
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	
+	  return DashUsers;
+	}();
+	
+	exports['default'] = DashUsers;
+
+/***/ },
+/* 360 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _Search = __webpack_require__(324);
+	
+	var _Search2 = _interopRequireDefault(_Search);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var DashWidgets = function () {
+	  function DashWidgets(props) {
+	
+	    return _react2['default'].createElement(
+	      'div',
+	      { className: 'col-lg-6' },
+	      _react2['default'].createElement(
+	        'div',
+	        { className: 'widget' },
+	        _react2['default'].createElement(
+	          'div',
+	          { className: 'widget-header' },
+	          'Widgets',
+	          _react2['default'].createElement(_Search2['default'], { name: 'Search Widgets' })
+	        ),
+	        _react2['default'].createElement(
+	          'div',
+	          { className: 'table-responsive' },
+	          _react2['default'].createElement(
+	            'table',
+	            { className: 'table' },
+	            _react2['default'].createElement(
+	              'thead',
+	              null,
+	              _react2['default'].createElement(
+	                'tr',
+	                null,
+	                _react2['default'].createElement(
+	                  'th',
+	                  { className: 'text-center' },
+	                  'ID'
+	                ),
+	                _react2['default'].createElement(
+	                  'th',
+	                  null,
+	                  'Name'
+	                )
+	              )
+	            ),
+	            _react2['default'].createElement(
+	              'tbody',
+	              null,
+	              _.map(props.widgets, function (widget, index) {
+	                return _react2['default'].createElement(
+	                  'tr',
+	                  { key: index },
+	                  _react2['default'].createElement(
+	                    'td',
+	                    { className: 'text-center' },
+	                    widget.id
+	                  ),
+	                  _react2['default'].createElement(
+	                    'td',
+	                    null,
+	                    _react2['default'].createElement(
+	                      _reactRouter.Link,
+	                      { to: '/widget/' + widget.id },
+	                      widget.name
+	                    )
+	                  )
+	                );
+	              })
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	
+	  return DashWidgets;
+	}();
+	
+	exports['default'] = DashWidgets;
+
+/***/ },
+/* 361 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(175);
+	
+	var _redux = __webpack_require__(182);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _lodash = __webpack_require__(322);
+	
+	var _lodash2 = _interopRequireDefault(_lodash);
+	
+	var _actions = __webpack_require__(327);
+	
+	var _Search = __webpack_require__(324);
+	
+	var _Search2 = _interopRequireDefault(_Search);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var WidgetsLong = function (_Component) {
+	  _inherits(WidgetsLong, _Component);
+	
+	  function WidgetsLong(props) {
+	    _classCallCheck(this, WidgetsLong);
+	
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(WidgetsLong).call(this, props));
+	
+	    _this.state = { filteredList: null };
+	    _this.handleCreate = _this.handleCreate.bind(_this);
+	    _this.handleSearch = _this.handleSearch.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(WidgetsLong, [{
+	    key: 'componentDidMount',
+	    value: function () {
+	      function componentDidMount() {
+	        if (!this.props.users) {
+	          this.props.getWidgets();
+	        }
+	        this.setState({ filteredList: this.props.widgets });
+	      }
+	
+	      return componentDidMount;
+	    }()
+	  }, {
+	    key: 'handleCreate',
+	    value: function () {
+	      function handleCreate(e) {
+	        e.preventDefault();
+	        _reactRouter.browserHistory.push('/createWidget');
+	      }
+	
+	      return handleCreate;
+	    }()
+	  }, {
+	    key: 'handleSearch',
+	    value: function () {
+	      function handleSearch(e) {
+	        var search = e.target.value;
+	        var filteredList = this.props.widgets.filter(function (item) {
+	          return item.name.match('^' + search);
+	        });
+	        this.setState({ filteredList: filteredList });
+	      }
+	
+	      return handleSearch;
+	    }()
+	  }, {
+	    key: 'render',
+	    value: function () {
+	      function render() {
+	        return _react2['default'].createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2['default'].createElement(
+	            'div',
+	            { className: 'col-lg-12' },
+	            _react2['default'].createElement(
+	              'div',
+	              { className: 'widget' },
+	              _react2['default'].createElement(
+	                'div',
+	                { className: 'widget-header' },
+	                'Widgets',
+	                _react2['default'].createElement(_Search2['default'], { handleSearch: this.handleSearch }),
+	                _react2['default'].createElement(
+	                  'div',
+	                  { className: 'pull-right' },
+	                  _react2['default'].createElement(
+	                    'button',
+	                    { className: 'btn btn-sm btn-info', onClick: this.handleCreate },
+	                    '+ Create'
+	                  )
+	                )
+	              ),
+	              _react2['default'].createElement(
+	                'div',
+	                { className: 'table-responsive' },
+	                _react2['default'].createElement(
+	                  'table',
+	                  { className: 'table' },
+	                  _react2['default'].createElement(
+	                    'thead',
+	                    null,
+	                    _react2['default'].createElement(
+	                      'tr',
+	                      null,
+	                      _react2['default'].createElement(
+	                        'th',
+	                        { className: 'text-center' },
+	                        'ID'
+	                      ),
+	                      _react2['default'].createElement(
+	                        'th',
+	                        null,
+	                        'Name'
+	                      ),
+	                      _react2['default'].createElement(
+	                        'th',
+	                        null,
+	                        'Color'
+	                      ),
+	                      _react2['default'].createElement(
+	                        'th',
+	                        null,
+	                        'Price'
+	                      ),
+	                      _react2['default'].createElement(
+	                        'th',
+	                        null,
+	                        'Melts?'
+	                      ),
+	                      _react2['default'].createElement(
+	                        'th',
+	                        null,
+	                        'Inventory'
+	                      )
+	                    )
+	                  ),
+	                  this.state.filteredList ? _react2['default'].createElement(
+	                    'tbody',
+	                    null,
+	                    _lodash2['default'].map(this.state.filteredList, function (widget, key) {
+	                      return _react2['default'].createElement(
+	                        'tr',
+	                        { key: key },
+	                        _react2['default'].createElement(
+	                          'td',
+	                          null,
+	                          widget.id
+	                        ),
+	                        _react2['default'].createElement(
+	                          'td',
+	                          null,
+	                          _react2['default'].createElement(
+	                            _reactRouter.Link,
+	                            { to: '/widget/' + widget.id },
+	                            widget.name
+	                          )
+	                        ),
+	                        _react2['default'].createElement(
+	                          'td',
+	                          { className: 'text-center' },
+	                          widget.color
+	                        ),
+	                        _react2['default'].createElement(
+	                          'td',
+	                          null,
+	                          widget.price
+	                        ),
+	                        _react2['default'].createElement(
+	                          'td',
+	                          null,
+	                          widget.melts
+	                        ),
+	                        _react2['default'].createElement(
+	                          'td',
+	                          null,
+	                          widget.inventory
+	                        )
+	                      );
+	                    })
+	                  ) : console.log('loading')
+	                )
+	              )
+	            )
+	          )
+	        );
+	      }
+	
+	      return render;
+	    }()
+	  }]);
+	
+	  return WidgetsLong;
+	}(_react.Component);
+	
+	WidgetsLong.contextTypes = {
+	  router: _react.PropTypes.object
+	};
+	
+	function mapStateToProps(state) {
+	  return {
+	    widgets: state.main.widgets
+	  };
+	}
+	
+	function mapDispatchToProps(dispatch) {
+	  return (0, _redux.bindActionCreators)({ getWidget: _actions.getWidget, getWidgets: _actions.getWidgets }, dispatch);
+	}
+	
+	WidgetsLong.propTypes = {};
+	
+	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(WidgetsLong);
+
+/***/ },
+/* 362 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(175);
+	
+	var _redux = __webpack_require__(182);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _actions = __webpack_require__(327);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var UsersPage = function (_Component) {
+	  _inherits(UsersPage, _Component);
+	
+	  function UsersPage(props) {
+	    _classCallCheck(this, UsersPage);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(UsersPage).call(this, props));
+	  }
+	
+	  _createClass(UsersPage, [{
+	    key: 'componentDidMount',
+	    value: function () {
+	      function componentDidMount() {
+	        if (!this.props.users) {
+	          this.props.getUsers();
+	        }
+	      }
+	
+	      return componentDidMount;
+	    }()
+	  }, {
+	    key: 'render',
+	    value: function () {
+	      function render() {
+	        return _react2['default'].createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2['default'].createElement(
+	            'div',
+	            { className: 'col-lg-12' },
+	            _react2['default'].createElement(
+	              'div',
+	              { className: 'widget' },
+	              _react2['default'].createElement(
+	                'div',
+	                { className: 'widget-header' },
+	                'Users'
+	              ),
+	              _react2['default'].createElement(
+	                'div',
+	                { className: 'table-responsive' },
+	                _react2['default'].createElement(
+	                  'table',
+	                  { className: 'table' },
+	                  _react2['default'].createElement(
+	                    'thead',
+	                    null,
+	                    _react2['default'].createElement(
+	                      'tr',
+	                      null,
+	                      _react2['default'].createElement(
+	                        'th',
+	                        { className: 'text-center' },
+	                        'ID'
+	                      ),
+	                      _react2['default'].createElement(
+	                        'th',
+	                        null,
+	                        'Name'
+	                      ),
+	                      _react2['default'].createElement(
+	                        'th',
+	                        null,
+	                        'Avatar'
+	                      )
+	                    )
+	                  ),
+	                  _react2['default'].createElement(
+	                    'tbody',
+	                    null,
+	                    _.map(this.props.users, function (user, key) {
+	                      return _react2['default'].createElement(
+	                        'tr',
+	                        { key: key },
+	                        _react2['default'].createElement(
+	                          'td',
+	                          { className: 'text-center' },
+	                          user.id
+	                        ),
+	                        _react2['default'].createElement(
+	                          'td',
+	                          null,
+	                          _react2['default'].createElement(
+	                            'a',
+	                            null,
+	                            _react2['default'].createElement(
+	                              _reactRouter.Link,
+	                              { to: '/user/' + user.id },
+	                              user.name,
+	                              ' '
+	                            )
+	                          )
+	                        ),
+	                        _react2['default'].createElement(
+	                          'td',
+	                          null,
+	                          _react2['default'].createElement('img', { src: user.gravatar })
+	                        )
+	                      );
+	                    })
 	                  )
 	                )
 	              )
@@ -53429,26 +53552,26 @@
 	    }()
 	  }]);
 	
-	  return SingleWidget;
+	  return UsersPage;
 	}(_react.Component);
 	
-	SingleWidget.contextTypes = {
+	UsersPage.contextTypes = {
 	  router: _react.PropTypes.object
 	};
 	
 	function mapStateToProps(state) {
 	  return {
-	    currentWidget: state.main.currentWidget
+	    users: state.main.users
 	  };
 	}
 	
 	function mapDispatchToProps(dispatch) {
-	  return (0, _redux.bindActionCreators)({}, dispatch);
+	  return (0, _redux.bindActionCreators)({ getUsers: _actions.getUsers }, dispatch);
 	}
 	
-	SingleWidget.propTypes = {};
+	UsersPage.propTypes = {};
 	
-	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SingleWidget);
+	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(UsersPage);
 
 /***/ }
 /******/ ]);

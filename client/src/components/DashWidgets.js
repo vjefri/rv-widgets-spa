@@ -1,15 +1,16 @@
 import React from 'react';
-import _ from 'lodash';
+import { Link } from 'react-router';
 
 import Search from './Search';
 
-const Users = props => {
+const DashWidgets = props => {
+
   return (
     <div className='col-lg-6'>
       <div className='widget'>
         <div className='widget-header'>
-          Users
-          <Search name='Search Users' />
+          Widgets
+          <Search name='Search Widgets' />
         </div>
         <div className='table-responsive'>
           <table className='table'>
@@ -24,13 +25,15 @@ const Users = props => {
               </tr>
             </thead>
             <tbody>
-              {_.map(props.users, (user, key) => {
-                 return (<tr key={key}>
+              {_.map(props.widgets, (widget, index) => {
+                 return (<tr key={index}>
                            <td className='text-center'>
-                             {user.id}
+                             {widget.id}
                            </td>
-                           <td onClick={props.handleUserDetails.bind(null, user.id)}>
-                             {user.name}
+                           <td>
+                             <Link to={`/widget/${widget.id}`}>
+                             {widget.name}
+                             </Link>
                            </td>
                          </tr>);
                })}
@@ -42,4 +45,4 @@ const Users = props => {
   );
 };
 
-export default Users;
+export default DashWidgets;

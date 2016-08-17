@@ -40,17 +40,18 @@ class UserDetail extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td className='text-center'>
-                      {currentUser ? currentUser.id : console.log('loading...')}
-                    </td>
-                    <td>
-                      {currentUser ? currentUser.name : console.log('loading...')}
-                    </td>
-                    <td>
-                      <img src={currentUser ? currentUser.gravatar : console.log('loading...')} />
-                    </td>
-                  </tr>
+                  {currentUser ?
+                     <tr>
+                       <td className='text-center'>
+                         {currentUser.id}
+                       </td>
+                       <td>
+                         {currentUser.name}
+                       </td>
+                       <td>
+                         <img src={currentUser.gravatar} />
+                       </td>
+                     </tr> : console.log('loading...')}
                 </tbody>
               </table>
             </div>

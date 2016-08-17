@@ -3,14 +3,23 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form';
 
+import { getWidget } from '../actions';
+
 class EditWidget extends Component {
   constructor (props) {
     super(props);
   }
 
+  componentDidMount () {
+    const { widgetId } = this.props ? this.props.params : this.props.params;
+    dispatch(this.getWidget(widgetId));
+    console.log(widgetId);
+  }
+
   handleSubmit (values, dispatch) {}
 
   render () {
+    const { currentWidget } = this.props;
     const {fields: { name, price, color, melts, inventory }, handleSubmit, submitting} = this.props;
     return (
       <div className='row'>
@@ -27,7 +36,7 @@ class EditWidget extends Component {
                     id='widget-name'
                     name='widget-name'
                     type='text'
-                    placeholder='foo-bar'
+                    placeholder={currentWidget ? currentWidget.name : 'Tyrion Lannister'}
                     className='input-medium'
                     {...name}/>
                 </div>
@@ -39,7 +48,7 @@ class EditWidget extends Component {
                       id='widget-price'
                       name='widget-price'
                       className='input-medium'
-                      placeholder=''
+                      placeholder={currentWidget ? currentWidget.price : 'I always pay my debts'}
                       type='text'
                       {...price}/>
                   </div>
@@ -50,6 +59,7 @@ class EditWidget extends Component {
                     id='widget-color'
                     name='widget-color'
                     className='input-large'
+                    placeholder={currentWidget ? currentWidget.color : 'red'}
                     {...color}>
                     <option>
                       red
@@ -81,6 +91,7 @@ class EditWidget extends Component {
                     name='widget-properties'
                     id='widget-properties-0'
                     value='melts'
+                    placeholder={currentWidget ? currentWidget.melts : false}
                     {...melts}/>
                 </div>
                 <div className='controls'>
@@ -89,7 +100,7 @@ class EditWidget extends Component {
                     id='widget-count'
                     name='widget-count'
                     type='text'
-                    placeholder='#?'
+                    placeholder={currentWidget ? currentWidget.inventory : 'One Dragon'}
                     className='input-small'
                     {...inventory}/>
                 </div>
@@ -114,11 +125,16 @@ EditWidget.PropTypes = {
 
 function mapStateToProps (state) {
   return {
-    data: state.form.EditWidget
+    data: state.form.EditWidget,
+    currentWidget: state.main.currentWidget
   };
+}
+
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators({getWidget}, dispatch);
 }
 
 export default reduxForm({
   form: 'EditWidget',
   fields: ['name', 'price', 'color', 'melts', 'inventory']
-}, mapStateToProps)(EditWidget);
+}, mapStateToProps, mapDispatchToProps)(EditWidget);

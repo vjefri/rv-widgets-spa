@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { browserHistory } from 'react-router';
+import { Link } from 'react-router';
 
 import { getWidget } from '../actions';
 
@@ -14,6 +14,7 @@ class WidgetDetail extends Component {
     const { widgetId } = this.props ? this.props.params : this.props.params;
     this.props.getWidget(widgetId);
   }
+
   render () {
     const { currentWidget } = this.props;
 
@@ -24,9 +25,11 @@ class WidgetDetail extends Component {
             <div className='widget-header'>
               Users
               <div className='pull-right'>
-                <button className='btn btn-sm btn-info' onClick={this.handleEdit}>
-                  + Edit
-                </button>
+                {currentWidget ? <Link to={`/editWidget/${currentWidget.id}`}>
+                                 <button className='btn btn-sm btn-info'>
+                                   + Edit
+                                 </button>
+                                 </Link> : console.log('loading...')}
               </div>
             </div>
             <div className='table-responsive'>
@@ -53,28 +56,30 @@ class WidgetDetail extends Component {
                     </th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      {currentWidget ? currentWidget.id : console.log('pending...')}
-                    </td>
-                    <td>
-                      {currentWidget ? currentWidget.name : console.log('pending...')}
-                    </td>
-                    <td className='text-center'>
-                      {currentWidget ? currentWidget.color : console.log('pending...')}
-                    </td>
-                    <td>
-                      {currentWidget ? currentWidget.price : console.log('pending...')}
-                    </td>
-                    <td>
-                      {currentWidget ? currentWidget.melts : console.log('pending...')}
-                    </td>
-                    <td>
-                      {currentWidget ? currentWidget.inventory : console.log('pending...')}
-                    </td>
-                  </tr>
-                </tbody>
+                {currentWidget ?
+                   <tbody>
+                     <tr>
+                       <td>
+                         {currentWidget.id}
+                       </td>
+                       <td>
+                         {currentWidget.name}
+                       </td>
+                       <td className='text-center'>
+                         {currentWidget.color}
+                       </td>
+                       <td>
+                         {currentWidget.price}
+                       </td>
+                       <td>
+                         {currentWidget.melts}
+                       </td>
+                       <td>
+                         {currentWidget.inventory}
+                       </td>
+                     </tr>
+                   </tbody>
+                   : console.log('pending...')}
               </table>
             </div>
           </div>

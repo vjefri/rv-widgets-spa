@@ -9,7 +9,10 @@ const config = {
   devServer: {
     headers: { 'Access-Control-Allow-Origin': '*' },
     inline: true,
-    port: 9001
+    port: 300,
+    historyApiFallback: true,
+    contentBase: './',
+    hot: true
   },
 
   module: {
