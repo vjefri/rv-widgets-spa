@@ -9,7 +9,7 @@
     "dev": "webpack --config webpack.config.dev.js --progress --colors --watch",
     "build": "npm run clean && webpack --config webpack.config.prod.js --progress --colors",
     "test:client": "mocha --require client/test/test_helper.js --recursive client/test",
-    "test:server": "mocha --recursive server/test",
+    "test:server": "mocha --recursive server/test"
   },
   "repository": {
     "type": "git",
