@@ -3,15 +3,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 
+import { getWidget } from '../actions';
+
 class WidgetDetail extends Component {
   constructor (props) {
     super(props);
   }
 
-  handleEdit () {
-    browserHistory.push('/editWidget');
+  componentDidMount () {
+    const { widgetId } = this.props ? this.props.params : this.props.params;
+    this.props.getWidget(widgetId);
   }
-
   render () {
     const { currentWidget } = this.props;
 
@@ -93,7 +95,7 @@ function mapStateToProps (state) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({getWidget}, dispatch);
 }
 
 WidgetDetail.propTypes = {

@@ -4,25 +4,19 @@ import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 
 import SideBar from '../components/SideBar';
-import Users from '../components/Users';
-import Widgets from '../components/Widgets';
+import DashUsers from '../components/DashUsers';
+import DashWidgets from '../components/DashWidgets';
 import DashboardBoxes from '../components/DashboardBoxes';
-import { getUsers, getWidgets, getUser, getWidget } from '../actions';
+import { getUsers, getWidgets } from '../actions';
 
 class Dashboard extends Component {
   constructor (props) {
     super(props);
-    this.handleWidgetDetails = this.handleWidgetDetails.bind(this);
   }
 
   componentDidMount () {
     this.props.getUsers();
     this.props.getWidgets();
-  }
-
-  handleWidgetDetails (id) {
-    this.props.getWidget(id);
-    browserHistory.push('/widget');
   }
 
   render () {
@@ -31,8 +25,8 @@ class Dashboard extends Component {
       <div>
         <DashboardBoxes usersLength={usersLength} widgetsLength={widgetsLength} />
         <div className='row'>
-          {users ? <Users users={users} /> : console.log('loading...')}
-          {widgets ? <Widgets widgets={widgets.slice(0, 10)} handleWidgetDetails={this.handleWidgetDetails} /> : console.log('loading...')}
+          {users ? <DashUsers users={users} /> : console.log('loading...')}
+          {widgets ? <DashWidgets widgets={widgets.slice(0, 10)} /> : console.log('loading...')}
         </div>
       </div>
     );
@@ -58,7 +52,7 @@ function mapStateToProps (state) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators({getUsers, getWidgets, getUser, getWidget}, dispatch);
+  return bindActionCreators({getUsers, getWidgets}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
