@@ -15,7 +15,7 @@ class UsersPage extends Component {
   }
 
   render () {
-    const {users} = this.props;
+    const { users } = this.props;
     return (
       <div className='row'>
         <div className='col-lg-12'>

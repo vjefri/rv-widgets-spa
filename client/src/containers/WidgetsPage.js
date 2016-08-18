@@ -28,7 +28,7 @@ class WidgetsPage extends Component {
   }
 
   render () {
-    const {widgets} = this.props;
+    const { widgets } = this.props;
     const KEYS_TO_FILTERS = ['id', 'name', 'color', 'price', 'melts', 'inventory'];
     const filteredWidgets = widgets.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
 

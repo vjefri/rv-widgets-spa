@@ -33411,7 +33411,7 @@
 	              'div',
 	              { className: 'widget-header' },
 	              'Users',
-	              _react2['default'].createElement(_reactSearchInput2['default'], { className: 'pull-right', onChange: this.handleSearch })
+	              _react2['default'].createElement(_reactSearchInput2['default'], { value: this.state.searchTerm, className: 'pull-right', onChange: this.handleSearch })
 	            ),
 	            _react2['default'].createElement(
 	              'div',
@@ -36024,7 +36024,7 @@
 	              'div',
 	              { className: 'widget-header' },
 	              'Widgets',
-	              _react2['default'].createElement(_reactSearchInput2['default'], { className: 'pull-right', onChange: this.handleSearch })
+	              _react2['default'].createElement(_reactSearchInput2['default'], { value: this.state.searchTerm, className: 'pull-right', onChange: this.handleSearch })
 	            ),
 	            _react2['default'].createElement(
 	              'div',

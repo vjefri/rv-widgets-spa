@@ -21,7 +21,7 @@ class DashWidgets extends Component {
   }
 
   render () {
-    const {widgets} = this.props;
+    const { widgets } = this.props;
     const KEYS_TO_FILTERS = ['id', 'name'];
     const filteredWidgets = widgets.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
 
@@ -30,7 +30,7 @@ class DashWidgets extends Component {
         <div className='widget'>
           <div className='widget-header'>
             Widgets
-            <SearchInput className='pull-right' onChange={this.handleSearch} />
+            <SearchInput value={this.state.searchTerm} className='pull-right' onChange={this.handleSearch} />
           </div>
           <div className='table-responsive'>
             <table className='table'>
