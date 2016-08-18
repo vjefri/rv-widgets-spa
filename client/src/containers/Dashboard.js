@@ -26,8 +26,8 @@ class Dashboard extends Component {
       <div>
         <DashboardBoxes usersLength={users.length} widgetsLength={widgets.length} />
         <div className='row'>
-          <DashUsers users={users} />
-          <DashWidgets widgets={widgets.slice(0, 10)} />
+          <DashUsers />
+          <DashWidgets />
         </div>
       </div>
     );

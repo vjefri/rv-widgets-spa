@@ -1,21 +1,21 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
+import SearchInput, { createFilter } from 'react-search-input';
 
 import { getWidget, getWidgets } from '../actions/widgets';
-import Search from '../components/Search';
 
 class WidgetsPage extends Component {
   constructor (props) {
     super(props);
-    this.state = {filteredList: [] };
+    this.state = {searchTerm: ''};
     this.handleCreate = this.handleCreate.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
   }
+
   componentDidMount () {
     const { dispatch } = this.props;
     dispatch(getWidgets());
-    this.setState({filteredList: this.props.widgets });
   }
 
   handleCreate (e) {
@@ -23,15 +23,15 @@ class WidgetsPage extends Component {
     browserHistory.push('/createWidget');
   }
 
-  handleSearch (e) {
-    var search = e.target.value;
-    let filteredList = this.props.widgets.filter(function (item) {
-      return item.name.match(`^${search}`);
-    });
-    this.setState({filteredList: filteredList});
+  handleSearch (term) {
+    this.setState({searchTerm: term});
   }
 
   render () {
+    const {widgets} = this.props;
+    const KEYS_TO_FILTERS = ['id', 'name', 'color', 'price', 'melts', 'inventory'];
+    const filteredWidgets = widgets.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
+
     return (
       <div className='row'>
         <div className='col-lg-12'>
@@ -43,7 +43,7 @@ class WidgetsPage extends Component {
                   + Create
                 </button>
               </div>
-              <Search handleSearch={this.handleSearch} />
+              <SearchInput className='pull-right' onChange={this.handleSearch} />
             </div>
             <div className='table-responsive'>
               <table className='table'>
@@ -70,7 +70,7 @@ class WidgetsPage extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.filteredList.map((widget, key) => {
+                  {filteredWidgets.map((widget, key) => {
                      return (<tr key={key}>
                                <td>
                                  {widget.id}
