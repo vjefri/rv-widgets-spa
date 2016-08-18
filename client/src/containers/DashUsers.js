@@ -46,16 +46,18 @@ class DashUsers extends Component {
               </thead>
               <tbody>
                 {filteredUsers.map((user, key) => {
-                   return (<tr key={key}>
-                             <td className='text-center'>
-                               {user.id}
-                             </td>
-                             <td>
-                               <Link to={`/user/${user.id}`}>
-                               {user.name}
-                               </Link>
-                             </td>
-                           </tr>);
+                   return (
+                     <tr key={key}>
+                       <td className='text-center'>
+                         {user.id}
+                       </td>
+                       <td>
+                         <Link to={`/user/${user.id}`}>
+                         {user.name}
+                         </Link>
+                       </td>
+                     </tr>
+                   );
                  })}
               </tbody>
             </table>

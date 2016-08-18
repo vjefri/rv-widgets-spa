@@ -63,27 +63,7 @@ class EditWidget extends Component {
                     type='radio'
                     placeholder={currentWidget ? currentWidget.color : 'red'}
                     {...domOnlyProps(color)}>
-                    <option>
-                      red
-                    </option>
-                    <option>
-                      purple
-                    </option>
-                    <option>
-                      black
-                    </option>
-                    <option>
-                      green
-                    </option>
-                    <option>
-                      magenta
-                    </option>
-                    <option>
-                      white
-                    </option>
-                    <option>
-                      depends on the viewing angle
-                    </option>
+                    {['', 'red', 'purple', 'black', 'green', 'magenta', 'white', 'depends on the viewing angle'].map((color) => <option>{color}</option>)}
                   </select>
                 </div>
                 <div className='controls'>

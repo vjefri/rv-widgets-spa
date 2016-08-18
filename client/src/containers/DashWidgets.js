@@ -46,16 +46,18 @@ class DashWidgets extends Component {
               </thead>
               <tbody>
                 {filteredWidgets.slice(0, 10).map((widget, index) => {
-                   return (<tr key={index}>
-                             <td className='text-center'>
-                               {widget.id}
-                             </td>
-                             <td>
-                               <Link to={`/widget/${widget.id}`}>
-                               {widget.name}
-                               </Link>
-                             </td>
-                           </tr>);
+                   return (
+                     <tr key={index}>
+                       <td className='text-center'>
+                         {widget.id}
+                       </td>
+                       <td>
+                         <Link to={`/widget/${widget.id}`}>
+                         {widget.name}
+                         </Link>
+                       </td>
+                     </tr>
+                   );
                  })}
               </tbody>
             </table>

@@ -52,47 +52,35 @@ class WidgetsPage extends Component {
                     <th className='text-center'>
                       ID
                     </th>
-                    <th>
-                      Name
-                    </th>
-                    <th>
-                      Color
-                    </th>
-                    <th>
-                      Price
-                    </th>
-                    <th>
-                      Melts?
-                    </th>
-                    <th>
-                      Inventory
-                    </th>
+                    {['Name', 'Color', 'Price', 'Melts?', 'Inventory'].map((field) => <th>{field}</th>)}
                   </tr>
                 </thead>
                 <tbody>
                   {filteredWidgets.map((widget, key) => {
-                     return (<tr key={key}>
-                               <td>
-                                 {widget.id}
-                               </td>
-                               <td>
-                                 <Link to={`/widget/${widget.id}`}>
-                                 {widget.name}
-                                 </Link>
-                               </td>
-                               <td className='text-center'>
-                                 {widget.color}
-                               </td>
-                               <td>
-                                 {widget.price}
-                               </td>
-                               <td>
-                                 {widget.melts}
-                               </td>
-                               <td>
-                                 {widget.inventory}
-                               </td>
-                             </tr>);
+                     return (
+                       <tr key={key}>
+                         <td>
+                           {widget.id}
+                         </td>
+                         <td>
+                           <Link to={`/widget/${widget.id}`}>
+                           {widget.name}
+                           </Link>
+                         </td>
+                         <td className='text-center'>
+                           {widget.color}
+                         </td>
+                         <td>
+                           {widget.price}
+                         </td>
+                         <td>
+                           {widget.melts}
+                         </td>
+                         <td>
+                           {widget.inventory}
+                         </td>
+                       </tr>
+                     );
                    })}
                 </tbody>
               </table>

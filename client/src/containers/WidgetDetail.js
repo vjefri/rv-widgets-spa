@@ -36,24 +36,8 @@ class WidgetDetail extends Component {
               <table className='table'>
                 <thead>
                   <tr>
-                    <th className='text-center'>
-                      ID
-                    </th>
-                    <th>
-                      Name
-                    </th>
-                    <th>
-                      Color
-                    </th>
-                    <th>
-                      Price
-                    </th>
-                    <th>
-                      Melts?
-                    </th>
-                    <th>
-                      Inventory
-                    </th>
+                  {['Name', 'Color', 'Price', 'Melts?', 'Inventory'].map((field) => {
+                    return (field === 'ID') ? <th className='text-center'> {field} </th> : <th>{field}</th>})}
                   </tr>
                 </thead>
                 <tbody>

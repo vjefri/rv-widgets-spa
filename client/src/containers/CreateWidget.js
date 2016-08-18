@@ -56,29 +56,7 @@ class CreateWidget extends Component {
                     className='input-large'
                     placeholder='green'
                     {...domOnlyProps(color)}>
-                    <option>
-                    </option>
-                    <option>
-                      red
-                    </option>
-                    <option>
-                      purple
-                    </option>
-                    <option>
-                      black
-                    </option>
-                    <option>
-                      green
-                    </option>
-                    <option>
-                      magenta
-                    </option>
-                    <option>
-                      white
-                    </option>
-                    <option>
-                      depends on the viewing angle
-                    </option>
+                    {['', 'red', 'purple', 'black', 'green', 'magenta', 'white', 'depends on the viewing angle'].map((color) => <option>{color}</option>)}
                   </select>
                 </div>
                 <div className='controls'>

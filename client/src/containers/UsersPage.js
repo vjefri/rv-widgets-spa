@@ -40,19 +40,21 @@ class UsersPage extends Component {
                 </thead>
                 <tbody>
                   {users.map((user, key) => {
-                     return (<tr key={key}>
-                               <td className='text-center'>
-                                 {user.id}
-                               </td>
-                               <td>
-                                 <Link to={`/user/${user.id}`}>
-                                 {user.name}
-                                 </Link>
-                               </td>
-                               <td>
-                                 <img src={user.gravatar} />
-                               </td>
-                             </tr>);
+                     return (
+                       <tr key={key}>
+                         <td className='text-center'>
+                           {user.id}
+                         </td>
+                         <td>
+                           <Link to={`/user/${user.id}`}>
+                           {user.name}
+                           </Link>
+                         </td>
+                         <td>
+                           <img src={user.gravatar} />
+                         </td>
+                       </tr>
+                     );
                    })}
                 </tbody>
               </table>
