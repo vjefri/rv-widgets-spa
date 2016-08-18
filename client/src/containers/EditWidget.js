@@ -18,6 +18,8 @@ class EditWidget extends Component {
   }
 
   render () {
+    const domOnlyProps = ({ initialValue, autofill, onUpdate, valid, invalid, dirty, pristine, active, touched, visited, autofilled, ...domProps }) => domProps
+
     const { currentWidget } = this.props;
     const {fields: { name, price, color, melts, inventory }, handleSubmit, submitting} = this.props;
     return (
@@ -37,7 +39,7 @@ class EditWidget extends Component {
                     type='text'
                     placeholder={currentWidget ? currentWidget.name : 'Tyrion Lannister'}
                     className='input-medium'
-                    {...name}/>
+                    {...domOnlyProps(name)}/>
                 </div>
                 <div className='controls'>
                   <div className='input-prepend'>
@@ -49,7 +51,7 @@ class EditWidget extends Component {
                       className='input-medium'
                       placeholder={currentWidget ? currentWidget.price : 100000}
                       type='number'
-                      {...price}/>
+                      {...domOnlyProps(price)}/>
                   </div>
                 </div>
                 <div className='controls'>
@@ -60,7 +62,7 @@ class EditWidget extends Component {
                     className='input-large'
                     type='radio'
                     placeholder={currentWidget ? currentWidget.color : 'red'}
-                    {...color}>
+                    {...domOnlyProps(color)}>
                     <option>
                       red
                     </option>
@@ -92,7 +94,7 @@ class EditWidget extends Component {
                     id='widget-properties-0'
                     value='melts'
                     placeholder={currentWidget ? currentWidget.melts : false}
-                    {...melts}/>
+                    {...domOnlyProps(melts)}/>
                 </div>
                 <div className='controls'>
                   Inventory
@@ -102,7 +104,7 @@ class EditWidget extends Component {
                     type='number'
                     placeholder={currentWidget ? currentWidget.inventory : 'One Dragon'}
                     className='input-small'
-                    {...inventory}/>
+                    {...domOnlyProps(inventory)}/>
                 </div>
                 <button type='submit'>
                   Submit
@@ -120,7 +122,9 @@ EditWidget.PropTypes = {
   handleSubmit: PropTypes.func,
   submitting: PropTypes.bool,
   fields: PropTypes.object,
-  editWidget: PropTypes.func
+  editWidget: PropTypes.func,
+  data: PropTypes.object,
+  currentWidget: PropTypes.object
 };
 
 function mapStateToProps (state) {

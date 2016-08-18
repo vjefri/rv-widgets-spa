@@ -13,7 +13,9 @@ class CreateWidget extends Component {
   }
 
   render () {
+    const domOnlyProps = ({ initialValue, autofill, onUpdate, valid, invalid, dirty, pristine, active, touched, visited, autofilled, ...domProps }) => domProps
     const {fields: { name, price, color, melts, inventory }, handleSubmit, submitting} = this.props;
+
     return (
       <div className='row'>
         <div className='col-lg-12'>
@@ -31,7 +33,7 @@ class CreateWidget extends Component {
                     type='text'
                     placeholder='foo'
                     className='input-medium'
-                    {...name}/>
+                    {...domOnlyProps(name)}/>
                 </div>
                 <div className='controls'>
                   <div className='input-prepend'>
@@ -43,7 +45,7 @@ class CreateWidget extends Component {
                       className='input-medium'
                       placeholder='0.00'
                       type='text'
-                      {...price}/>
+                      {...domOnlyProps(price)}/>
                   </div>
                 </div>
                 <div className='controls'>
@@ -53,7 +55,7 @@ class CreateWidget extends Component {
                     name='widget-color'
                     className='input-large'
                     placeholder='green'
-                    {...color}>
+                    {...domOnlyProps(color)}>
                     <option>
                     </option>
                     <option>
@@ -86,7 +88,7 @@ class CreateWidget extends Component {
                     name='widget-properties'
                     id='widget-properties-0'
                     value='melts'
-                    {...melts}/>
+                    {...domOnlyProps(melts)}/>
                 </div>
                 <div className='controls'>
                   Inventory
@@ -96,7 +98,7 @@ class CreateWidget extends Component {
                     type='text'
                     placeholder='10'
                     className='input-small'
-                    {...inventory}/>
+                    {...domOnlyProps(inventory)}/>
                 </div>
                 <button type='submit'>
                   Submit
@@ -114,7 +116,8 @@ CreateWidget.PropTypes = {
   handleSubmit: PropTypes.func,
   submitting: PropTypes.bool,
   fields: PropTypes.object,
-  addWidget: PropTypes.func
+  addWidget: PropTypes.func,
+  data: PropTypes.object
 };
 
 function mapStateToProps (state) {

@@ -16,7 +16,6 @@ class UsersPage extends Component {
 
   render () {
     const {users} = this.props;
-
     return (
       <div className='row'>
         <div className='col-lg-12'>
@@ -46,10 +45,9 @@ class UsersPage extends Component {
                                  {user.id}
                                </td>
                                <td>
-                                 <a>
-                                   <Link to={`/user/${user.id}`}>
-                                   {user.name} </Link>
-                                 </a>
+                                 <Link to={`/user/${user.id}`}>
+                                 {user.name}
+                                 </Link>
                                </td>
                                <td>
                                  <img src={user.gravatar} />

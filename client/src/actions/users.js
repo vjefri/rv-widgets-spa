@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import * as ACTIONS from '../constants/';
+import * as CONSTANT from '../constants/';
 
 const url = 'http://spa.tglrw.com:4000';
 
@@ -8,13 +8,13 @@ const url = 'http://spa.tglrw.com:4000';
 
 function UserRequest () {
   return {
-    type: ACTIONS.GET_USERS_REQUEST
+    type: CONSTANT.GET_USERS_REQUEST
   };
 }
 
 function UserSuccess (users) {
   return {
-    type: ACTIONS.GET_USERS_SUCCESS,
+    type: CONSTANT.GET_USERS_SUCCESS,
     users: users.data,
     error: null
   };
@@ -22,7 +22,7 @@ function UserSuccess (users) {
 
 function UserFailure (err) {
   return {
-    type: ACTIONS.GET_USERS_FAILURE,
+    type: CONSTANT.GET_USERS_FAILURE,
     error: err
   };
 }
@@ -40,13 +40,13 @@ export function getUsers () {
 
 function SingleUserRequest () {
   return {
-    type: ACTIONS.GET_SINGLE_USER_REQUEST
+    type: CONSTANT.GET_SINGLE_USER_REQUEST
   };
 }
 
 function SingleUserSuccess (currentUser) {
   return {
-    type: ACTIONS.GET_SINGLE_USER_SUCCESS,
+    type: CONSTANT.GET_SINGLE_USER_SUCCESS,
     currentUser: currentUser.data,
     error: null
   };
@@ -54,7 +54,7 @@ function SingleUserSuccess (currentUser) {
 
 function SingleUserFailure (err) {
   return {
-    type: ACTIONS.GET_SINGLE_USER_FAILURE,
+    type: CONSTANT.GET_SINGLE_USER_FAILURE,
     error: err
   };
 }

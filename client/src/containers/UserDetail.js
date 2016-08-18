@@ -40,18 +40,17 @@ class UserDetail extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {currentUser ?
-                     <tr>
-                       <td className='text-center'>
-                         {currentUser.id}
-                       </td>
-                       <td>
-                         {currentUser.name}
-                       </td>
-                       <td>
-                         <img src={currentUser.gravatar} />
-                       </td>
-                     </tr> : console.log('loading...')}
+                  <tr>
+                    <td className='text-center'>
+                      {currentUser.id}
+                    </td>
+                    <td>
+                      {currentUser.name}
+                    </td>
+                    <td>
+                      <img src={currentUser.gravatar} />
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -63,6 +62,7 @@ class UserDetail extends Component {
 }
 
 UserDetail.propTypes = {
+  currentUser: PropTypes.object
 };
 
 function mapStateToProps (state) {

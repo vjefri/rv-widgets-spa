@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import SideBar from '../components/SideBar';
-import HeaderBar from '../components/HeaderBar';
+import HeaderBar from './HeaderBar';
 
 export class App extends Component {
   constructor (props) {
@@ -25,11 +25,7 @@ export class App extends Component {
 };
 
 App.PropTypes = {
-
+  children: PropTypes.node
 };
 
-function mapStateToProps (state) {
-  return {};
-}
-
-export default connect(mapStateToProps)(App);
+export default connect()(App);

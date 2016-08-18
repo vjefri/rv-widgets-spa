@@ -25,11 +25,11 @@ class WidgetDetail extends Component {
             <div className='widget-header'>
               Users
               <div className='pull-right'>
-                {currentWidget ? <Link to={`/editWidget/${currentWidget.id}`}>
-                                 <button className='btn btn-sm btn-info'>
-                                   + Edit
-                                 </button>
-                                 </Link> : console.log('loading...')}
+                <Link to={`/editWidget/${currentWidget.id}`}>
+                <button className='btn btn-sm btn-info'>
+                  + Edit
+                </button>
+                </Link>
               </div>
             </div>
             <div className='table-responsive'>
@@ -56,30 +56,28 @@ class WidgetDetail extends Component {
                     </th>
                   </tr>
                 </thead>
-                {currentWidget ?
-                   <tbody>
-                     <tr>
-                       <td>
-                         {currentWidget.id}
-                       </td>
-                       <td>
-                         {currentWidget.name}
-                       </td>
-                       <td className='text-center'>
-                         {currentWidget.color}
-                       </td>
-                       <td>
-                         {currentWidget.price}
-                       </td>
-                       <td>
-                         {currentWidget.melts}
-                       </td>
-                       <td>
-                         {currentWidget.inventory}
-                       </td>
-                     </tr>
-                   </tbody>
-                   : console.log('pending...')}
+                <tbody>
+                  <tr>
+                    <td>
+                      {currentWidget.id}
+                    </td>
+                    <td>
+                      {currentWidget.name}
+                    </td>
+                    <td className='text-center'>
+                      {currentWidget.color}
+                    </td>
+                    <td>
+                      {currentWidget.price}
+                    </td>
+                    <td>
+                      {currentWidget.melts}
+                    </td>
+                    <td>
+                      {currentWidget.inventory}
+                    </td>
+                  </tr>
+                </tbody>
               </table>
             </div>
           </div>
@@ -90,6 +88,8 @@ class WidgetDetail extends Component {
 }
 
 WidgetDetail.propTypes = {
+  dispatch: PropTypes.func,
+  currentWidget: PropTypes.object
 };
 
 function mapStateToProps (state) {

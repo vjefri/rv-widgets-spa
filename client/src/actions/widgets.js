@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import * as ACTIONS from '../constants/';
+import * as CONSTANT from '../constants/';
 
 const url = 'http://spa.tglrw.com:4000';
 
@@ -8,20 +8,20 @@ const url = 'http://spa.tglrw.com:4000';
 
 function WidgetRequest () {
   return {
-    type: ACTIONS.GET_WIDGETS_REQUEST
+    type: CONSTANT.GET_WIDGETS_REQUEST
   };
 }
 
 function WidgetSuccess (widgets) {
   return {
-    type: ACTIONS.GET_WIDGETS_SUCCESS,
+    type: CONSTANT.GET_WIDGETS_SUCCESS,
     widgets: widgets.data
   };
 }
 
 function WidgetFailure (err) {
   return {
-    type: ACTIONS.GET_WIDGETS_FAILURE,
+    type: CONSTANT.GET_WIDGETS_FAILURE,
     error: err
   };
 }
@@ -39,20 +39,20 @@ export function getWidgets () {
 
 function SingleWidgetRequest () {
   return {
-    type: ACTIONS.GET_SINGLE_WIDGET_REQUEST
+    type: CONSTANT.GET_SINGLE_WIDGET_REQUEST
   };
 }
 
 function SingleWidgetSuccess (currentWidget) {
   return {
-    type: ACTIONS.GET_SINGLE_WIDGET_SUCCESS,
+    type: CONSTANT.GET_SINGLE_WIDGET_SUCCESS,
     currentWidget: currentWidget.data
   };
 }
 
 function SingleWidgetFailure (err) {
   return {
-    type: ACTIONS.GET_SINGLE_WIDGET_FAILURE,
+    type: CONSTANT.GET_SINGLE_WIDGET_FAILURE,
     error: err
   };
 }
@@ -70,20 +70,21 @@ export function getWidget (id) {
 
 function PostWidgetRequest () {
   return {
-    type: ACTIONS.POST_WIDGET_REQUEST
+    type: CONSTANT.POST_WIDGET_REQUEST
   };
 }
 
 function PostWidgetSuccess (widget) {
+  console.log(widget);
   return {
-    type: ACTIONS.POST_WIDGET_SUCCESS,
+    type: CONSTANT.POST_WIDGET_SUCCESS,
     widget: widget.data
   };
 }
 
 function PostWidgetFailure (err) {
   return {
-    type: ACTIONS.POST_WIDGET_FAILURE,
+    type: CONSTANT.POST_WIDGET_FAILURE,
     error: err
   };
 }
@@ -101,20 +102,20 @@ export function addWidget (values) {
 
 function EditWidgetRequest () {
   return {
-    type: ACTIONS.EDIT_WIDGET_REQUEST
+    type: CONSTANT.EDIT_WIDGET_REQUEST
   };
 }
 
 function EditWidgetSuccess (widget) {
   return {
-    type: ACTIONS.EDIT_WIDGET_SUCCESS,
+    type: CONSTANT.EDIT_WIDGET_SUCCESS,
     widget: widget.data
   };
 }
 
 function EditWidgetFailure (err) {
   return {
-    type: ACTIONS.EDIT_WIDGET_FAILURE,
+    type: CONSTANT.EDIT_WIDGET_FAILURE,
     error: err
   };
 }

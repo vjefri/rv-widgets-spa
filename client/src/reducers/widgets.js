@@ -1,4 +1,4 @@
-import * as ACTIONS from '../constants/';
+import * as CONSTANT from '../constants/';
 
 const INITIAL_STATE = {
   widgets: [],
@@ -8,66 +8,66 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case ACTIONS.GET_WIDGETS_REQUEST:
+    case CONSTANT.GET_WIDGETS_REQUEST:
       return {
         ...state,
         isFetching: true,
       };
-    case ACTIONS.GET_WIDGETS_SUCCESS:
+    case CONSTANT.GET_WIDGETS_SUCCESS:
       return {
         ...state,
         widgets: action.widgets,
         isFetching: false,
       };
-    case ACTIONS.GET_WIDGETS_FAILURE:
+    case CONSTANT.GET_WIDGETS_FAILURE:
       return {
         ...state,
         isFetching: false,
       };
-    case ACTIONS.GET_SINGLE_WIDGET_REQUEST:
+    case CONSTANT.GET_SINGLE_WIDGET_REQUEST:
       return {
         ...state,
         isFetching: true,
       };
-    case ACTIONS.GET_SINGLE_WIDGET_SUCCESS:
+    case CONSTANT.GET_SINGLE_WIDGET_SUCCESS:
       return {
         ...state,
         currentWidget: action.currentWidget,
         isFetching: false,
       };
-    case ACTIONS.GET_SINGLE_WIDGET_FAILURE:
+    case CONSTANT.GET_SINGLE_WIDGET_FAILURE:
       return {
         ...state,
         isFetching: false,
       };
-    case ACTIONS.POST_WIDGET_REQUEST:
+    case CONSTANT.POST_WIDGET_REQUEST:
       return {
         ...state,
         isFetching: true,
       };
-    case ACTIONS.POST_WIDGET_SUCCESS:
+    case CONSTANT.POST_WIDGET_SUCCESS:
       return {
         ...state,
         widget: action.widget,
         isFetching: false,
       };
-    case ACTIONS.POST_WIDGET_FAILURE:
+    case CONSTANT.POST_WIDGET_FAILURE:
       return {
         ...state,
         isFetching: false,
       };
-    case ACTIONS.EDIT_WIDGET_REQUEST:
+    case CONSTANT.EDIT_WIDGET_REQUEST:
       return {
         ...state,
         isFetching: true,
       };
-    case ACTIONS.EDIT_WIDGET_SUCCESS:
+    case CONSTANT.EDIT_WIDGET_SUCCESS:
       return {
         ...state,
         widget: action.widget,
         isFetching: false,
       };
-    case ACTIONS.EDIT_WIDGET_FAILURE:
+    case CONSTANT.EDIT_WIDGET_FAILURE:
       return {
         ...state,
         isFetching: false,

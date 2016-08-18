@@ -5,10 +5,10 @@ import { browserHistory, Link } from 'react-router';
 import { getWidget, getWidgets } from '../actions/widgets';
 import Search from '../components/Search';
 
-class WidgetsLong extends Component {
+class WidgetsPage extends Component {
   constructor (props) {
     super(props);
-    this.state = {filteredList: null };
+    this.state = {filteredList: [] };
     this.handleCreate = this.handleCreate.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
   }
@@ -69,33 +69,32 @@ class WidgetsLong extends Component {
                     </th>
                   </tr>
                 </thead>
-                {this.state.filteredList ?
-                   <tbody>
-                     {this.state.filteredList.map((widget, key) => {
-                        return (<tr key={key}>
-                                  <td>
-                                    {widget.id}
-                                  </td>
-                                  <td>
-                                    <Link to={`/widget/${widget.id}`}>
-                                    {widget.name}
-                                    </Link>
-                                  </td>
-                                  <td className='text-center'>
-                                    {widget.color}
-                                  </td>
-                                  <td>
-                                    {widget.price}
-                                  </td>
-                                  <td>
-                                    {widget.melts}
-                                  </td>
-                                  <td>
-                                    {widget.inventory}
-                                  </td>
-                                </tr>);
-                      })}
-                   </tbody> : console.log('loading')}
+                <tbody>
+                  {this.state.filteredList.map((widget, key) => {
+                     return (<tr key={key}>
+                               <td>
+                                 {widget.id}
+                               </td>
+                               <td>
+                                 <Link to={`/widget/${widget.id}`}>
+                                 {widget.name}
+                                 </Link>
+                               </td>
+                               <td className='text-center'>
+                                 {widget.color}
+                               </td>
+                               <td>
+                                 {widget.price}
+                               </td>
+                               <td>
+                                 {widget.melts}
+                               </td>
+                               <td>
+                                 {widget.inventory}
+                               </td>
+                             </tr>);
+                   })}
+                </tbody>
               </table>
             </div>
           </div>
@@ -105,11 +104,13 @@ class WidgetsLong extends Component {
   }
 }
 
-WidgetsLong.contextTypes = {
+WidgetsPage.contextTypes = {
   router: PropTypes.object
 };
 
-WidgetsLong.propTypes = {
+WidgetsPage.propTypes = {
+  dispatch: PropTypes.func,
+  widgets: PropTypes.arrayOf(React.PropTypes.object)
 };
 
 function mapStateToProps (state) {
@@ -118,4 +119,4 @@ function mapStateToProps (state) {
   };
 }
 
-export default connect(mapStateToProps)(WidgetsLong);
+export default connect(mapStateToProps)(WidgetsPage);
