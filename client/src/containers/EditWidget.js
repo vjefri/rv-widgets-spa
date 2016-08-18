@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
+import { browserHistory, Link } from 'react-router';
 
 import { editWidget } from '../actions/widgets';
 
@@ -19,7 +20,6 @@ class EditWidget extends Component {
 
   render () {
     const domOnlyProps = ({ initialValue, autofill, onUpdate, valid, invalid, dirty, pristine, active, touched, visited, autofilled, ...domProps }) => domProps
-
     const { currentWidget } = this.props;
     const {fields: { name, price, color, melts, inventory }, handleSubmit, submitting} = this.props;
     return (
@@ -30,6 +30,13 @@ class EditWidget extends Component {
               <form className='form-horizontal' onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
                 <legend>
                   Edit Widget
+                  <div className='pull-right'>
+                    <Link to={`/widgets`}>
+                      <button className='btn btn-sm btn-info'>
+                        Back
+                      </button>
+                    </Link>
+                  </div>
                 </legend>
                 <div className='controls'>
                   Name

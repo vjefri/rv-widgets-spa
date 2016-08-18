@@ -36731,6 +36731,8 @@
 	
 	var _reduxForm = __webpack_require__(270);
 	
+	var _reactRouter = __webpack_require__(198);
+	
 	var _widgets = __webpack_require__(350);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -36757,6 +36759,7 @@
 	    value: function () {
 	      function handleSubmit(values, dispatch) {
 	        dispatch((0, _widgets.addWidget)(values));
+	        _reactRouter.browserHistory.push('/widgets');
 	      }
 	
 	      return handleSubmit;
@@ -36815,7 +36818,20 @@
 	                  _react2['default'].createElement(
 	                    'legend',
 	                    null,
-	                    'Create Widget'
+	                    'Create Widget',
+	                    _react2['default'].createElement(
+	                      'div',
+	                      { className: 'pull-right' },
+	                      _react2['default'].createElement(
+	                        _reactRouter.Link,
+	                        { to: '/widgets' },
+	                        _react2['default'].createElement(
+	                          'button',
+	                          { className: 'btn btn-sm btn-primary' },
+	                          'Back'
+	                        )
+	                      )
+	                    )
 	                  ),
 	                  _react2['default'].createElement(
 	                    'div',
@@ -36955,6 +36971,8 @@
 	
 	var _reduxForm = __webpack_require__(270);
 	
+	var _reactRouter = __webpack_require__(198);
+	
 	var _widgets = __webpack_require__(350);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -37015,7 +37033,6 @@
 	
 	          return domOnlyProps;
 	        }();
-	
 	        var currentWidget = this.props.currentWidget;
 	        var _props = this.props;
 	        var _props$fields = _props.fields;
@@ -37045,7 +37062,20 @@
 	                  _react2['default'].createElement(
 	                    'legend',
 	                    null,
-	                    'Edit Widget'
+	                    'Edit Widget',
+	                    _react2['default'].createElement(
+	                      'div',
+	                      { className: 'pull-right' },
+	                      _react2['default'].createElement(
+	                        _reactRouter.Link,
+	                        { to: '/widgets' },
+	                        _react2['default'].createElement(
+	                          'button',
+	                          { className: 'btn btn-sm btn-info' },
+	                          'Back'
+	                        )
+	                      )
+	                    )
 	                  ),
 	                  _react2['default'].createElement(
 	                    'div',

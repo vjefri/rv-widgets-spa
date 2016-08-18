@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
+import { browserHistory, Link } from 'react-router';
 
 import { addWidget } from '../actions/widgets';
 
@@ -10,6 +11,7 @@ class CreateWidget extends Component {
 
   handleSubmit (values, dispatch) {
     dispatch(addWidget(values));
+    browserHistory.push('/widgets');
   }
 
   render () {
@@ -24,6 +26,13 @@ class CreateWidget extends Component {
               <form className='form-horizontal' onSubmit={handleSubmit(this.handleSubmit)}>
                 <legend>
                   Create Widget
+                  <div className='pull-right'>
+                    <Link to={`/widgets`}>
+                      <button className='btn btn-sm btn-primary'>
+                        Back
+                      </button>
+                    </Link>
+                  </div>
                 </legend>
                 <div className='controls'>
                   Name
