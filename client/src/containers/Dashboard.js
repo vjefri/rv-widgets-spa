@@ -1,13 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { browserHistory } from 'react-router';
 
 import SideBar from '../components/SideBar';
-import DashUsers from '../components/DashUsers';
-import DashWidgets from '../components/DashWidgets';
+import DashUsers from './DashUsers';
+import DashWidgets from './DashWidgets';
 import DashboardBoxes from '../components/DashboardBoxes';
-import { getUsers, getWidgets } from '../actions';
+import { getWidgets } from '../actions/widgets';
+import { getUsers } from '../actions/users';
 
 class Dashboard extends Component {
   constructor (props) {
@@ -15,16 +14,17 @@ class Dashboard extends Component {
   }
 
   componentDidMount () {
-    this.props.getUsers();
-    this.props.getWidgets();
+    const { dispatch } = this.props;
+    dispatch(getUsers());
+    dispatch(getWidgets());
   }
 
   render () {
-    const { users, widgets, usersLength, widgetsLength } = this.props;
+    const { users, widgets } = this.props;
 
     return (
       <div>
-        <DashboardBoxes usersLength={usersLength} widgetsLength={widgetsLength} />
+        <DashboardBoxes usersLength={users.length} widgetsLength={widgets.length} />
         <div className='row'>
           {users ? <DashUsers users={users} /> : console.log('loading...')}
           {widgets ? <DashWidgets widgets={widgets.slice(0, 10)} /> : console.log('loading...')}
@@ -34,26 +34,17 @@ class Dashboard extends Component {
   }
 }
 
-Dashboard.contextTypes = {
-  router: PropTypes.object
-};
-
 Dashboard.propTypes = {
+  dispatch: PropTypes.func,
   users: PropTypes.arrayOf(React.PropTypes.object),
   widgets: PropTypes.arrayOf(React.PropTypes.object)
 };
 
 function mapStateToProps (state) {
   return {
-    users: state.main.users,
-    usersLength: state.main.usersLength,
-    widgets: state.main.widgets,
-    widgetsLength: state.main.widgetsLength
+    users: state.users.users,
+    widgets: state.widgets.widgets
   };
 }
 
-function mapDispatchToProps (dispatch) {
-  return bindActionCreators({getUsers, getWidgets}, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps)(Dashboard);

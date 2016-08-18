@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
-import { bindActionCreators } from 'redux';
 
-import { addWidget } from '../actions';
+import { addWidget } from '../actions/widgets';
 
 class CreateWidget extends Component {
   constructor (props) {

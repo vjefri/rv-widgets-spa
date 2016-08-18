@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 
-import { getWidget } from '../actions';
+import { getWidget } from '../actions/widgets';
 
 class WidgetDetail extends Component {
   constructor (props) {
@@ -11,8 +10,9 @@ class WidgetDetail extends Component {
   }
 
   componentDidMount () {
-    const { widgetId } = this.props ? this.props.params : console.log('loading...');
-    this.props.getWidget(widgetId);
+    const { widgetId } = this.props.params;
+    const { dispatch } = this.props;
+    dispatch(getWidget(widgetId));
   }
 
   render () {
@@ -89,21 +89,13 @@ class WidgetDetail extends Component {
   }
 }
 
-WidgetDetail.contextTypes = {
-  router: PropTypes.object
+WidgetDetail.propTypes = {
 };
 
 function mapStateToProps (state) {
   return {
-    currentWidget: state.main.currentWidget
+    currentWidget: state.widgets.currentWidget
   };
 }
 
-function mapDispatchToProps (dispatch) {
-  return bindActionCreators({getWidget}, dispatch);
-}
-
-WidgetDetail.propTypes = {
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(WidgetDetail);
+export default connect(mapStateToProps)(WidgetDetail);

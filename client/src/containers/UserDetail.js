@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-import { getUser } from '../actions';
+import { getUser } from '../actions/users';
 
 class UserDetail extends Component {
   constructor (props) {
@@ -10,8 +9,9 @@ class UserDetail extends Component {
   }
 
   componentDidMount () {
-    const { userId } = this.props ? this.props.params : console.log('loading...');
-    this.props.getUser(userId);
+    const { userId } = this.props.params;
+    const { dispatch } = this.props;
+    dispatch(getUser(userId));
   }
 
   render () {
@@ -62,21 +62,13 @@ class UserDetail extends Component {
   }
 }
 
-UserDetail.contextTypes = {
-  router: PropTypes.object
+UserDetail.propTypes = {
 };
 
 function mapStateToProps (state) {
   return {
-    currentUser: state.main.currentUser
+    currentUser: state.users.currentUser
   };
 }
 
-function mapDispatchToProps (dispatch) {
-  return bindActionCreators({getUser}, dispatch);
-}
-
-UserDetail.propTypes = {
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserDetail);
+export default connect(mapStateToProps)(UserDetail);

@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import Search from './Search';
-
 const DashUsers = props => {
 
   return (
@@ -10,7 +8,6 @@ const DashUsers = props => {
       <div className='widget'>
         <div className='widget-header'>
           Users
-          <Search />
         </div>
         <div className='table-responsive'>
           <table className='table'>
@@ -25,7 +22,7 @@ const DashUsers = props => {
               </tr>
             </thead>
             <tbody>
-              {filteredUsers.map((user, key) => {
+              {props.users.map((user, key) => {
                  return (<tr key={key}>
                            <td className='text-center'>
                              {user.id}

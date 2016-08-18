@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { browserHistory, Link } from 'react-router';
-import _ from 'lodash';
 
-import { getWidget, getWidgets } from '../actions';
+import { getWidget, getWidgets } from '../actions/widgets';
 import Search from '../components/Search';
 
 class WidgetsLong extends Component {
@@ -15,7 +13,8 @@ class WidgetsLong extends Component {
     this.handleSearch = this.handleSearch.bind(this);
   }
   componentDidMount () {
-    this.props.getWidgets();
+    const { dispatch } = this.props;
+    dispatch(getWidgets());
     this.setState({filteredList: this.props.widgets });
   }
 
@@ -72,7 +71,7 @@ class WidgetsLong extends Component {
                 </thead>
                 {this.state.filteredList ?
                    <tbody>
-                     {_.map(this.state.filteredList, (widget, key) => {
+                     {this.state.filteredList.map((widget, key) => {
                         return (<tr key={key}>
                                   <td>
                                     {widget.id}
@@ -110,17 +109,13 @@ WidgetsLong.contextTypes = {
   router: PropTypes.object
 };
 
-function mapStateToProps (state) {
-  return {
-    widgets: state.main.widgets
-  };
-}
-
-function mapDispatchToProps (dispatch) {
-  return bindActionCreators({getWidget, getWidgets}, dispatch);
-}
-
 WidgetsLong.propTypes = {
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(WidgetsLong);
+function mapStateToProps (state) {
+  return {
+    widgets: state.widgets.widgets
+  };
+}
+
+export default connect(mapStateToProps)(WidgetsLong);

@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { browserHistory, Link } from 'react-router';
+import { Link } from 'react-router';
 
-import { getUsers } from '../actions';
+import { getUsers } from '../actions/users';
 
 class UsersPage extends Component {
   constructor (props) {
@@ -11,12 +10,13 @@ class UsersPage extends Component {
   }
 
   componentDidMount () {
-    if (!this.props.users) {
-      this.props.getUsers();
-    }
+    const { dispatch } = this.props;
+    dispatch(getUsers());
   }
 
   render () {
+    const {users} = this.props;
+
     return (
       <div className='row'>
         <div className='col-lg-12'>
@@ -40,7 +40,7 @@ class UsersPage extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {_.map(this.props.users, (user, key) => {
+                  {users.map((user, key) => {
                      return (<tr key={key}>
                                <td className='text-center'>
                                  {user.id}
@@ -66,21 +66,15 @@ class UsersPage extends Component {
   }
 }
 
-UsersPage.contextTypes = {
-  router: PropTypes.object
+UsersPage.propTypes = {
+  dispatch: PropTypes.func,
+  users: PropTypes.arrayOf(React.PropTypes.object)
 };
 
 function mapStateToProps (state) {
   return {
-    users: state.main.users
+    users: state.users.users
   };
 }
 
-function mapDispatchToProps (dispatch) {
-  return bindActionCreators({getUsers}, dispatch);
-}
-
-UsersPage.propTypes = {
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersPage);
+export default connect(mapStateToProps)(UsersPage);

@@ -4,73 +4,6 @@ import * as ACTIONS from '../constants/';
 
 const url = 'http://spa.tglrw.com:4000';
 
-// Get All User Data
-
-function UserRequest () {
-  return {
-    type: ACTIONS.GET_USERS_REQUEST
-  };
-}
-
-function UserSuccess (users) {
-  const usersLength = users.data.length;
-
-  return {
-    type: ACTIONS.GET_USERS_SUCCESS,
-    users: users.data,
-    usersLength: usersLength,
-    error: null
-  };
-}
-
-function UserFailure (err) {
-  return {
-    type: ACTIONS.GET_USERS_FAILURE,
-    error: err
-  };
-}
-
-export function getUsers () {
-  return dispatch => {
-    dispatch(UserRequest());
-    return axios.get(`${url}/users`)
-      .then(response => dispatch(UserSuccess(response)))
-      .catch(err => dispatch(UserFailure(err)));
-  };
-};
-
-// Get Single User 
-
-function SingleUserRequest () {
-  return {
-    type: ACTIONS.GET_SINGLE_USER_REQUEST
-  };
-}
-
-function SingleUserSuccess (currentUser) {
-  return {
-    type: ACTIONS.GET_SINGLE_USER_SUCCESS,
-    currentUser: currentUser.data,
-    error: null
-  };
-}
-
-function SingleUserFailure (err) {
-  return {
-    type: ACTIONS.GET_SINGLE_USER_FAILURE,
-    error: err
-  };
-}
-
-export function getUser (id) {
-  return dispatch => {
-    dispatch(SingleUserRequest());
-    return axios.get(`${url}/users/${id}`)
-      .then(response => dispatch(SingleUserSuccess(response)))
-      .catch(err => dispatch(SingleUserFailure(err)));
-  };
-};
-
 // Get All Widget Data
 
 function WidgetRequest () {
@@ -80,13 +13,9 @@ function WidgetRequest () {
 }
 
 function WidgetSuccess (widgets) {
-  const widgetsLength = widgets.data.length;
-
   return {
     type: ACTIONS.GET_WIDGETS_SUCCESS,
-    widgets: widgets.data,
-    widgetsLength: widgetsLength,
-    error: null
+    widgets: widgets.data
   };
 }
 
@@ -117,8 +46,7 @@ function SingleWidgetRequest () {
 function SingleWidgetSuccess (currentWidget) {
   return {
     type: ACTIONS.GET_SINGLE_WIDGET_SUCCESS,
-    currentWidget: currentWidget.data,
-    error: null
+    currentWidget: currentWidget.data
   };
 }
 
@@ -146,11 +74,10 @@ function PostWidgetRequest () {
   };
 }
 
-function PostWidgetSuccess (data) {
+function PostWidgetSuccess (widget) {
   return {
     type: ACTIONS.POST_WIDGET_SUCCESS,
-    data: data.data,
-    error: null
+    widget: widget.data
   };
 }
 
@@ -178,11 +105,10 @@ function EditWidgetRequest () {
   };
 }
 
-function EditWidgetSuccess (data) {
+function EditWidgetSuccess (widget) {
   return {
     type: ACTIONS.EDIT_WIDGET_SUCCESS,
-    data: data.data,
-    error: null
+    widget: widget.data
   };
 }
 

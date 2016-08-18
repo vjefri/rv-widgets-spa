@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form';
 
-import { editWidget } from '../actions';
+import { editWidget } from '../actions/widgets';
 
 class EditWidget extends Component {
   constructor (props) {
@@ -12,6 +11,7 @@ class EditWidget extends Component {
 
   handleSubmit (values, dispatch, widgetId) {
     const { currentWidget } = this.props;
+
     if (currentWidget) {
       dispatch(editWidget(values, dispatch, currentWidget.id));
     }
@@ -126,7 +126,7 @@ EditWidget.PropTypes = {
 function mapStateToProps (state) {
   return {
     data: state.form.EditWidget,
-    currentWidget: state.main.currentWidget
+    currentWidget: state.widgets.currentWidget
   };
 }
 

@@ -1,26 +1,13 @@
 import * as ACTIONS from '../constants/';
 
-const INITIAL_STATE = {};
+const INITIAL_STATE = {
+  widgets: [],
+  currentWidget: {},
+  isFetching: false,
+};
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case ACTIONS.GET_USERS_REQUEST:
-      return {
-        ...state,
-        isFetching: true
-      };
-    case ACTIONS.GET_USERS_SUCCESS:
-      return {
-        ...state,
-        users: action.users,
-        usersLength: action.usersLength,
-        isFetching: false,
-      };
-    case ACTIONS.GET_USERS_FAILURE:
-      return {
-        ...state,
-        isFetching: false,
-      };
     case ACTIONS.GET_WIDGETS_REQUEST:
       return {
         ...state,
@@ -30,26 +17,9 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         widgets: action.widgets,
-        widgetsLength: action.widgetsLength,
         isFetching: false,
       };
     case ACTIONS.GET_WIDGETS_FAILURE:
-      return {
-        ...state,
-        isFetching: false,
-      };
-    case ACTIONS.GET_SINGLE_USER_REQUEST:
-      return {
-        ...state,
-        isFetching: true,
-      };
-    case ACTIONS.GET_SINGLE_USER_SUCCESS:
-      return {
-        ...state,
-        currentUser: action.currentUser,
-        isFetching: false,
-      };
-    case ACTIONS.GET_SINGLE_USER_FAILURE:
       return {
         ...state,
         isFetching: false,
@@ -78,7 +48,7 @@ export default (state = INITIAL_STATE, action) => {
     case ACTIONS.POST_WIDGET_SUCCESS:
       return {
         ...state,
-        data: action.data,
+        widget: action.widget,
         isFetching: false,
       };
     case ACTIONS.POST_WIDGET_FAILURE:
@@ -94,7 +64,7 @@ export default (state = INITIAL_STATE, action) => {
     case ACTIONS.EDIT_WIDGET_SUCCESS:
       return {
         ...state,
-        data: action.data,
+        widget: action.widget,
         isFetching: false,
       };
     case ACTIONS.EDIT_WIDGET_FAILURE:

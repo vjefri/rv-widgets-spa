@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import Search from './Search';
-
 const DashWidgets = props => {
 
   return (
@@ -10,7 +8,6 @@ const DashWidgets = props => {
       <div className='widget'>
         <div className='widget-header'>
           Widgets
-          <Search name='Search Widgets' />
         </div>
         <div className='table-responsive'>
           <table className='table'>
@@ -25,7 +22,7 @@ const DashWidgets = props => {
               </tr>
             </thead>
             <tbody>
-              {_.map(props.widgets, (widget, index) => {
+              {props.widgets.map((widget, index) => {
                  return (<tr key={index}>
                            <td className='text-center'>
                              {widget.id}
