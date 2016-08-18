@@ -35864,6 +35864,7 @@
 	}(_react.Component);
 	
 	CreateWidget.PropTypes = {
+	  dispatch: _react.PropTypes.func,
 	  handleSubmit: _react.PropTypes.func,
 	  submitting: _react.PropTypes.bool,
 	  fields: _react.PropTypes.object,
@@ -36280,6 +36281,7 @@
 	}(_react.Component);
 	
 	UserDetail.propTypes = {
+	  dispatch: _react.PropTypes.func,
 	  currentUser: _react.PropTypes.object
 	};
 	

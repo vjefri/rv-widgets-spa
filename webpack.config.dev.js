@@ -7,12 +7,9 @@ const config = {
   },
   devtool: '#source-map',
   devServer: {
-    headers: { 'Access-Control-Allow-Origin': '*' },
     inline: true,
     port: 300,
-    historyApiFallback: true,
-    contentBase: './',
-    hot: true
+    historyApiFallback: true
   },
   module: {
     loaders: [{

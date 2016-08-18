@@ -113,6 +113,7 @@ class CreateWidget extends Component {
 }
 
 CreateWidget.PropTypes = {
+  dispatch: PropTypes.func,
   handleSubmit: PropTypes.func,
   submitting: PropTypes.bool,
   fields: PropTypes.object,

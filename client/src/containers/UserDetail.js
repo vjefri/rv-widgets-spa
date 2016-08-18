@@ -62,6 +62,7 @@ class UserDetail extends Component {
 }
 
 UserDetail.propTypes = {
+  dispatch: PropTypes.func,
   currentUser: PropTypes.object
 };
 
